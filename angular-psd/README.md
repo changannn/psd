@@ -2,9 +2,24 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.4.
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Installing Angular
+1. Install node.js
+```
+node --version (check if you installed correctly)
+```
+2. Install Angular CLI
+```
+npm install -g @angular/cli (windows)
+sudo npm install -g @angular/cli (mac)
+```
+3. Clone the repository into desired directory
+```
+git clone https://github.com/nkjcolin/psd
+```
+4. Run the server on http://localhost:4200/
+```
+ng serve
+```
 
 ## Code scaffolding
 
