@@ -1,3 +1,33 @@
 <div class="main-container">
-  <app-login></app-login>
+  <!-- Header -->
+  <header>
+    <!-- Navigation menu goes here -->
+    <nav class="sgds navbar navbar-expand-lg">
+      <a class="navbar-brand" href="/">
+        <img src="/assets/wizvision_logo.png" alt="Home" height="60">
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="bi bi-list"></i>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="login">Login</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <!-- Footer content goes here -->
+  </footer>
 </div>
