@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@govtechsg/sgds/css/sgds.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <title>IEM Simulator</title>
+</head>
+<body class="dashboard-background">
+    <div>
+        <h1 align = "center"><font color="blue">User W's current plan:</font></h1>
+    </div>
+    <div align="center" class="cpu-card">
+        <mat-card>
+            <mat-card-header class="cpu-card-header">
+                <div class="cpu-card-header-format"><p class="tier-header">Tier: Standard Plan</p></div>
+            
+            </mat-card-header>
+
+            <mat-card-content class="cpu-card-content">
+                <circle-progress class="circle__progress"
+                    [radius]="200"
+                    [percent]="40"
+                    [animation]="true"
+                    [animationDuration]="300"
+                    [startFromZero]="true"
+                    [showInnerStroke]="true"
+                    [titleFontSize]="'100'"
+                    [titleFontWeight]="'900'"
+                    [unitsFontSize]="'28'"
+                    [unitsFontWeight]="'900'"
+                    [subtitle]="'CPU UTILIZATION'"
+                    [subtitleFontSize]="'20'"
+                    [lazy]="false"
+                ></circle-progress>
+                <circle-progress class="circle__progress"
+                    [radius]="200"
+                    [percent]="75"
+                    [animation]="true"
+                    [animationDuration]="300"
+                    [startFromZero]="true"
+                    [showInnerStroke]="true"
+                    [titleFontSize]="'100'"
+                    [titleFontWeight]="'900'"
+                    [unitsFontSize]="'28'"
+                    [unitsFontWeight]="'900'"
+                    [subtitle]="'STORAGE USAGE'"
+                    [subtitleFontSize]="'20'"
+                    [lazy]="false"
+                ></circle-progress>
+            </mat-card-content>
+            <div id="information">
+                <h1>Core: 5</h1>
+                <h1>User Accounts: 3</h1>
+                <div>
+                    <span class="user-extra-display">User X</span>
+                    <span class="user-extra-display">User Y</span>
+                    <span class="user-extra-display">User Z</span>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+
+
+</body>
+</html>

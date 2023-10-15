@@ -1,0 +1,50 @@
+
+.cpu-card {
+    margin: auto;
+    height: 800PX;
+    width:80%;
+
+}
+.cpu-card-header {
+    margin:auto;
+}
+.cpu-card-header-format {
+    margin:auto;
+    height: 100px;
+    width: 500px;
+    background-color:rgb(31, 230, 31) ;
+    border-radius: 50px;
+    border-style: solid;
+    border-width: 5px;
+}
+.tier-header{
+    margin: auto;
+    font-size: 35px;
+}
+.cpu-card-content {
+    margin: auto;
+    height: 500px;
+    width: 100%;
+}
+
+.circle__progress {
+    margin-top: 100px;
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 500px;
+    height: 500px;
+}
+.user-extra-display{
+    margin-left: 100px;
+    margin-right: 100px;
+    font-size: 30px;
+    font-weight: 900;
+}
+
+
+div#information {
+    color: white;
+    background-color:rgb(98, 98, 233);
+    background-blend-mode: lighten;
+    border-radius: 50px;
+}
