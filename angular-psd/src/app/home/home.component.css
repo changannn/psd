@@ -30,7 +30,7 @@
 
 .pricing__header {
     padding: 25px;
-    background: #009578;
+    background: #ee8f0b;
     color: #ffffff;
 }
 
@@ -73,7 +73,7 @@
 
 .pricing__feature::before {
     content: "\2714";
-    color: #009578;
+    color: #ee8f0b;
     position: absolute;
     left: 0;
 }
@@ -103,7 +103,7 @@
     margin: 15px auto;
     padding: 8px 20px;
     text-decoration: none;
-    color: #009578;
+    color: #ee8f0b;
     background: white;
     border-radius: 5px;
     border: 1px solid #009578;
@@ -111,6 +111,6 @@
 }
 
 .pricing__button:hover {
-    background: #009578;
+    background: #ee8f0b;
     color: white;
 }
