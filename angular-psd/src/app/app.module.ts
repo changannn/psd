@@ -8,13 +8,15 @@ import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatCardModule } from '@angular/material/card';
 import { NgCircleProgressModule } from "ng-circle-progress";
+import { GeneralRegisterComponent } from './general-register/general-register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    DashboardComponent
+    DashboardComponent,
+    GeneralRegisterComponent
   ],
   imports: [
     BrowserModule,

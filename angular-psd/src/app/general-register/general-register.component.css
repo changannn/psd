@@ -6,10 +6,6 @@
     min-width: 1000px;
 }
 
-.logo{
-    margin-top: 60px;
-}
-
 .row{
     position: relative;
     margin: auto;
@@ -35,12 +31,5 @@
 
 .form-control{
     border-radius: 15px;
-    padding-left: 40px;
-}
-
-.form-control-icon{
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 25px;
+    padding-left: 20px;
 }
