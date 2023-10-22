@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.psd.backend.model.User;
-import com.psd.backend.respository.userRespository;;
+import com.psd.backend.respository.userRepository;;
 
 @Service
 public class UserServiceImpl implements UserService{
 
     @Autowired
-    private userRespository userRespository;
+    private userRepository userRespository;
 
     @Override
     public User createUser(User user) {
