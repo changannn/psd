@@ -20,6 +20,8 @@ public class RegisterController {
 
     @PostMapping("/register")
     public ResponseEntity<?> regiser(@RequestBody User currentuser){
+
+        // validation required
         String username = currentuser.getUserame();
         String password = currentuser.getPassword();
         String email = currentuser.getEmail();
