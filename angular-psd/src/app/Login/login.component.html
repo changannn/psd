@@ -14,21 +14,21 @@
             <img class="logo" src="/assets/wizvision_logo.png" alt="image">
         </div>
         <div class="row">
-            <label class="form-label">Your email</label>
+            <label class="form-label">Your username</label>
             <span class="span-input">
-                <input type="text" class=" form-control" id="defaultWith" aria-describedby="defaultWith" placeholder="Type your email">
+                <input type="text" class=" form-control" id="defaultWith" aria-describedby="defaultWith" placeholder="Type your username" [(ngModel)]="username">
                 <i class="bi bi-person-fill form-control-icon"></i>
             </span>
         </div>
         <div class="row">
             <label class="form-label">Your password</label>
             <span class="span-input">
-                <input type="text" class=" form-control" id="defaultWith" aria-describedby="defaultWith" placeholder="Type your password">
+                <input type="password" class=" form-control" id="defaultWith" aria-describedby="defaultWith" placeholder="Type your password" [(ngModel)]="password">
                 <i class="bi bi-lock-fill form-control-icon"></i>
             </span>
         </div>
         <div class="row">
-            <button type="button" class="btn btn-primary sgds">Login</button>
+            <button type="button" class="btn btn-primary sgds" (click)="login()">Login</button>
         </div>
         <div class="row">
             <label>Don't have an account? <a href="">Signup now!</a></label>
