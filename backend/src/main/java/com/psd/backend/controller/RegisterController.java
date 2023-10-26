@@ -28,7 +28,7 @@ public class RegisterController {
         // add other register info below
 
         // Check if the username is already in use
-        if (userRepository.existsByUsername(username)) {
+        if (userRepository.findByUsername(username) != null) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already in use.");
         }
 

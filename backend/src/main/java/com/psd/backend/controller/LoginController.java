@@ -24,7 +24,7 @@ public class LoginController {
         String password = currentuser.getPassword();
         String role = currentuser.getRole();
 
-        User user = userRepository.findByUser(username);
+        User user = userRepository.findByUsername(username);
 
         if (user != null && password.equals(user.getPassword())) {
             // Authentication is successful. You can generate a token or return success response.
