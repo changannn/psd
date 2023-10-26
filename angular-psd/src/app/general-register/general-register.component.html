@@ -8,7 +8,7 @@
     <title>IEM Simulator</title>
 </head>
 <body>
-    
+
     <div class="form container">
         <div class="row">
             <h1>Register</h1>
@@ -16,25 +16,25 @@
         <div class="row">
             <label class="form-label">Full Name</label>
             <span class="span-input">
-                <input type="text" class=" form-control" id="defaultWith" aria-describedby="defaultWith" placeholder="Type your full name">
+                <input type="text" class=" form-control" id="defaultWith" aria-describedby="defaultWith" placeholder="Type your full name" [(ngModel)]="fullName">
             </span>
         </div>
         <div class="row">
             <label class="form-label">Email</label>
             <span class="span-input">
-                <input type="text" class=" form-control" id="defaultWith" aria-describedby="defaultWith" placeholder="Type your email address">
+                <input type="text" class=" form-control" id="defaultWith" aria-describedby="defaultWith" placeholder="Type your email address" [(ngModel)]="email">
             </span>
         </div>
         <div class="row">
             <label class="form-label">Username</label>
             <span class="span-input">
-                <input type="text" class=" form-control" id="defaultWith" aria-describedby="defaultWith" placeholder="Type your username">
+                <input type="text" class=" form-control" id="defaultWith" aria-describedby="defaultWith" placeholder="Type your username" [(ngModel)]="username">
             </span>
         </div>
         <div class="row">
             <label class="form-label">Password</label>
             <span class="span-input">
-                <input type="text" class=" form-control" id="defaultWith" aria-describedby="defaultWith" placeholder="Type your password">
+                <input type="text" class=" form-control" id="defaultWith" aria-describedby="defaultWith" placeholder="Type your password" [(ngModel)]="password">
             </span>
         </div>
         <div class="row">
@@ -44,12 +44,17 @@
             </span>
         </div>
         <div class="row">
-            <button type="button" class="btn btn-primary sgds">Sign Up</button>
+            <button type="button" class="btn btn-primary sgds" (click)="signUp()">Sign Up</button>
         </div>
         <div class="row">
             <label>Already have an account? <a href="">Sign in here!</a></label>
         </div>
+
+        <div class="row" *ngIf="registrationResponse$ | async as response">
+          <p>Registration Response: {{ response.message }}</p>
+        </div>
     </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>

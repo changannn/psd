@@ -20,7 +20,7 @@ public class LoginController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody User currentuser){
-        String username = currentuser.getUserame();
+        String username = currentuser.getUsername();
         String password = currentuser.getPassword();
         String role = currentuser.getRole();
 

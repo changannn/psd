@@ -12,34 +12,34 @@ import com.psd.backend.respository.userRepository;;
 public class UserServiceImpl implements UserService{
 
     @Autowired
-    private userRepository userRespository;
+    private userRepository userRepository;
 
     @Override
     public User createUser(User user) {
-        return userRespository.save(user);
+        return userRepository.save(user);
     }
 
     @Override
     public void deleteUser(int id) {
-        userRespository.deleteById(id);
+        userRepository.deleteById(id);
     }
 
     @Override
     public User getUserById(int id) {
-        return userRespository.findById(id).get();
+        return userRepository.findById(id).get();
     }
 
     @Override
     public List<User> getUsers() {
-        return (List<User>) userRespository.findAll();
+        return (List<User>) userRepository.findAll();
     }
 
     @Override
     public User updateUser(User user, int id) {
-        User currentUser = userRespository.findById(id).get();
+        User currentUser = userRepository.findById(id).get();
         currentUser.setEmail(user.getEmail());
         currentUser.setPassword(user.getPassword());
-        return userRespository.save(currentUser);
+        return userRepository.save(currentUser);
     }
     
     
