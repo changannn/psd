@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { LoginService } from '../login.service';
+import { Observable, of } from 'rxjs';
+import { HttpStatusCode } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -10,9 +12,10 @@ export class LoginComponent {
   username: string | undefined;
   password: string | undefined;
   role = 'admin';
-  apiUrl = 'http://localhost:8080';
+  loginResponse$: Observable<any> = of(null); // Declare registrationResponse$ as an Observable
 
-  constructor(private http: HttpClient) {}
+  constructor(private loginService: LoginService) {
+  }
 
   login() {
     const loginDetails = {
@@ -20,8 +23,6 @@ export class LoginComponent {
       password: this.password,
       role: this.role
     };
-    this.http.post(`${this.apiUrl}/login`, loginDetails).subscribe((data) => {
-      console.log(data);
-    });
+    this.loginResponse$ = this.loginService.loginUser(loginDetails);
   }
 }
