@@ -1,6 +1,6 @@
 package com.psd.backend.controller;
 
-import com.psd.backend.model.RegistrationResponse;
+import com.psd.backend.model.FrontendResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ public class RegisterController {
     private userRepository userRepository;
 
     @PostMapping("/register")
-    public ResponseEntity<RegistrationResponse> register(@RequestBody User currentuser){
+    public ResponseEntity<FrontendResponse> register(@RequestBody User currentuser){
 
         // validation required
         String username = currentuser.getUsername();
@@ -30,7 +30,7 @@ public class RegisterController {
 
         // Check if the username is already in use
         if (userRepository.findByUsername(username) != null) {
-            RegistrationResponse response = new RegistrationResponse("Username already in use.");
+            FrontendResponse response = new FrontendResponse("Username already in use.");
             return new ResponseEntity<>(response, HttpStatus.CONFLICT);
         }
 
@@ -45,7 +45,7 @@ public class RegisterController {
         // save to database
         userRepository.save(newUser);
 
-        RegistrationResponse response = new RegistrationResponse("Registration successful. User created.");
+        FrontendResponse response = new FrontendResponse("Registration successful. User created.");
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

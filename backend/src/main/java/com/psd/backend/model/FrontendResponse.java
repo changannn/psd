@@ -1,9 +1,9 @@
 package com.psd.backend.model;
 
-public class RegistrationResponse {
+public class FrontendResponse {
     private String message;
 
-    public RegistrationResponse(String message) {
+    public FrontendResponse(String message) {
         this.message = message;
     }
 
