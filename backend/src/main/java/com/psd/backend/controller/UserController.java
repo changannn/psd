@@ -74,11 +74,7 @@ public class UserController {
         }
 
         // Create a new user entity and save it to the database
-        User newUser = new User();
-        newUser.setUsername(username);
-        newUser.setEmail(email);
-        newUser.setPassword(password);
-        newUser.setRole("admin");
+        User newUser = new User(username, email, password, "ROLE_ROOT");
         // Set other user information below
 
         // save to database

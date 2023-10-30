@@ -13,16 +13,34 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
-    @Column(unique = true)
+    @Column(name = "username",unique = true)
     private String username;
-    
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "password")
     private String password;
 
+    @Column(name = "role")
     private String role;
-    
+
+    // Define constructors
+    public User() {
+
+    }
+
+    public User(String username, String email, String password, String role) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
+
+    // Define Getters/Setters
     public String getRole() {
         return role;
     }
