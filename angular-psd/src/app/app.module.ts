@@ -11,6 +11,7 @@ import { NgCircleProgressModule } from "ng-circle-progress";
 import { GeneralRegisterComponent } from './general-register/general-register.component';
 import {HttpClientModule} from "@angular/common/http";
 import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     HomeComponent,
     DashboardComponent,
-    GeneralRegisterComponent
+    GeneralRegisterComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
