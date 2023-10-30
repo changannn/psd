@@ -2,6 +2,7 @@ package com.psd.backend.controller;
 
 import java.util.List;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -59,7 +60,7 @@ public class UserController {
 
     // register
     @PostMapping("/register")
-    public ResponseEntity<FrontendResponse> register(@RequestBody User currentuser){
+    public ResponseEntity<FrontendResponse> register(@Valid @RequestBody User currentuser){
 
         // validation required
         String username = currentuser.getUsername();
@@ -87,7 +88,7 @@ public class UserController {
 
     // login
     @PostMapping("/login")
-    public ResponseEntity<FrontendResponse> login(@RequestBody User currentuser){
+    public ResponseEntity<FrontendResponse> login(@Valid @RequestBody User currentuser){
         String username = currentuser.getUsername();
         String password = currentuser.getPassword();
         String role = currentuser.getRole();

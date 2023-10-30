@@ -24,7 +24,7 @@ public class User {
 
     @Column(name = "email")
     @NotBlank(message = "Email required")
-    @Email
+    @Email(message = "Invalid email address")
     private String email;
 
     @Column(name = "password")
