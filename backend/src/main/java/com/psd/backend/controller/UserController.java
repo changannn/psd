@@ -2,10 +2,13 @@ package com.psd.backend.controller;
 
 import java.util.List;
 
+import com.psd.backend.validation.LoginValidationGroup;
+import com.psd.backend.validation.RegistrationValidationGroup;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,11 +27,12 @@ import com.psd.backend.service.UserService;
 @CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
     
-    @Autowired
     private UserService userService;
 
     @Autowired
-    private userRepository userRepository;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     // Rest API CRUD
     @PostMapping("/add")
@@ -60,7 +64,7 @@ public class UserController {
 
     // register
     @PostMapping("/register")
-    public ResponseEntity<FrontendResponse> register(@Valid @RequestBody User currentuser){
+    public ResponseEntity<FrontendResponse> register(@Validated(RegistrationValidationGroup.class) @RequestBody User currentuser){
 
         // validation required
         String username = currentuser.getUsername();
@@ -69,7 +73,7 @@ public class UserController {
         // add other register info below
 
         // Check if the username is already in use
-        if (userRepository.findByUsername(username) != null) {
+        if (userService.findByUsername(username) != null) {
             FrontendResponse response = new FrontendResponse("Username already in use.");
             return new ResponseEntity<>(response, HttpStatus.CONFLICT);
         }
@@ -79,7 +83,7 @@ public class UserController {
         // Set other user information below
 
         // save to database
-        userRepository.save(newUser);
+        userService.save(newUser);
 
         FrontendResponse response = new FrontendResponse("Registration successful. User created.");
         return new ResponseEntity<>(response, HttpStatus.OK);
@@ -88,12 +92,12 @@ public class UserController {
 
     // login
     @PostMapping("/login")
-    public ResponseEntity<FrontendResponse> login(@Valid @RequestBody User currentuser){
+    public ResponseEntity<FrontendResponse> login(@Validated(LoginValidationGroup.class) @RequestBody User currentuser){
         String username = currentuser.getUsername();
         String password = currentuser.getPassword();
         String role = currentuser.getRole();
 
-        User user = userRepository.findByUsername(username);
+        User user = userService.findByUsername(username);
 
         if (user != null && password.equals(user.getPassword())) {
             // Authentication is successful. You can generate a token or return success response.

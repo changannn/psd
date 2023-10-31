@@ -1,5 +1,7 @@
 package com.psd.backend.model;
 
+import com.psd.backend.validation.LoginValidationGroup;
+import com.psd.backend.validation.RegistrationValidationGroup;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,16 +21,16 @@ public class User {
     private int id;
 
     @Column(name = "username",unique = true)
-    @NotBlank(message = "Username required")
+    @NotBlank(message = "Username required", groups = {RegistrationValidationGroup.class, LoginValidationGroup.class})
     private String username;
 
     @Column(name = "email")
-    @NotBlank(message = "Email required")
-    @Email(message = "Invalid email address")
+    @NotBlank(message = "Email required", groups = {RegistrationValidationGroup.class})
+    @Email(message = "Invalid email address", groups = {RegistrationValidationGroup.class})
     private String email;
 
     @Column(name = "password")
-    @NotBlank(message = "Password required")
+    @NotBlank(message = "Password required", groups = {RegistrationValidationGroup.class, LoginValidationGroup.class})
     private String password;
 
     @Column(name = "role")

@@ -11,8 +11,11 @@ import com.psd.backend.respository.userRepository;;
 @Service
 public class UserServiceImpl implements UserService{
 
-    @Autowired
     private userRepository userRepository;
+    @Autowired
+    public UserServiceImpl(userRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public User createUser(User user) {
@@ -41,8 +44,16 @@ public class UserServiceImpl implements UserService{
         currentUser.setPassword(user.getPassword());
         return userRepository.save(currentUser);
     }
-    
-    
-    
-    
+
+    @Override
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public void save(User user) {
+        userRepository.save(user);
+    }
+
+
 }

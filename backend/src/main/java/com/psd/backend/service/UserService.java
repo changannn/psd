@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.psd.backend.model.User;
 
 
-@Service
+//@Service
 public interface UserService {
     
     public User createUser(User user);
@@ -20,4 +20,7 @@ public interface UserService {
 
     public User updateUser(User user, int id);
 
+    public User findByUsername(String username);
+
+    public void save(User user);
 }
