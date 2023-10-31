@@ -8,5 +8,6 @@ db config files is in main/resources/application.properties
 # run/build commands
 to run for localhost
 * ng serve
+
 to build to upload
 * ng build
