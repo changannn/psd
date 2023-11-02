@@ -2,18 +2,21 @@ package com.psd.backend.service;
 
 import java.util.List;
 
+import com.psd.backend.respository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.psd.backend.model.User;
-import com.psd.backend.respository.userRepository;;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService, UserDetailsService {
 
-    private userRepository userRepository;
+    private final UserRepository userRepository;
     @Autowired
-    public UserServiceImpl(userRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -55,5 +58,15 @@ public class UserServiceImpl implements UserService{
         userRepository.save(user);
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username);
 
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found");
+        }
+
+        // User implements UserDetails
+        return user;
+    }
 }

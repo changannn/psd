@@ -1,19 +1,16 @@
 package com.psd.backend.model;
 
-import com.psd.backend.validation.LoginValidationGroup;
-import com.psd.backend.validation.RegistrationValidationGroup;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "user_table")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,27 +18,24 @@ public class User {
     private int id;
 
     @Column(name = "username",unique = true)
-    @NotBlank(message = "Username required", groups = {RegistrationValidationGroup.class, LoginValidationGroup.class})
     private String username;
 
     @Column(name = "email")
-    @NotBlank(message = "Email required", groups = {RegistrationValidationGroup.class})
-    @Email(message = "Invalid email address", groups = {RegistrationValidationGroup.class})
     private String email;
 
     @Column(name = "password")
-    @NotBlank(message = "Password required", groups = {RegistrationValidationGroup.class, LoginValidationGroup.class})
     private String password;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "role")
-    private String role;
+    private Role role;
 
     // Define constructors
     public User() {
 
     }
 
-    public User(String username, String email, String password, String role) {
+    public User(String username, String email, String password, Role role) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -49,10 +43,10 @@ public class User {
     }
 
     // Define Getters/Setters
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
     public int getId() {
@@ -64,6 +58,8 @@ public class User {
     public String getUsername() {
         return username;
     }
+
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -73,11 +69,36 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
     public String getPassword() {
         return password;
     }
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
+    }
 }
