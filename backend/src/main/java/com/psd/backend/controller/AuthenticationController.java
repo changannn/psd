@@ -2,6 +2,7 @@ package com.psd.backend.controller;
 
 import com.psd.backend.auth.AuthenticationRequest;
 import com.psd.backend.auth.RegisterRequest;
+import com.psd.backend.auth.VerificationRequest;
 import com.psd.backend.auth.AuthenticationResponse;
 import com.psd.backend.service.AuthenticationService;
 import jakarta.validation.Valid;
@@ -26,5 +27,12 @@ public class AuthenticationController {
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> register(@Valid @RequestBody AuthenticationRequest request) {
         return ResponseEntity.ok(authenticationService.authenticate(request));
+    }
+
+    @PostMapping("/verify")
+    public ResponseEntity<?> verifyCode(
+        @RequestBody VerificationRequest verificationRequest
+    ) {
+        return ResponseEntity.ok(authenticationService.verifyCode(verificationRequest));
     }
 }

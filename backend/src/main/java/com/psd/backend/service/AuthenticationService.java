@@ -2,12 +2,14 @@ package com.psd.backend.service;
 
 import com.psd.backend.auth.AuthenticationRequest;
 import com.psd.backend.auth.RegisterRequest;
+import com.psd.backend.auth.VerificationRequest;
 import com.psd.backend.auth.AuthenticationResponse;
 import com.psd.backend.model.Role;
 import com.psd.backend.model.User;
 import com.psd.backend.respository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,6 +23,7 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+    private final MfaService mfaService;
 
     public AuthenticationResponse register(RegisterRequest request) {
         // Create user with encrypted password and save to database
@@ -28,11 +31,12 @@ public class AuthenticationService {
         userRepository.save(user);
 
         //Generate secret for MFA
-        user.setSecret("");
+        user.setSecret(mfaService.generateNewSecret());
 
         // Generate a token to return to the user
         String jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
+                .secretImageUri(mfaService.generateQrCodeImageUri(user.getSecret()))
                 .token(jwtToken)
                 .build();
     }
@@ -45,6 +49,24 @@ public class AuthenticationService {
 
         if (user == null) {
             throw new UsernameNotFoundException("User does not exist");
+        }
+
+        // Generate token to return to the user
+        String jwtToken = jwtService.generateToken(user);
+        return AuthenticationResponse.builder()
+                .token(jwtToken)
+                .build();
+    }
+
+    public AuthenticationResponse verifyCode (VerificationRequest verificationRequest) {
+        User user = userRepository.findByUsername(verificationRequest.getUsername());
+
+        if (user == null) {
+            throw new UsernameNotFoundException("User does not exist");
+        }
+
+        if (mfaService.isOtpNotValid(user.getSecret(), verificationRequest.getCode())) {
+            throw new BadCredentialsException("Code is not correct");
         }
 
         // Generate token to return to the user
