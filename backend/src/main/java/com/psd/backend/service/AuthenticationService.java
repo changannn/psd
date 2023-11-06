@@ -27,6 +27,9 @@ public class AuthenticationService {
         User user = new User(request.getUsername(), request.getEmail(),passwordEncoder.encode(request.getPassword()), Role.ROOT);
         userRepository.save(user);
 
+        //Generate secret for MFA
+        user.setSecret("");
+
         // Generate a token to return to the user
         String jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()

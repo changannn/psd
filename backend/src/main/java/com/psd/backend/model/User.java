@@ -30,6 +30,9 @@ public class User implements UserDetails {
     @Column(name = "role")
     private Role role;
 
+    @Column(name = "secret")
+    private String secret;
+
     // Define constructors
     public User() {
 
@@ -43,6 +46,12 @@ public class User implements UserDetails {
     }
 
     // Define Getters/Setters
+    public String getSecret() {
+        return secret;
+    }
+    public void setSecret(String secret) {
+        this.secret = secret;
+    }
     public Role getRole() {
         return role;
     }
