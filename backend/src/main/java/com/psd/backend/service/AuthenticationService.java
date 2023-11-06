@@ -27,17 +27,20 @@ public class AuthenticationService {
 
     public AuthenticationResponse register(RegisterRequest request) {
         // Create user with encrypted password and save to database
-        User user = new User(request.getUsername(), request.getEmail(),passwordEncoder.encode(request.getPassword()), Role.ROOT);
+        User user = new User(request.getUsername(), request.getEmail(), passwordEncoder.encode(request.getPassword()), Role.ROOT, request.isMfaEnabled());
         userRepository.save(user);
 
-        //Generate secret for MFA
-        user.setSecret(mfaService.generateNewSecret());
+        // If MFA enabled, generate secret for MFA
+        if (request.isMfaEnabled()){
+            user.setSecret(mfaService.generateNewSecret());
+        }
 
         // Generate a token to return to the user
         String jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .secretImageUri(mfaService.generateQrCodeImageUri(user.getSecret()))
                 .token(jwtToken)
+                .mfaEnabled(user.getMfaEnabled())
                 .build();
     }
 
@@ -51,10 +54,18 @@ public class AuthenticationService {
             throw new UsernameNotFoundException("User does not exist");
         }
 
+        if (user.getMfaEnabled()) {
+            return AuthenticationResponse.builder()
+                .token("")
+                .mfaEnabled(true)
+                .build();
+        }
+
         // Generate token to return to the user
         String jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
+                .mfaEnabled(false)
                 .build();
     }
 
@@ -73,6 +84,7 @@ public class AuthenticationService {
         String jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
+                .mfaEnabled(user.getMfaEnabled())
                 .build();
     }
 }

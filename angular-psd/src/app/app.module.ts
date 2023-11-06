@@ -9,7 +9,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatCardModule } from '@angular/material/card';
 import { NgCircleProgressModule } from "ng-circle-progress";
 import { GeneralRegisterComponent } from './general-register/general-register.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 
@@ -44,7 +44,7 @@ import { HeaderComponent } from './header/header.component';
     HttpClientModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

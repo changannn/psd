@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { RegistrationService } from "../registration.service";
 import {Observable, of} from 'rxjs';
+import { RegisterRequest } from '../models/register-request';
+import { AuthenticationResponse } from '../models/authentication-response';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-general-register',
@@ -8,22 +11,28 @@ import {Observable, of} from 'rxjs';
   styleUrls: ['./general-register.component.css']
 })
 export class GeneralRegisterComponent {
-  fullName: string | undefined;
-  email: string | undefined;
-  username: string | undefined;
-  password: string | undefined;
-  registrationResponse$: Observable<any> = of(null); // Declare registrationResponse$ as an Observable
+  registerRequest: RegisterRequest = {};
+  authenticationResponse: AuthenticationResponse = {};
+  message: string = '';
 
-  constructor(private registrationService: RegistrationService) {
+  constructor(private registrationService: RegistrationService, private router: Router) {
   }
 
   signUp() {
-    const userData = {
-      fullName: this.fullName,
-      email: this.email,
-      username: this.username,
-      password: this.password,
-    };
-    this.registrationResponse$ = this.registrationService.registerUser(userData);
+    this.message = '';
+    this.registrationService.registerUser(this.registerRequest)
+      .subscribe({
+        next: (response: AuthenticationResponse): void => {
+          if (response) {
+            this.authenticationResponse = response;
+          }
+          else {
+            this.message = 'Account created successfully\nYou will be redirected to the login page in 3 seconds';
+            setTimeout((): void => {
+              this.router.navigate(['login']);
+            }, 3000)
+          }
+        }
+      })
   }
 }

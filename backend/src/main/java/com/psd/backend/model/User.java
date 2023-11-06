@@ -33,19 +33,29 @@ public class User implements UserDetails {
     @Column(name = "secret")
     private String secret;
 
+    @Column(name = "mfaenabled")
+    private boolean mfaEnabled;
+
     // Define constructors
     public User() {
 
     }
 
-    public User(String username, String email, String password, Role role) {
+    public User(String username, String email, String password, Role role, boolean mfaEnabled) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.role = role;
+        this.mfaEnabled = mfaEnabled;
     }
 
     // Define Getters/Setters
+    public boolean getMfaEnabled() {
+        return mfaEnabled;
+    }
+    public void setMfaEnabled(boolean mfaEnabled) {
+        this.mfaEnabled = mfaEnabled;
+    }
     public String getSecret() {
         return secret;
     }
@@ -67,8 +77,6 @@ public class User implements UserDetails {
     public String getUsername() {
         return username;
     }
-
-
     public void setUsername(String username) {
         this.username = username;
     }

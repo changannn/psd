@@ -20,8 +20,12 @@ public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
     @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse> register(@Valid @RequestBody RegisterRequest request) {
-        return ResponseEntity.ok(authenticationService.register(request));
+    public ResponseEntity<?> register(@Valid @RequestBody RegisterRequest request) {
+        var response = authenticationService.register(request);
+        if (request.isMfaEnabled()) {
+            return ResponseEntity.ok(response);
+        }
+        return ResponseEntity.accepted().build();
     }
 
     @PostMapping("/authenticate")
@@ -30,9 +34,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/verify")
-    public ResponseEntity<?> verifyCode(
-        @RequestBody VerificationRequest verificationRequest
-    ) {
+    public ResponseEntity<?> verifyCode(@RequestBody VerificationRequest verificationRequest) {
         return ResponseEntity.ok(authenticationService.verifyCode(verificationRequest));
     }
 }
