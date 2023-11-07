@@ -50,7 +50,7 @@ public class MfaService {
 
     public boolean isOtpValid (String secret, String code) {
         TimeProvider timeProvider = new SystemTimeProvider();
-        CodeGenerator codeGenerator = new DefaultCodeGenerator();
+        CodeGenerator codeGenerator = new DefaultCodeGenerator(HashingAlgorithm.SHA256);
         CodeVerifier verifier = new DefaultCodeVerifier(codeGenerator, timeProvider);
 
         return verifier.isValidCode(secret, code);
