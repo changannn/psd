@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { RegistrationService } from "../registration.service";
+import { RegistrationService } from "../../services/registration.service";
 import {Observable, of} from 'rxjs';
-import { RegisterRequest } from '../models/register-request';
-import { AuthenticationResponse } from '../models/authentication-response';
+import { RegisterRequest } from '../../models/register-request';
+import { AuthenticationResponse } from '../../models/authentication-response';
 import { Route, Router } from '@angular/router';
 
 @Component({

@@ -3,15 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoginComponent } from './pages/login/login.component';
+import { HomeComponent } from './pages/home/home.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MatCardModule } from '@angular/material/card';
 import { NgCircleProgressModule } from "ng-circle-progress";
-import { GeneralRegisterComponent } from './general-register/general-register.component';
+import { GeneralRegisterComponent } from './pages/general-register/general-register.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { FormsModule } from '@angular/forms';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './pages/header/header.component';
 
 @NgModule({
   declarations: [
