@@ -29,10 +29,10 @@ export class GeneralRegisterComponent {
             this.authenticationResponse = response;
           }
           else {
-            this.message = 'Account created successfully\nYou will be redirected to the login page in 3 seconds';
+            this.message = 'Account created successfully\nYou will be redirected to the login page in 5 seconds';
             setTimeout(() => {
               this.router.navigate(['login']);
-            }, 3000)
+            }, 5000)
           }
         }
       });
@@ -47,11 +47,11 @@ export class GeneralRegisterComponent {
     this.registrationService.verifyCode(verificationRequest)
       .subscribe({
         next: (response: AuthenticationResponse) => {
-          this.message = 'Account created successfully\nYou will be redirected to the login page in 3 seconds';
+          this.message = 'Account created successfully\nYou will be redirected to the login page in 5 seconds';
           setTimeout(() => {
             localStorage.setItem('token', response.token as string);
             this.router.navigate(['login']);
-          }, 3000)
+          }, 5000)
         }
       });
   }
