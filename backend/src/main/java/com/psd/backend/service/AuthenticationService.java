@@ -55,7 +55,8 @@ public class AuthenticationService {
         if (user == null) {
             throw new UsernameNotFoundException("User does not exist");
         }
-
+        
+        // Will not generate JWT token here, because needs to go through verifyCode to generate the JWT Token
         if (user.getMfaEnabled()) {
             return AuthenticationResponse.builder()
                 .token("")
@@ -63,7 +64,7 @@ public class AuthenticationService {
                 .build();
         }
 
-        // Generate token to return to the user
+        // Generate JWT token to return to the user
         String jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)

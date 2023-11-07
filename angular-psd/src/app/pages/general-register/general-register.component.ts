@@ -14,6 +14,7 @@ import { VerificationRequest } from 'src/app/models/verification-request';
 export class GeneralRegisterComponent {
   registerRequest: RegisterRequest = {};
   authenticationResponse: AuthenticationResponse = {};
+  retypePassword: string = '';
   message: string = '';
   otpCode: string = '';
 
@@ -22,6 +23,11 @@ export class GeneralRegisterComponent {
 
   signUp() {
     this.message = '';
+
+    if (this.registerRequest.password != this.retypePassword) {
+      this.message = 'Passwords do not match. Please try again.';
+    }
+    else {
     this.registrationService.registerUser(this.registerRequest)
       .subscribe({
         next: (response: AuthenticationResponse) => {
@@ -40,6 +46,7 @@ export class GeneralRegisterComponent {
           this.message = 'Sign-up failed\n' + error.message;
         }
       });
+    }
   }
   
   verifyMFA() {
