@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RegisterRequest } from '../models/register-request';
 import { AuthenticationResponse } from '../models/authentication-response';
+import { VerificationRequest } from '../models/verification-request';
 
 @Injectable({
   providedIn: 'root',
@@ -11,8 +12,14 @@ export class RegistrationService {
 
   constructor(private http: HttpClient) {}
 
+  // To register the user
   registerUser(registerRequest: RegisterRequest) {
-    return this.http.post<AuthenticationResponse>(`${this.apiUrl}/add`, registerRequest);
+    return this.http.post<AuthenticationResponse>(`${this.apiUrl}/auth/register`, registerRequest);
+  }
+
+  // To verify MFA code
+  verifyCode(verificationRequest: VerificationRequest) {
+    return this.http.post<AuthenticationResponse>(`${this.apiUrl}/auth/verify`, verificationRequest);
   }
 }
 

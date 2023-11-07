@@ -4,6 +4,7 @@ import {Observable, of} from 'rxjs';
 import { RegisterRequest } from '../../models/register-request';
 import { AuthenticationResponse } from '../../models/authentication-response';
 import { Route, Router } from '@angular/router';
+import { VerificationRequest } from 'src/app/models/verification-request';
 
 @Component({
   selector: 'app-general-register',
@@ -14,6 +15,7 @@ export class GeneralRegisterComponent {
   registerRequest: RegisterRequest = {};
   authenticationResponse: AuthenticationResponse = {};
   message: string = '';
+  otpCode: string = '';
 
   constructor(private registrationService: RegistrationService, private router: Router) {
   }
@@ -33,6 +35,24 @@ export class GeneralRegisterComponent {
             }, 3000)
           }
         }
-      })
+      });
+  }
+  
+  verifyMFA() {
+    this.message = '';
+    const verificationRequest: VerificationRequest = {
+      username: this.registerRequest.username,
+      code: this.otpCode
+    };
+    this.registrationService.verifyCode(verificationRequest)
+      .subscribe({
+        next: (response: AuthenticationResponse) => {
+          this.message = 'Account created successfully\nYou will be redirected to the login page in 3 seconds';
+          setTimeout((): void => {
+            localStorage.setItem('token', response.token as string);
+            this.router.navigate(['login']);
+          }, 3000)
+        }
+      });
   }
 }
