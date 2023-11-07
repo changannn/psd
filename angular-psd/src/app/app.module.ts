@@ -12,6 +12,7 @@ import { GeneralRegisterComponent } from './general-register/general-register.co
 import {HttpClientModule} from "@angular/common/http";
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
+import { UserManagementComponent } from './user-management/user-management.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HeaderComponent } from './header/header.component';
     HomeComponent,
     DashboardComponent,
     GeneralRegisterComponent,
-    HeaderComponent
+    HeaderComponent,
+    UserManagementComponent
   ],
   imports: [
     BrowserModule,
