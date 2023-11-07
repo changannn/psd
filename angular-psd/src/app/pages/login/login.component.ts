@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { Observable, of } from 'rxjs';
 import { HttpStatusCode } from '@angular/common/http';
+import { AuthenticationRequest } from 'src/app/models/authentication-request';
+import { AuthenticationResponse } from 'src/app/models/authentication-response';
+import { Router } from '@angular/router';
+import { VerificationRequest } from 'src/app/models/verification-request';
 
 @Component({
   selector: 'app-login',
@@ -9,20 +13,38 @@ import { HttpStatusCode } from '@angular/common/http';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  username: string | undefined;
-  password: string | undefined;
-  role = 'admin';
-  loginResponse$: Observable<any> = of(null); // Declare registrationResponse$ as an Observable
+  
+  authenticationRequest: AuthenticationRequest = {};
+  authenticationResponse: AuthenticationResponse = {};
+  otpCode: any;
 
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService, private router: Router) {
   }
 
   login() {
-    const loginDetails = {
-      username: this.username,
-      password: this.password,
-      role: this.role
+    this.loginService.loginUser(this.authenticationRequest)
+      .subscribe({
+        next: (response: AuthenticationResponse) => {
+          this.authenticationResponse = response;
+          if (!this.authenticationResponse.mfaEnabled) {
+            localStorage.setItem('token', response.token as string);
+            this.router.navigate(['dashboard']);
+          }
+        }
+      });
+  }
+
+  verifyMFA() {
+    const verificationRequest: VerificationRequest = {
+      username: this.authenticationRequest.username,
+      code: this.otpCode
     };
-    this.loginResponse$ = this.loginService.loginUser(loginDetails);
+    this.loginService.verifyCode(verificationRequest)
+      .subscribe({
+        next: (response: AuthenticationResponse) => {
+          localStorage.setItem('token', response.token as string);
+          this.router.navigate(['dashboard']);
+        }
+      });
   }
 }

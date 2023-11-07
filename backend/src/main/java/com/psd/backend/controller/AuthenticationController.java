@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
+
+    // To register
     @PostMapping("/register")
     public ResponseEntity<?> register(@Valid @RequestBody RegisterRequest request) {
         var response = authenticationService.register(request);
@@ -28,11 +30,13 @@ public class AuthenticationController {
         return ResponseEntity.accepted().build();
     }
 
+    // To login
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(@Valid @RequestBody AuthenticationRequest request) {
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }
 
+    // To verify MFA
     @PostMapping("/verify")
     public ResponseEntity<?> verifyCode(@RequestBody VerificationRequest verificationRequest) {
         return ResponseEntity.ok(authenticationService.verifyCode(verificationRequest));

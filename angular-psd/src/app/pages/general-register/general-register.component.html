@@ -58,8 +58,10 @@
         </div>
     </div>
 
-    <div class="container" *ngIf="authenticationResponse.mfaEnabled">
-        <h2>Set Up MFA</h2>
+    <div class="form container" *ngIf="authenticationResponse.mfaEnabled">
+        <div class="row">
+            <h2>Set Up MFA</h2>
+        </div>
         <div class="qr-code row">
             <img [src]="authenticationResponse.secretImageUri" alt="QR Code">
         </div>

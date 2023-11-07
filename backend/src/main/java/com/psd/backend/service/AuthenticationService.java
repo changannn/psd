@@ -26,14 +26,16 @@ public class AuthenticationService {
     private final MfaService mfaService;
 
     public AuthenticationResponse register(RegisterRequest request) {
-        // Create user with encrypted password and save to database
+        // Create user with encrypted password
         User user = new User(request.getUsername(), request.getEmail(), passwordEncoder.encode(request.getPassword()), Role.ROOT, request.isMfaEnabled());
-        userRepository.save(user);
 
         // If MFA enabled, generate secret for MFA
         if (request.isMfaEnabled()){
             user.setSecret(mfaService.generateNewSecret());
         }
+
+        // Save user to database
+        userRepository.save(user);
 
         // Generate a token to return to the user
         String jwtToken = jwtService.generateToken(user);

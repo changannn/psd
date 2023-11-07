@@ -41,13 +41,12 @@ public class User implements UserDetails {
 
     }
 
-    public User(String username, String email, String password, Role role, boolean mfaEnabled, String secret) {
+    public User(String username, String email, String password, Role role, boolean mfaEnabled) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.role = role;
         this.mfaEnabled = mfaEnabled;
-        this.secret = secret;
     }
 
     // Define Getters/Setters

@@ -24,13 +24,13 @@ export class GeneralRegisterComponent {
     this.message = '';
     this.registrationService.registerUser(this.registerRequest)
       .subscribe({
-        next: (response: AuthenticationResponse): void => {
+        next: (response: AuthenticationResponse) => {
           if (response) {
             this.authenticationResponse = response;
           }
           else {
             this.message = 'Account created successfully\nYou will be redirected to the login page in 3 seconds';
-            setTimeout((): void => {
+            setTimeout(() => {
               this.router.navigate(['login']);
             }, 3000)
           }
@@ -48,7 +48,7 @@ export class GeneralRegisterComponent {
       .subscribe({
         next: (response: AuthenticationResponse) => {
           this.message = 'Account created successfully\nYou will be redirected to the login page in 3 seconds';
-          setTimeout((): void => {
+          setTimeout(() => {
             localStorage.setItem('token', response.token as string);
             this.router.navigate(['login']);
           }, 3000)
