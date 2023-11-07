@@ -34,6 +34,10 @@ export class GeneralRegisterComponent {
               this.router.navigate(['login']);
             }, 5000)
           }
+        },
+        error: (error) => {
+          console.error('Error during sign up', error);
+          this.message = 'Sign-up failed\n' + error.message;
         }
       });
   }
@@ -52,6 +56,10 @@ export class GeneralRegisterComponent {
             localStorage.setItem('token', response.token as string);
             this.router.navigate(['login']);
           }, 5000)
+        },
+        error: (error) => {
+          console.error('Error during verification', error);
+          this.message = 'Verification failed\n' + error.message;
         }
       });
   }

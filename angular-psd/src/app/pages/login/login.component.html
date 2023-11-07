@@ -8,7 +8,11 @@
     <title>IEM Simulator</title>
 </head>
 <body>
-    
+    <div role="alert" class="sgds alert alert-primary fade d-flex align-items-center show" *ngIf="message">
+        <div>
+            <i class="bi bi-exclamation-circle me-2"></i>{{ message }}
+        </div>
+    </div>
     <div class="form container" *ngIf="!authenticationResponse.mfaEnabled">
         <div class="row">
             <img class="logo" src="/assets/wizvision_logo.png" alt="image">

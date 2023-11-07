@@ -17,6 +17,7 @@ export class LoginComponent {
   authenticationRequest: AuthenticationRequest = {};
   authenticationResponse: AuthenticationResponse = {};
   otpCode: any;
+  message: string = '';
 
   constructor(private loginService: LoginService, private router: Router) {
   }
@@ -30,6 +31,10 @@ export class LoginComponent {
             localStorage.setItem('token', response.token as string);
             this.router.navigate(['dashboard']);
           }
+        },
+        error: (error) => {
+          console.error('Error during login', error);
+          this.message = 'Login failed\n' + error.message;
         }
       });
   }
@@ -44,6 +49,10 @@ export class LoginComponent {
         next: (response: AuthenticationResponse) => {
           localStorage.setItem('token', response.token as string);
           this.router.navigate(['dashboard']);
+        },
+        error: (error) => {
+          console.error('Error during verification', error);
+          this.message = 'Verification failed\n' + error.message;
         }
       });
   }
