@@ -10,7 +10,7 @@ export class RegistrationService {
   constructor(private http: HttpClient) {}
 
   registerUser(userData: any) {
-    return this.http.post(`${this.apiUrl}/add`, userData);
+    return this.http.post(`${this.apiUrl}/register`, userData);
   }
 }
 
