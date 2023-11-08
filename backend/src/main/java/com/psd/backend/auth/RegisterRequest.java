@@ -22,4 +22,6 @@ public class RegisterRequest {
     @NotBlank(message = "Email required")
     @Email(message = "Invalid email address")
     private String email;
+
+    private boolean mfaEnabled;
 }

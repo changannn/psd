@@ -45,6 +45,12 @@ public class User implements UserDetails {
     @Column(name = "user_creation_limit")
     private int userCreationLimit;
 
+    @Column(name = "secret")
+    private String secret;
+
+    @Column(name = "mfaenabled")
+    private boolean mfaEnabled;
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
