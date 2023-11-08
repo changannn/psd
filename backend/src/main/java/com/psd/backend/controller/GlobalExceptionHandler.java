@@ -36,8 +36,9 @@ public class GlobalExceptionHandler {
 
     // When user authentication fails
     @ExceptionHandler(BadCredentialsException.class)
-    public ResponseEntity<FrontendResponse> handlerBadCredentialsExceptions(BadCredentialsException ex) {
-            FrontendResponse response = new FrontendResponse("Authentication failed. Invalid username or password.");
-            return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+    public ResponseEntity<String> handlerBadCredentialsExceptions(BadCredentialsException ex) {
+//        FrontendResponse response = new FrontendResponse("Authentication failed. Invalid username or password.");
+        String response = "Invalid username or password.";
+        return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
     }
 }

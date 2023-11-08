@@ -12,7 +12,7 @@ import { GeneralRegisterComponent } from './pages/general-register/general-regis
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './pages/header/header.component';
-import { UserManagementComponent } from './user-management/user-management.component';
+import { UserManagementComponent } from './pages/user-management/user-management.component';
 
 
 @NgModule({

@@ -9,20 +9,14 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
+      <tr *ngFor="let user of users; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ user.email }}</td>
+        <td>{{ user.username }}</td>
         <td>
             <button type="button" class="btn btn-outline-primary sgds">Edit</button>
             <button type="button" class="btn btn-outline-danger sgds">Delete</button>
         </td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@jacob</td>
       </tr>
     </tbody>
  </table>
@@ -33,8 +27,3 @@
         <button class="btn btn-outline-success btn-lg" type="button"><i class="bi bi-plus-circle"></i> Add User</button>
     </div>
 </div>
-
-<div *ngIf="fetchAccountUsers() | async as data; else loading">
-  <!-- Display data here -->
-  <pre>{{ data | json }}</pre>
-</div>               
