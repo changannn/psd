@@ -58,6 +58,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         userRepository.save(user);
     }
 
+    // Get users created by root account
+    @Override
+    public List<User> getAccountUsers(User user) {
+        return userRepository.findUsersCreatedBy(user);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);

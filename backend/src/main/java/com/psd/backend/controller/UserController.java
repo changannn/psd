@@ -2,6 +2,8 @@ package com.psd.backend.controller;
 
 import java.util.List;
 
+import com.psd.backend.service.JwtService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,10 +23,12 @@ import com.psd.backend.service.UserService;
 public class UserController {
     
     private final UserService userService;
+    private final JwtService jwtService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, JwtService jwtService) {
         this.userService = userService;
+        this.jwtService = jwtService;
     }
 
     // Rest API CRUD
@@ -53,6 +57,22 @@ public class UserController {
     @GetMapping("/user/{id}")
     public User getUserById(@PathVariable("id") int id){
         return userService.getUserById(id);
+    }
+
+    // Endpoint for root account to get account users
+    @GetMapping("/profile")
+    public List<User> getAccountUsers(HttpServletRequest request) {
+        final String authHeader = request.getHeader("Authorization");
+        final String jwt;
+        final String username;
+
+        // Extract jwt and extract username from the jwt
+        jwt = authHeader.substring(7);
+        username = jwtService.extractUsername(jwt);
+
+        // Find root account and return account users
+        User user = userService.findByUsername(username);
+        return userService.getAccountUsers(user);
     }
 
     // register
@@ -111,5 +131,6 @@ public class UserController {
 //        }
 //        return null;
 //    }
+
 
 }

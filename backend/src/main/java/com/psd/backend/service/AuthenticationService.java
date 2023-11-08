@@ -24,7 +24,14 @@ public class AuthenticationService {
 
     public AuthenticationResponse register(RegisterRequest request) {
         // Create user with encrypted password and save to database
-        User user = new User(request.getUsername(), request.getEmail(),passwordEncoder.encode(request.getPassword()), Role.ROOT);
+        User user = User.builder()
+                .username(request.getUsername())
+                .email(request.getEmail())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .role(Role.ROOT)
+                .userCreationLimit(3)
+                .build();
+
         userRepository.save(user);
 
         // Generate a token to return to the user

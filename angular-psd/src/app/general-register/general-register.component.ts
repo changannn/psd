@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { RegistrationService } from "../registration.service";
-import {Observable, of} from 'rxjs';
+import {Observable, of, tap} from 'rxjs';
+import { AuthResponse } from '../shared/auth-response.interface';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-general-register',
@@ -8,14 +10,14 @@ import {Observable, of} from 'rxjs';
   styleUrls: ['./general-register.component.css']
 })
 export class GeneralRegisterComponent {
+  errorMessage : string = "";
   fullName: string | undefined;
   email: string | undefined;
   username: string | undefined;
   password: string | undefined;
-  registrationResponse$: Observable<any> = of(null); // Declare registrationResponse$ as an Observable
+  registrationResponse$: Observable<AuthResponse> | null = null;
 
-  constructor(private registrationService: RegistrationService) {
-  }
+  constructor(private registrationService: RegistrationService, private authService: AuthService) { }
 
   signUp() {
     const userData = {
@@ -24,6 +26,14 @@ export class GeneralRegisterComponent {
       username: this.username,
       password: this.password,
     };
-    this.registrationResponse$ = this.registrationService.registerUser(userData);
+    this.registrationResponse$ = this.registrationService.registerUser(userData).pipe(
+      tap((response) => {
+        if (response.token) {
+          this.authService.setJwt(response.token);
+        } else if (response.message) {
+          this.errorMessage = response.message;
+        }
+      })
+    );
   }
 }
