@@ -25,7 +25,6 @@ import com.psd.backend.model.User;
 import com.psd.backend.service.UserService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
     
     private final UserService userService;
