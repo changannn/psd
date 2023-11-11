@@ -13,6 +13,7 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './pages/header/header.component';
 import { UserManagementComponent } from './pages/user-management/user-management.component';
+import { CreateUserComponent } from './pages/create-user/create-user.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { UserManagementComponent } from './pages/user-management/user-management
     DashboardComponent,
     GeneralRegisterComponent,
     HeaderComponent,
-    UserManagementComponent
+    UserManagementComponent,
+    CreateUserComponent
   ],
   imports: [
     BrowserModule,

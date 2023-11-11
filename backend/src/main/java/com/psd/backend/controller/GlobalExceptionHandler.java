@@ -1,5 +1,6 @@
 package com.psd.backend.controller;
 
+import com.psd.backend.exceptions.AccountNotPermittedException;
 import com.psd.backend.model.FrontendResponse;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -36,9 +37,15 @@ public class GlobalExceptionHandler {
 
     // When user authentication fails
     @ExceptionHandler(BadCredentialsException.class)
-    public ResponseEntity<String> handlerBadCredentialsExceptions(BadCredentialsException ex) {
+    public ResponseEntity<String> handleBadCredentialsExceptions(BadCredentialsException ex) {
 //        FrontendResponse response = new FrontendResponse("Authentication failed. Invalid username or password.");
-        String response = "Invalid username or password.";
+        String response = ex.getMessage();
         return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+    }
+
+    // When account not allowed to create users
+    @ExceptionHandler(AccountNotPermittedException.class)
+    public ResponseEntity<String> handleAccountNotPermittedExceptions(AccountNotPermittedException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
     }
 }

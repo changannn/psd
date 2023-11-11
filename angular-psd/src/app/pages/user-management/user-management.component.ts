@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/user.interface';
 import { ApiService } from 'src/app/services/api.service';
+import { MessageService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'app-user-management',
@@ -9,19 +11,33 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class UserManagementComponent implements OnInit {
   users: User[] = [];
-  message: String = "";
+  message: string = "";
+  errorMessage: string = "";
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private router: Router, private route: ActivatedRoute, private messageService: MessageService) {}
   
   ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      // Trigger data refresh when route parameters change
+      this.fetchUsers();
+      this.message = this.messageService.getMessage();
+      this.messageService.setMessage("");
+    });
+  }
+
+  fetchUsers() {
     this.apiService.fetchAccountUsers().subscribe({
       next: (data) => {
         this.users = data;
       },
       error: (error) => {
-        console.error("Error fetching users: ", error);
-        this.message = error.message;
+        console.error('Error fetching users:', error);
+        this.errorMessage = error.message;
       }
     });
-  }  
+  }
+
+  redirectToCreateUser() {
+    this.router.navigate(["/user-create"]);
+  }
 }

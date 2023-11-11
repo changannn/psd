@@ -1,5 +1,6 @@
 package com.psd.backend.auth;
 
+import com.psd.backend.model.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -22,6 +23,8 @@ public class RegisterRequest {
     @NotBlank(message = "Email required")
     @Email(message = "Invalid email address")
     private String email;
+
+    private Role role;
 
     private boolean mfaEnabled;
 }
