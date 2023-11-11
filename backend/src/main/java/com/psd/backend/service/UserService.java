@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.psd.backend.model.User;
 
-
+@Service
 public interface UserService {
     
     public User createUser(User user);
