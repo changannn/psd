@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RegistrationService } from "../../services/registration.service";
-import {Observable, of} from 'rxjs';
 import { RegisterRequest } from '../../models/register-request';
 import { AuthenticationResponse } from '../../models/authentication-response';
 import { Route, Router } from '@angular/router';
@@ -43,10 +42,27 @@ export class GeneralRegisterComponent {
         },
         error: (error) => {
           console.error('Error during sign up', error);
-          this.message = 'Sign-up failed: ' + error.error;
+          if (typeof error.error === 'object') {
+            this.message = this.constructErrorMessage(error.error);
+          } else {
+            this.message = 'Sign-up failed: ' + error.error;
+          }
         }
       });
     }
+  }
+
+  // Function to construct an error message from the key-value pairs in the error object
+  constructErrorMessage(errorObject: { [key: string]: string }): string {
+    let errorMessage = 'Sign-up failed: ';
+    
+    for (const key in errorObject) {
+      if (errorObject.hasOwnProperty(key)) {
+        errorMessage += `${errorObject[key]} `;
+      }
+    }
+
+    return errorMessage;
   }
   
   verifyMFA() {

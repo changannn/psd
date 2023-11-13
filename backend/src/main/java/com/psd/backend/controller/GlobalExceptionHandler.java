@@ -17,6 +17,7 @@ import java.util.Map;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+    // When compulsory fields in register page not filled
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();
@@ -38,7 +39,6 @@ public class GlobalExceptionHandler {
     // When user authentication fails
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<String> handleBadCredentialsExceptions(BadCredentialsException ex) {
-//        FrontendResponse response = new FrontendResponse("Authentication failed. Invalid username or password.");
         String response = ex.getMessage();
         return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
     }
