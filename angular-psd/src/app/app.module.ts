@@ -11,6 +11,8 @@ import { NgCircleProgressModule } from "ng-circle-progress";
 import { GeneralRegisterComponent } from './general-register/general-register.component';
 import {HttpClientModule} from "@angular/common/http";
 import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
+    MatIconModule,
     AppRoutingModule,
     MatCardModule,
     NgCircleProgressModule.forRoot({
@@ -41,6 +44,7 @@ import { FormsModule } from '@angular/forms';
     }),
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
