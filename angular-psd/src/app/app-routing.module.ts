@@ -6,14 +6,15 @@ import { GeneralRegisterComponent } from './pages/general-register/general-regis
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { UserManagementComponent } from './pages/user-management/user-management.component';
 import { CreateUserComponent } from './pages/create-user/create-user.component';
+import { authGuard } from './services/auth/auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'general-register', component: GeneralRegisterComponent},
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'user-management', component: UserManagementComponent},
-  { path: 'user-create', component: CreateUserComponent},
+  { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard]},
+  { path: 'user-management', component: UserManagementComponent, canActivate: [authGuard]},
+  { path: 'user-create', component: CreateUserComponent, canActivate: [authGuard]},
 ];
 
 @NgModule({

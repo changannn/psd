@@ -75,11 +75,11 @@ export class GeneralRegisterComponent {
     this.registrationService.verifyCode(verificationRequest)
       .subscribe({
         next: (response: AuthenticationResponse) => {
-          this.message = 'Account created successfully\nYou will be redirected to the login page in 5 seconds';
+          this.message = 'Account created successfully\nYou will be redirected to the dashboard page in 3 seconds';
           setTimeout(() => {
             // localStorage.setItem('token', response.token as string);
-            this.router.navigate(['login']);
-          }, 5000)
+            this.router.navigate(['dashboard']);
+          }, 3000)
         },
         error: (error) => {
           console.error('Error during verification', error);
