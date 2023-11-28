@@ -5,6 +5,7 @@ import { AuthenticationResponse } from '../../models/authentication-response';
 import { Route, Router } from '@angular/router';
 import { VerificationRequest } from 'src/app/models/verification-request';
 import { AuthService } from 'src/app/services/auth.service';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-general-register',
@@ -21,10 +22,14 @@ export class GeneralRegisterComponent {
   constructor(private registrationService: RegistrationService, private router: Router, private authService: AuthService) { }
 
   signUp() {
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     this.message = '';
 
     if (this.registerRequest.password != this.retypePassword) {
       this.message = 'Passwords do not match. Please try again.';
+    }
+    else if (!passwordRegex.test(this.registerRequest.password)){
+      this.message = 'Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character (@$!%*?&)';
     }
     else {
       this.registerRequest.mfaEnabled = true;
