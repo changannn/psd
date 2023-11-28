@@ -35,10 +35,10 @@ export class GeneralRegisterComponent {
               this.authenticationResponse = response;
             }
             else {
-              this.message = 'Account created successfully\nYou will be redirected to the login page in 5 seconds';
+              this.message = 'Account created successfully\nYou will be redirected to the dashboard page in 3 seconds';
               setTimeout(() => {
-                this.router.navigate(['login']);
-              }, 5000)
+                this.router.navigate(['dashboard']);
+              }, 3000)
             }
           },
           error: (error) => {
