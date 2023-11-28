@@ -27,28 +27,29 @@ export class GeneralRegisterComponent {
       this.message = 'Passwords do not match. Please try again.';
     }
     else {
-    this.registrationService.registerUser(this.registerRequest)
-      .subscribe({
-        next: (response: AuthenticationResponse) => {
-          if (response) {
-            this.authenticationResponse = response;
+      this.registerRequest.mfaEnabled = true;
+      this.registrationService.registerUser(this.registerRequest)
+        .subscribe({
+          next: (response: AuthenticationResponse) => {
+            if (response) {
+              this.authenticationResponse = response;
+            }
+            else {
+              this.message = 'Account created successfully\nYou will be redirected to the login page in 5 seconds';
+              setTimeout(() => {
+                this.router.navigate(['login']);
+              }, 5000)
+            }
+          },
+          error: (error) => {
+            console.error('Error during sign up', error);
+            if (typeof error.error === 'object') {
+              this.message = this.constructErrorMessage(error.error);
+            } else {
+              this.message = 'Sign-up failed: ' + error.error;
+            }
           }
-          else {
-            this.message = 'Account created successfully\nYou will be redirected to the login page in 5 seconds';
-            setTimeout(() => {
-              this.router.navigate(['login']);
-            }, 5000)
-          }
-        },
-        error: (error) => {
-          console.error('Error during sign up', error);
-          if (typeof error.error === 'object') {
-            this.message = this.constructErrorMessage(error.error);
-          } else {
-            this.message = 'Sign-up failed: ' + error.error;
-          }
-        }
-      });
+        });
     }
   }
 

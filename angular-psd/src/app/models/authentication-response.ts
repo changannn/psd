@@ -1,5 +1,5 @@
 export interface AuthenticationResponse {
     token?: string;
-    mfaEnabled?: string;
+    mfaEnabled?: boolean;
     secretImageUri?: string;
 }

@@ -3,6 +3,6 @@ export interface RegisterRequest {
     email?: string;
     username?: string;
     password?: string;
-    mfaEnabled?: string;
+    mfaEnabled?: boolean;
     role?: string;
 }
