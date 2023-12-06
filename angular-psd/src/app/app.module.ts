@@ -14,6 +14,9 @@ import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './pages/header/header.component';
 import { UserManagementComponent } from './pages/user-management/user-management.component';
 import { CreateUserComponent } from './pages/create-user/create-user.component';
+import { ProjectSelectComponent } from './pages/project-ui/project-select/project-select.component';
+import { SolarSelectComponent } from './pages/project-ui/solar-select/solar-select.component';
+import { NoiseSelectComponent } from './pages/project-ui/noise-select/noise-select.component';
 
 
 @NgModule({
@@ -25,7 +28,10 @@ import { CreateUserComponent } from './pages/create-user/create-user.component';
     GeneralRegisterComponent,
     HeaderComponent,
     UserManagementComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    ProjectSelectComponent,
+    SolarSelectComponent,
+    NoiseSelectComponent
   ],
   imports: [
     BrowserModule,
