@@ -1,0 +1,55 @@
+<div class="background-div">
+    <div class="project-nav">
+        <div class="nav-header">
+        <div>Project</div>
+        <div>Solar</div>
+        <div>Wind</div>
+        <div>Noise</div>
+        </div> 
+    </div>
+    <div class="container-div">
+        <div class="container-div-row">
+            <label for="inputDirectory">Project Directory:</label>
+            <input type="file" id="inputDirectory" name="inputDirectory" webkitdirectory = "true" directory>
+            <label for="userMode">User Mode :</label>
+            <select name="userMode" id="userMode">
+                <option value="basic">Basic</option>
+                <option value="advanced">Advanced</option>
+            </select>
+            <label for="processorNumber">Processors :</label>
+            <select name="processorNumber" id="processorNumber">
+                <option *ngFor="let processor of processors" [value]="processor">{{ processor }}</option>            
+            </select>
+        </div>
+        <div class="container-div-2">
+            <div class="container-div-row">
+                <label for="projectType">Project Type :</label>
+                <select name="projectType" id="projectType">
+                    <option value="solar">Solar</option>
+                    <option value="wind">Wind</option>
+                    <option value="noise">Noise</option>
+                    <option value="windSolar">Wind & Solar</option>
+                    <option value="windNoise">Wind & Noise</option>
+                </select>
+                
+            </div>
+        </div>
+        <div class="container-div-2">
+            <div class="container-div-row">
+                <label for="stlFile">Import STL File:</label>
+                <input type="file" id="stlFile" name="stlFile">
+            </div>
+        </div>
+        <div class="container-div-2">
+            <div class="container-div-row">
+                <label for="processorNumber">Material/Refinement:</label>
+                    <select name="processorNumber" id="processorNumber">
+                        <option *ngFor="let material of materials" [value]="material">{{ material }}</option>            
+                    </select>
+                    <label for="colourPicker">Background Colour :</label>
+                    <input type="color" id="colourPicker" name="colourPicker" (input)="onColorChange($event)"/>
+                    RGB Value: <span id="rgbValue">{{ rgbValue }}</span>
+            </div>
+        </div>
+    </div>   
+</div>
