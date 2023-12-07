@@ -7,5 +7,114 @@
         <button id="transparent-button" routerLink="/noise">Noise</button>
         </div> 
     </div>
-    <p>solar-select works</p>
+    <div class="container-div">
+        <div class="container-div-row">
+            <label for="cityLocation">City Location :</label>
+            <select name="cityLocation" id="cityLocation">
+                <option value="singapore">Singapore</option>
+            </select>
+        </div>
+        <div class="container-div-2">
+            <div class="container-div-row">
+                <label for="meshResolution">Mesh Resolution :</label>
+                <input type="text" id="meshResolution" name="meshResolution">
+                <label for="meshResolutionUnit">(m)</label>
+            </div>
+        </div>
+        <div class="container-div-2">
+            <div class="container-div-row">
+                <label for="meshOffset">Mesh Offset :</label>
+                <input type="text" id="meshOffset" name="meshOffset">
+                <label for="meshOffsetUnit">(m)</label>
+            </div>
+        </div> 
+        <div class="container-div-2">
+            <div class="container-div-row">
+                <label for="simulationType">Simulation Type :</label>
+                <select name="simulationType" id="simulationType" [(ngModel)]="selectedSimulationType">
+                    <option *ngFor="let simulationtype of simulationTypes" [value]="simulationtype">{{ simulationtype }}</option>
+                </select>
+            </div>
+            <div class="container-div-row" *ngIf="selectedSimulationType === 'Cumulative Sky'">
+                <input type="checkbox" name="solarIrradiationCheckbox" id="solarIrradiationCheckbox" checked>
+                <label for="solarIrradiationCheckbox">Solar Irradiation</label>
+                <input type="checkbox" name="absorbedSolarEnergyCheckbox" id="absorbedSolarEnergyCheckbox" checked>
+                <label for="absorbedSolarEnergyCheckbox">Absorbed Solar Energy</label>
+            </div>
+            <div class="container-div-row" *ngIf="selectedSimulationType === 'point-in-time'">
+                <input type="checkbox" name="solarShadingCheckbox" id="solarShadingCheckbox" checked>
+                <label for="solarShadingCheckbox">Solar Shading</label>
+                <input type="checkbox" name="daylightIlluminanceCheckbox" id="daylightIlluminanceCheckbox" checked>
+                <label for="daylightIlluminanceCheckbox">Daylight Illuminance</label>
+                <input type="checkbox" name="solarIrradiationCheckbox" id="solarIrradiationCheckbox" checked>
+                <label for="solarIrradiationCheckbox">Solar Irradiation</label>
+                <input type="checkbox" name="absorbedHeatFluxCheckbox" id="absorbedHeatFluxCheckbox" checked>
+                <label for="absorbedHeatFluxCheckbox">Absorbed Heat Flux</label>
+                <input type="checkbox" name="skyViewFactorCheckbox" id="skyViewFactorCheckbox" checked>
+                <label for="skyViewFactorCheckbox">Sky View Factor</label>
+            </div>
+        </div> 
+        <div class="container-div-2">
+            <div class="container-div-row">
+                <label for="startDate">Start Date :</label>
+                <input type="datetime-local" name="startDate" id="startDate">
+            </div>
+            <div class="container-div-row">
+                <label for="endDate">End Date :</label>
+                <input type="datetime-local" name="endDate" id="endDate">
+            </div>
+        </div> 
+        <div class="container-div-2">
+            <div class="container-div-row">
+                <label for="numOfReflections">Num of Reflections:</label>
+                <select name="numOfReflections" id="numOfReflections">
+                    <option *ngFor="let numOfReflection of numOfReflections" [value]="numOfReflection">{{ numOfReflection }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="container-div-2">
+            <div class="container-div-row">
+                <label for="numOfSamplingRays">Num of Sampling Rays:</label>
+                <select name="numOfSamplingRays" id="numOfSamplingRays">
+                    <option *ngFor="let numOfSamplingRay of numOfSamplingRays" [value]="numOfSamplingRay">{{ numOfSamplingRay }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="container-div-2">
+            <div class="container-div-row">
+                <label for="sunInclusion">Sun Inclusion:</label>
+                <input type="checkbox" name="sunInclusionCheckboxYes" id="sunInclusionCheckboxYes" checked>
+                <label for="sunInclusionCheckboxYes">Yes</label>
+                <input type="checkbox" name="sunInclusionCheckboxNo" id="sunInclusionCheckboxNo">
+                <label for="sunInclusionCheckboxNo">No</label>
+            </div>
+        </div>
+        <div class="container-div-2">
+            <div class="container-div-row">
+                <label for="multiband">Multiband:</label>
+                <input type="checkbox" name="multibandCheckboxTotal" id="multibandCheckboxTotal" checked>
+                <label for="multibandCheckboxTotal">Total</label>
+                <input type="checkbox" name="multibandCheckboxTotalMultiband" id="multibandCheckboxTotalMultiband">
+                <label for="multibandCheckboxTotalMultiband">Total & Multiband</label>
+            </div>
+        </div>
+        <div class="container-div-2">
+            <div class="container-div-row">
+                <label for="createMeshPoints">Create Mesh Points :</label>
+                <button type="button" id="purplebutton" name="createMeshPoints">Create</button>
+            </div>
+        </div>
+        <div class="container-div-2">
+            <div class="container-div-row">
+                <label for="solarSolver">Solar Solver :</label>
+                <button type="button" id="purplebutton" name="solarSolver">Run</button>
+            </div>
+        </div>
+        <div class="container-div-2">
+            <div class="container-div-row">
+                <label for="outputFile">Output File :</label>
+                <input type="file" id="outputFile" name="outputFile">
+            </div>
+        </div>
+    </div>
 </div>
