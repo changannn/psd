@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./solar-select.component.css']
 })
 export class SolarSelectComponent {
+  simulationTypes: string[] = ['Cumulative Sky', 'point-in-time'];
+  selectedSimulationType: string = 'Cumulative Sky';
+  numOfReflections: number[] = [0, 1, 2];
+  numOfSamplingRays: number[] = [64, 128, 256, 512, 1024, 2048];
+
 
 }
