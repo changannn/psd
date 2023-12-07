@@ -18,10 +18,57 @@
     display: flex;
     gap: 7px;
 }
-
+.container-div {
+    display: flex;
+    width: 938px;
+    max-width: 100%;
+    flex-direction: column;
+    margin: 16px 0 304px;
+}
+.container-div-row {
+    align-self: stretch;
+    display: flex;
+    width: 100%;
+    justify-content: flex;
+    gap: 15px;
+}
+@media (max-width: 991px) {
+    .container-div-row {
+      max-width: 100%;
+      flex-wrap: wrap;
+    }
+}
+.container-div-row-2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 0 20px;
+}
+.container-div-2 {
+    align-self: stretch;
+    display: flex;
+    margin-top: 15px;
+    width: 100%;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 0 1px;
+}
+@media (max-width: 991px) {
+    .container-div-2 {
+      max-width: 100%;
+      flex-wrap: wrap;
+    }
+}
 #transparent-button {
     background-color: rgba(0, 0, 0, 0); /* Use rgba to specify the color with alpha (transparency) */
     border: none;
     color: #ffffff; /* Text color */
     cursor: pointer;
+}
+#purplebutton {
+    background-color: var(--wizvision-purple, #64479d);
+    height: 32px;
+    text-align: center;
+    display: inline-flex;
 }
