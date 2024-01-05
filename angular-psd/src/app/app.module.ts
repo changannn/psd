@@ -18,6 +18,8 @@ import { ProjectSelectComponent } from './pages/project-ui/project-select/projec
 import { SolarSelectComponent } from './pages/project-ui/solar-select/solar-select.component';
 import { NoiseSelectComponent } from './pages/project-ui/noise-select/noise-select.component';
 
+import { MatIconModule } from '@angular/material/icon';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { NoiseSelectComponent } from './pages/project-ui/noise-select/noise-sele
   ],
   imports: [
     BrowserModule,
+    MatIconModule,
     AppRoutingModule,
     MatCardModule,
     NgCircleProgressModule.forRoot({
@@ -54,6 +57,7 @@ import { NoiseSelectComponent } from './pages/project-ui/noise-select/noise-sele
     }),
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]

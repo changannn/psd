@@ -1,50 +1,286 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    appearance: none;
+    border: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
 
-.cpu-card {
+html {
+    font-size: 14px;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    font-family: 'poppins', sans-serif;
+    font-size: 0.88rem;
+    background: var(--sgds-gray-100);
+    user-select: none;
+    overflow-x: hidden;
+}
+
+h1 {
+    font-weight: 800;
+    font-size: 1.8rem;
+}
+
+.dash-label{
+    margin-left: 1rem;
+}
+
+.number-users h2{
+    font-size: 2rem;
+    font-weight: 800;
+    padding-bottom: 1rem;
+}
+h2 {
+    font-size: 1.4rem;
+}
+
+h3 {
+    font-size: 0.87rem;
+}
+
+h4 {
+    font-size: 0.8rem;
+}
+
+h5 {
+    font-size: 0.77rem;
+}
+
+small{
+    font-size: 0.75rem;
+}
+
+.text-muted {
+    color: var(--sgds-gray-300)
+}
+
+p { 
+    color: var(--color-dark-variant);
+}
+
+
+b { 
+    color: var(--sgds-black);
+}
+
+.primary {
+    color: var(--sgds-blue);
+}
+
+.danger {
+    color: var(--sgds-red);
+}
+
+.success {
+    color: var(--sgds-green);
+}
+
+.warning {
+    color: var(--sgds-orange);
+}
+
+main {
+    margin-top: 1.4rem;
+}
+
+/* main .date{
+    display: inline-block;
+    background: var(--sgds-white);
+    border-radius: 0.8rem;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    padding: 0.5rem 1.6rem;
+}
+
+main .date input[type="date"]{
+    background: transparent;
+    color: var(--sgds-black);
+} */
+
+main .subscribed{
+    height: 10rem;
+    margin-top: 1.4rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    position:relative;
+    
+}
+
+main .subscribed .sub-div { 
+    height: 10rem;
+    background: var(--sgds-white);
+    border-radius: 1rem;
+    box-shadow: 0 2rem 3rem var(--sgds-gray-200);
+    transition: all 300ms ease;
+}
+main .subscribed .sub-div:hover { 
+    box-shadow: none;
+}
+
+main .subscribed .sub-icon{
+    color:blueviolet;
+    top: 50%;
+    left: 5%;
+    position:absolute;
+    transform: scale(4);
     margin: auto;
-    height: 800PX;
-    width:80%;
+    display: inline-block;
+}
+
+main .subscribed .plan{
+    position:absolute;
+    top:30%;
+    left: 13%;
+    display: inline-block;
+}
+
+main .subscribed .plan h3{
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+main .usages{
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+}
+
+
+main .usages > div{
+    background: var(--sgds-white);
+    padding: 1.8rem;
+    border-radius: 2rem;
+    margin: 1rem;
+    box-shadow: 0 2rem 3rem var(--sgds-gray-200);
+    transition: all 300ms ease;
+}
+
+main .usages > div:hover {
+    box-shadow: none;
 
 }
-.cpu-card-header {
-    margin:auto;
+
+main .usages > div span{
+    background: var(--sgds-blue);
+    padding: 0.5rem;
+    border-radius: 40%;
+    color: var(--sgds-white);
+    font-size: 2rem;
 }
-.cpu-card-header-format {
-    margin:auto;
-    height: 100px;
-    width: 500px;
-    background-color:rgb(31, 230, 31) ;
-    border-radius: 50px;
-    border-style: solid;
-    border-width: 5px;
+
+main .usages > div .middle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-.tier-header{
-    margin: auto;
-    font-size: 35px;
+
+main .usages h3{
+    margin:1rem 0 0.6rem;
+    font-size: 1rem;
 }
-.cpu-card-content {
-    margin: auto;
-    height: 500px;
+
+main .usages .track{
+    position: relative;
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+}
+
+main .usages svg{
+    height: 7rem;
+    width: 7rem;
+}
+
+main .usages svg circle{
+    fill:none;
+    stroke: var(--sgds-blue);
+    stroke-width: 10;
+    stroke-linecap: round;
+    transform: translate(5px, 5px);
+    stroke-dasharray: 110;
+    stroke-dashoffset: 92;
+}
+
+main .usages > div.storage span{
+    background: var(--sgds-red);
+}
+
+main .usages > div.whatever span{
+    background: var(--sgds-green);
+}
+
+main .usages .cpu svg circle{
+    stroke-dashoffset: -30;
+    stroke-dasharray: 200;
+}
+
+main .usages .storage svg circle{
+    stroke-dashoffset: -60;
+    stroke-dasharray: 200;
+}
+
+main .usages .whatever svg circle{
+    stroke-dashoffset: -90;
+    stroke-dasharray: 200;
+}
+
+main .usages .track .number{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.circle__progress {
-    margin-top: 100px;
-    margin-left: 10%;
-    margin-right: 10%;
-    width: 500px;
-    height: 500px;
-}
-.user-extra-display{
-    margin-left: 100px;
-    margin-right: 100px;
-    font-size: 30px;
-    font-weight: 900;
+main .usage small {
+    margin-top: 1.3rem;
+    display: block;
 }
 
+main .number-users{
+    margin-top: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
 
-div#information {
-    color: white;
-    background-color:rgb(98, 98, 233);
-    background-blend-mode: lighten;
-    border-radius: 50px;
+main .number-users h2{
+    margin-bottom: 0.8;
+}
+
+main .number-users table{
+    background: var(--sgds-white);
+    width: 100%;
+    border-radius: 2rem;
+    padding: 1.8rem;
+    text-align: center;
+    box-shadow: 0 2rem 3rem var(--sgds-gray-200);
+    transition: all 300ms ease;
+}
+
+main .number-users table:hover{
+    box-shadow: none;
+}
+main table thead th {
+    height: 4rem;
+    font-size: 18px;
+}
+main table tbody td {
+    height: 3rem;
+    border-bottom: 1px solid black;
+    color: var(--sgds-gray-500);
+}
+
+main table tbody tr:last-child td {
+    border: none;
 }

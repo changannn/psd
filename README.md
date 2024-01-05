@@ -1,3 +1,4 @@
+# notes
 generated base spring file
 
 need to setup postgresql db to be able to run the code
@@ -16,3 +17,9 @@ mvn clean install -DskipTests
 docker build -t spring .
 ```
 
+# run/build commands
+to run for localhost
+* ng serve
+
+to build to upload
+* ng build
