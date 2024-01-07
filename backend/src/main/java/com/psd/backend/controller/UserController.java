@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.psd.backend.auth.RegisterRequest;
 import com.psd.backend.exceptions.AccountNotPermittedException;
+import com.psd.backend.model.EmailMessage;
 import com.psd.backend.model.Role;
+import com.psd.backend.service.EmailSenderService;
 import com.psd.backend.service.JwtService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +30,14 @@ public class UserController {
     private final UserService userService;
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
+    private final EmailSenderService emailSenderService;
 
     @Autowired
-    public UserController(UserService userService, JwtService jwtService, PasswordEncoder passwordEncoder) {
+    public UserController(UserService userService, JwtService jwtService, PasswordEncoder passwordEncoder, EmailSenderService emailSenderService) {
         this.userService = userService;
         this.jwtService = jwtService;
         this.passwordEncoder = passwordEncoder;
+        this.emailSenderService = emailSenderService;
     }
 
     @GetMapping("/users")
@@ -107,5 +111,11 @@ public class UserController {
         owner.setUserCreationLimit(owner.getUserCreationLimit() - 1);
 
         return new ResponseEntity<>("User created", HttpStatus.CREATED);
+    }
+
+    @PostMapping("/auth/sendemail")
+    public ResponseEntity<String> sendEmail(@RequestBody EmailMessage emailMessage) {
+        this.emailSenderService.sendEmail(emailMessage.getTo(), emailMessage.getSubject(), emailMessage.getMessage());
+        return ResponseEntity.ok("Success");
     }
 }
