@@ -20,6 +20,7 @@ import { NoiseSelectComponent } from './pages/project-ui/noise-select/noise-sele
 
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomepageAdminComponent } from './homepage-admin/homepage-admin.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CreateUserComponent,
     ProjectSelectComponent,
     SolarSelectComponent,
-    NoiseSelectComponent
+    NoiseSelectComponent,
+    HomepageAdminComponent
   ],
   imports: [
     BrowserModule,

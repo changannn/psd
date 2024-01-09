@@ -12,16 +12,20 @@ import { ProjectSelectComponent } from './pages/project-ui/project-select/projec
 import { SolarSelectComponent } from './pages/project-ui/solar-select/solar-select.component';
 import { NoiseSelectComponent } from './pages/project-ui/noise-select/noise-select.component';
 
+import { HomepageAdminComponent } from './homepage-admin/homepage-admin.component';
+
+
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent},
   { path: 'general-register', component: GeneralRegisterComponent},
-  { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard]},
-  { path: 'user-management', component: UserManagementComponent, canActivate: [authGuard]},
-  { path: 'user-create', component: CreateUserComponent, canActivate: [authGuard]},
-  { path: 'project', component: ProjectSelectComponent, canActivate: [authGuard]},
-  { path: 'solar', component: SolarSelectComponent, canActivate: [authGuard]},
-  { path: 'noise', component: NoiseSelectComponent, canActivate: [authGuard]},
+  { path: 'dashboard', component: DashboardComponent},
+  { path: 'user-management', component: UserManagementComponent},
+  { path: 'user-create', component: CreateUserComponent},
+  { path: 'project', component: ProjectSelectComponent},
+  { path: 'solar', component: SolarSelectComponent},
+  { path: 'noise', component: NoiseSelectComponent},
+  { path: 'homepage-admin', component: HomepageAdminComponent }, 
 ];
 
 @NgModule({
