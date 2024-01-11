@@ -123,8 +123,13 @@ public class UserController {
         userService.saveConfirmation(confirmation);
 
         // Send email to user
-        this.emailSenderService.sendEmail(currentUser.getEmail(), "Account Verification", "Your administrator has invited you to access the wizvision application. Accepting this invitation will activate your user account.");
+        this.emailSenderService.sendEmail(currentUser.getEmail(), "Account Verification", "Your administrator has invited you to access the wizvision application. Please click the link below to activate your user account.\n\n" +
+                getVerificationUrl("http://localhost:8080", confirmation.getToken()) + "\n\nWizvision Pte Ltd");
         return ResponseEntity.ok("An invitation email has been sent to the user");
+    }
+
+    public String getVerificationUrl(String host, String token) {
+        return host + "/auth/confirm?token=" + token;
     }
 
     @PostMapping("/auth/sendemail")
