@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class NoiseSelectComponent {
 
+inputTypes: string[] = ['default', 'user-defined', 'traffic']
+selectedInputType: string = 'default';
 }
