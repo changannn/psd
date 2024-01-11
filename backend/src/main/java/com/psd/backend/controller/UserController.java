@@ -107,6 +107,7 @@ public class UserController {
 //
 //        return new ResponseEntity<>("User created", HttpStatus.CREATED);
 
+        // Create a dummy user with actual email
         User currentUser = User.builder()
                 .email(registerRequest.getEmail())
                 .role(registerRequest.getRole())
@@ -114,6 +115,8 @@ public class UserController {
                 .createdBy(owner)
                 .isEnabled(false)
                 .build();
+
+        userService.save(currentUser);
 
         // Create verification token for user and save to database
         Confirmation confirmation = new Confirmation(currentUser);
