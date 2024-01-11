@@ -1,11 +1,122 @@
 <div class="background-div">
     <div class="project-nav">
         <div class="nav-header">
-        <button id="transparent-button" routerLink="/project">Project</button>
-        <button id="transparent-button" routerLink="/solar">Solar</button>
-        <button id="transparent-button" routerLink="/wind">Wind</button>
-        <button id="transparent-button" routerLink="/noise">Noise</button>
+            <button id="transparent-button" routerLink="/project">Project</button>
+            <button id="transparent-button" routerLink="/solar">Solar</button>
+            <button id="transparent-button" routerLink="/wind">Wind</button>
+            <button id="transparent-button" routerLink="/noise">Noise</button>
         </div> 
     </div>
-    <p>noise-select works!</p>
+    <div class="container-div">
+        <div class="container-div-row">
+            <label for="receiverPointSTL">Receiver Points STL File :</label>
+            <input type="file" id="receiverPointSTL" name="receiverPointSTL" webkitdirectory = "true" accept=".stl">
+        </div>
+        <div class="container-div-2">
+            <div class="container-div-row">
+                <label for="receiverGrid">Receiver Grid :</label>
+                <select name="receiverGrid" id="receiverGrid">
+                    <option value="cutplane">cut-plane</option>
+                    <option value="facade">facade</option>
+                </select>
+                <label for="receiverOffset">Offset value :</label>
+                <input type="text">
+                <label for="receiverOffset">(m)</label>
+            </div>
+        </div>
+        <div class="container-div-2">
+            <div class="container-div-row">
+                <label for="meshResolutionNoise">Mesh Resolution :</label>
+                <input type="text" id="meshResolutionNoise" name="meshResolutionNoise">
+                <label for="meshResolutionNoise">(m)</label>
+            </div>
+        </div>
+        <div class="container-div-2">
+            <div class="container-div-row">
+                <label for="receiverPoints">Receiver Points :</label>
+                <input type="text" name="receiverPoints" id="receiverPoints" disabled>
+                <button type="button" id="purplebutton" name="receiverPoints">Create</button>
+            </div>
+        </div>
+        <div class="container-div-2">
+            <div class="container-div-row">
+                <label for="roadsOBJSHP">Roads OBJ/SHP File :</label>
+                <input type="file" id="roadsOBJSHP" name="roadsOBJSHP" webkitdirectory = "true" accept=".obj,.shp">
+            </div>
+        </div>
+        <div class="container-div-2">
+            <div class="container-div-row">
+                <label for="roadGeometry">Road Geometry :</label>
+                <input type="text" name="roadGeometry" id="roadGeometry" disabled>
+                <button type="button" id="purplebutton" name="roadGeometry">Create</button>
+            </div>
+        </div>
+        <div class="container-div-2">
+            <div class="container-div-row">
+                <label for="roadCategory">Road Category :</label>
+                <select name="roadCategory" id="roadCategory">
+                    <option value="category1">category 1</option>
+                    <option value="category2">category 2</option>
+                    <option value="category3">category 3</option>
+                    <option value="category4">category 4</option>
+                    <option value="category5">category 5</option>
+                </select>
+            </div>
+        </div>
+        <div class="container-div-2">
+            <div class="container-div-row">
+                <label for="inputType">Input Type :</label>
+                <select name="inputType" id="inputType" [(ngModel)]="selectedInputType">
+                    <option *ngFor="let inputType of inputTypes" [value]="inputType">{{ inputType }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="container-div-2">
+            <div class="container-div-row">
+                <label for="inputValue">Input Value :</label>
+                <input type="text" id="inputValue" name="inputValue">
+                <label for="inputValue">(dB)</label>
+            </div>
+        </div>
+        <div class="container-div-2" *ngIf="selectedInputType === 'default' || selectedInputType === 'traffic'">
+            <div class="container-div-row">
+                <label for="materialAbsorption">Material Absorption :</label>
+                <select name="materialAbsorption" id="materialAbsorption">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                </select>
+            </div>
+        </div>
+        <div class="container-div-2" *ngIf="selectedInputType === 'traffic'">
+            <div class="container-div-row">
+                <label for="numOfVehicle">Number of Vehicle:</label>
+                <input type="text" id="numOfVehicle" name="numOfVehicle">
+                <label for="vehicleSpeed">Vehicle Speed:</label>
+                <input type="text" id="vehicleSpeed" name="vehicleSpeed">
+                <label for="vehicleSpeed">km/h</label>
+                <label for="heavyVehicle">Heavy Vehicle:</label>
+                <input type="text" id="heavyVehicle" name="heavyVehicle">
+                <label for="vehicleSpeed">%</label>
+                <button type="button" id="purplebutton" name="computeTrafficNoise">Compute</button>
+            </div>
+        </div>
+        <div class="container-div-2">
+            <div class="container-div-row">
+                <label for="blockingSTL">Blocking STL File :</label>
+                <input type="file" id="blockingSTL" name="blockingSTL" webkitdirectory = "true" accept=".stl" multiple>
+            </div>
+        </div>
+        <div class="container-div-2">
+            <div class="container-div-row">
+                <label for="noiseSolver">Noise Solver :</label>
+                <button type="button" id="purplebutton" name="noiseSolver">Run</button>
+            </div>
+        </div>
+        <div class="container-div-2">
+            <div class="container-div-row">
+                <label for="visualiseOutputFile">Visualise Output File :</label>
+                <button type="button" id="purplebutton" name="visualiseOutputFile">Select</button>
+            </div>
+        </div>
+    </div>
 </div>
