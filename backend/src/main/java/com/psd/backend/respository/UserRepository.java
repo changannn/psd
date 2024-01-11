@@ -15,4 +15,8 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 
     @Query("SELECT u FROM User u WHERE u.createdBy = :user")
     List<User> findUsersCreatedBy(@Param("user") User user);
+
+    User findByEmailIgnoreCase(String email);
+
+    Boolean existsByEmail(String email);
 }

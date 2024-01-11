@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.psd.backend.auth.RegisterRequest;
 import com.psd.backend.exceptions.AccountNotPermittedException;
+import com.psd.backend.model.Confirmation;
 import com.psd.backend.model.EmailMessage;
 import com.psd.backend.model.Role;
 import com.psd.backend.service.EmailSenderService;
@@ -13,13 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.psd.backend.model.User;
 import com.psd.backend.service.UserService;
@@ -97,25 +92,52 @@ public class UserController {
             throw new AccountNotPermittedException("Users limit reached");
         }
 
+//        User currentUser = User.builder()
+//                .email(registerRequest.getEmail())
+//                .username(registerRequest.getUsername())
+//                .password(passwordEncoder.encode(registerRequest.getPassword()))
+//                .role(registerRequest.getRole())
+//                .userCreationLimit(0)
+//                .createdBy(owner)
+//                .build();
+//
+//        // Insert user into database
+//        userService.createUser(currentUser);
+//        owner.setUserCreationLimit(owner.getUserCreationLimit() - 1);
+//
+//        return new ResponseEntity<>("User created", HttpStatus.CREATED);
+
         User currentUser = User.builder()
                 .email(registerRequest.getEmail())
-                .username(registerRequest.getUsername())
-                .password(passwordEncoder.encode(registerRequest.getPassword()))
                 .role(registerRequest.getRole())
                 .userCreationLimit(0)
                 .createdBy(owner)
+                .isEnabled(false)
                 .build();
 
-        // Insert user into database
-        userService.createUser(currentUser);
-        owner.setUserCreationLimit(owner.getUserCreationLimit() - 1);
+        // Create verification token for user and save to database
+        Confirmation confirmation = new Confirmation(currentUser);
+        userService.saveConfirmation(confirmation);
 
-        return new ResponseEntity<>("User created", HttpStatus.CREATED);
+        // Send email to user
+        this.emailSenderService.sendEmail(currentUser.getEmail(), "Account Verification", "Your administrator has invited you to access the wizvision application. Accepting this invitation will activate your user account.");
+        return ResponseEntity.ok("An invitation email has been sent to the user");
     }
 
     @PostMapping("/auth/sendemail")
     public ResponseEntity<String> sendEmail(@RequestBody EmailMessage emailMessage) {
         this.emailSenderService.sendEmail(emailMessage.getTo(), emailMessage.getSubject(), emailMessage.getMessage());
         return ResponseEntity.ok("Success");
+    }
+
+    @PostMapping("/auth/confirm")
+    public ResponseEntity<String> confirmUserAccount(@RequestParam("token") String token) {
+        Boolean isSuccess = userService.verifyToken(token);
+
+        if (isSuccess) {
+            return ResponseEntity.ok("Account is successfully verified");
+        } else {
+            return ResponseEntity.badRequest().body("Invalid Token");
+        }
     }
 }

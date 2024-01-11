@@ -28,7 +28,7 @@ public class User implements UserDetails {
     @Column(name = "username",unique = true)
     private String username;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "password")
@@ -48,8 +48,11 @@ public class User implements UserDetails {
     @Column(name = "secret")
     private String secret;
 
-    @Column(name = "mfaenabled")
+    @Column(name = "mfa_enabled")
     private boolean mfaEnabled;
+
+    @Column(name = "is_enabled")
+    private boolean isEnabled;
 
     @Override
     public boolean isAccountNonExpired() {

@@ -34,6 +34,7 @@ public class AuthenticationService {
                 .role(Role.ROOT)
                 .userCreationLimit(3)
                 .mfaEnabled(request.isMfaEnabled())
+                .isEnabled(true)
                 .build();
 
         // If MFA enabled, generate secret for MFA
@@ -62,6 +63,8 @@ public class AuthenticationService {
         if (user == null) {
             throw new UsernameNotFoundException("User does not exist");
         }
+
+        // Throw exception if user is not enabled
         
         // Will not generate JWT token here, because needs to go through verifyCode to generate the JWT Token
         if (user.isMfaEnabled()) {

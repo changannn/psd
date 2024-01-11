@@ -32,7 +32,7 @@ public class GlobalExceptionHandler {
     // When username already in use
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<FrontendResponse> handleDataViolationExceptions(DataIntegrityViolationException ex) {
-        FrontendResponse response = new FrontendResponse("Username already in use.");
+        FrontendResponse response = new FrontendResponse("Username/Email already in use.");
         return new ResponseEntity<>(response, HttpStatus.CONFLICT);
     }
 

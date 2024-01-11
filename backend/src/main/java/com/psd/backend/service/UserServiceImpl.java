@@ -2,6 +2,8 @@ package com.psd.backend.service;
 
 import java.util.List;
 
+import com.psd.backend.model.Confirmation;
+import com.psd.backend.respository.ConfirmationRepository;
 import com.psd.backend.respository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,9 +17,13 @@ import com.psd.backend.model.User;
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserRepository userRepository;
+
+    private final ConfirmationRepository confirmationRepository;
+
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, ConfirmationRepository confirmationRepository) {
         this.userRepository = userRepository;
+        this.confirmationRepository = confirmationRepository;
     }
 
     @Override
@@ -62,6 +68,27 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public List<User> getAccountUsers(User user) {
         return userRepository.findUsersCreatedBy(user);
+    }
+
+    @Override
+    public Boolean verifyToken(String token) {
+        Confirmation confirmation = confirmationRepository.findByToken(token);
+        User user = userRepository.findByEmailIgnoreCase(confirmation.getUser().getEmail());
+
+        // Checks if user is null
+        if (user == null) {
+            return false;
+        }
+
+        user.setEnabled(true);
+        userRepository.save(user);
+        confirmationRepository.delete(confirmation);
+        return true;
+    }
+
+    @Override
+    public void saveConfirmation(Confirmation confirmation) {
+        confirmationRepository.save(confirmation);
     }
 
     @Override
