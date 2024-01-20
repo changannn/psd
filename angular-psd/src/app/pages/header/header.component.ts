@@ -9,16 +9,16 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeaderComponent {
   
-  token: string | null;
+  // token: string | null;
 
-  constructor(private router: Router, private authService: AuthService) { 
-    this.token = this.authService.getJwt();
-  }
+  // constructor(private router: Router, private authService: AuthService) { 
+  //   this.token = this.authService.getJwt();
+  // }
 
-  logout(){
-    if (this.token != null){
-      this.router.navigate(['login']);
-      this.authService.removeJwt();
-    }
-  }
+  // logout(){
+  //   if (this.token != null){
+  //     this.router.navigate(['login']);
+  //     this.authService.removeJwt();
+  //   }
+  // }
 }

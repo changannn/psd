@@ -2,7 +2,9 @@
   <!-- Header -->
   <header>
     <!-- Navigation menu goes here -->
-    <app-header></app-header>
+    <app-user-header *ngIf="(isLoggedIn === 'true'); else nonuser "></app-user-header>
+    <ng-template #nonuser><app-header></app-header></ng-template>
+    <!-- <app-header></app-header> -->
   </header>
 
   <!-- Main Content -->

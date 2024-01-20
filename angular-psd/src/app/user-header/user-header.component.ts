@@ -1,17 +1,16 @@
 import { Component } from '@angular/core';
-import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-user-header',
+  templateUrl: './user-header.component.html',
+  styleUrls: ['./user-header.component.css']
 })
-export class AppComponent {
-  title = 'angular-psd';
+export class UserHeaderComponent {
 
   token: string | null;
-  isLoggedIn: string | null = "";
+  isLoggedIn: string | null = "false";
 
   constructor(private router: Router, private authService: AuthService) { 
     this.token = this.authService.getJwt();
