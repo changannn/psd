@@ -27,7 +27,6 @@ export class LoginComponent {
           this.authenticationResponse = response;
           if (!this.authenticationResponse.mfaEnabled && this.authenticationResponse.token) {
             this.authService.setJwt(this.authenticationResponse.token);
-            this.authService.isLoggedIn$ = "true";
             this.router.navigate(['dashboard']);
           }
         },
@@ -48,7 +47,6 @@ export class LoginComponent {
         next: (response: AuthenticationResponse) => {
           if (response.token) {
             this.authService.setJwt(response.token);
-            this.authService.isLoggedIn$ = "true";
             this.router.navigate(['dashboard']);
           }
         },

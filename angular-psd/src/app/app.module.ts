@@ -21,7 +21,6 @@ import { NoiseSelectComponent } from './pages/project-ui/noise-select/noise-sele
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomepageAdminComponent } from './homepage-admin/homepage-admin.component';
-import { UserHeaderComponent } from './user-header/user-header.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +30,6 @@ import { UserHeaderComponent } from './user-header/user-header.component';
     DashboardComponent,
     GeneralRegisterComponent,
     HeaderComponent,
-    UserHeaderComponent,
     UserManagementComponent,
     CreateUserComponent,
     ProjectSelectComponent,

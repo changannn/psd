@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { AuthService } from './services/auth.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +7,4 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent {
   title = 'angular-psd';
-  
-  constructor(protected authService: AuthService) {}
-  
 }
