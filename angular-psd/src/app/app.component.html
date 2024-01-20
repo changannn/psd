@@ -2,7 +2,8 @@
   <!-- Header -->
   <header>
     <!-- Navigation menu goes here -->
-    <app-header></app-header>
+    <app-user-header *ngIf="authService.isLoggedIn$ === 'true' "></app-user-header>
+    <app-header *ngIf="authService.isLoggedIn$ === 'false' "></app-header>
   </header>
 
   <!-- Main Content -->

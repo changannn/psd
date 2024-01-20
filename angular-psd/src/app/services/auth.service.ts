@@ -4,7 +4,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
+  [x: string]: any;
   private JWT: string = "";
+
+  public isLoggedIn$: string = "false";
 
   constructor() { }
 
