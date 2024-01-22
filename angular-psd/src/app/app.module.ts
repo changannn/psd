@@ -22,6 +22,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomepageAdminComponent } from './homepage-admin/homepage-admin.component';
 import { UserHeaderComponent } from './user-header/user-header.component';
+import { ErrorComponent } from './pages/error/error.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { UserHeaderComponent } from './user-header/user-header.component';
     SolarSelectComponent,
     NoiseSelectComponent,
     HomepageAdminComponent,
-    UserHeaderComponent
+    UserHeaderComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

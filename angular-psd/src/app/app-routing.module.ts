@@ -13,6 +13,7 @@ import { SolarSelectComponent } from './pages/project-ui/solar-select/solar-sele
 import { NoiseSelectComponent } from './pages/project-ui/noise-select/noise-select.component';
 
 import { HomepageAdminComponent } from './homepage-admin/homepage-admin.component';
+import { ErrorComponent } from './pages/error/error.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'solar', component: SolarSelectComponent},
   { path: 'noise', component: NoiseSelectComponent},
   { path: 'homepage-admin', component: HomepageAdminComponent }, 
+  { path: '**', component: ErrorComponent }, 
 ];
 
 @NgModule({
