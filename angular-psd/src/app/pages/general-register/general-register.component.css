@@ -33,3 +33,10 @@
     border-radius: 15px;
     padding-left: 20px;
 }
+
+.hint{
+    font-size: 14px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    color: #808080;
+}
