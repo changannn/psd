@@ -55,6 +55,23 @@
     gap: 20px;
     padding: 0 1px;
 }
+.form-control {
+    height: 40px;
+    width: 200px;
+}
+.traffic-div {
+    border: 2px solid #000000;
+    border-radius: 5px;
+    padding: 15px;
+}
+.traffic-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.traffic-list-item {
+    margin-bottom: 15px;
+}
 @media (max-width: 991px) {
     .container-div-2 {
       max-width: 100%;
@@ -66,10 +83,4 @@
     border: none;
     color: #ffffff; /* Text color */
     cursor: pointer;
-}
-#purplebutton {
-    background-color: var(--wizvision-purple, #64479d);
-    height: 38px;
-    text-align: center;
-    display: inline-flex;
 }
