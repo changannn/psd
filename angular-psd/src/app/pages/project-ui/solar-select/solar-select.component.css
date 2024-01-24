@@ -60,15 +60,26 @@
       flex-wrap: wrap;
     }
 }
+.form-control {
+    height: 40px;
+    width: 200px;
+}
+.form-check-label-1 {
+    width: 200px;
+}
+.cumulative-sky-list{
+    list-style-type: none;
+}
+.point-in-time-list{
+    list-style-type: none;
+}
+.simulationType-select{
+    max-height: 40px;
+    width: 150px;
+}
 #transparent-button {
     background-color: rgba(0, 0, 0, 0); /* Use rgba to specify the color with alpha (transparency) */
     border: none;
     color: #ffffff; /* Text color */
     cursor: pointer;
-}
-#purplebutton {
-    background-color: var(--wizvision-purple, #64479d);
-    height: 32px;
-    text-align: center;
-    display: inline-flex;
 }
