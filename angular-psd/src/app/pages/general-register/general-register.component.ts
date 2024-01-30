@@ -40,9 +40,9 @@ export class GeneralRegisterComponent {
               this.authenticationResponse = response;
             }
             else {
-              this.message = 'Account created successfully\nYou will be redirected to the dashboard page in 3 seconds';
+              this.message = 'Account created successfully\nYou will be redirected to the admin homepage in 3 seconds';
               setTimeout(() => {
-                this.router.navigate(['dashboard']);
+                this.router.navigate(['homepage-admin']);
               }, 3000)
             }
           },
@@ -80,10 +80,10 @@ export class GeneralRegisterComponent {
     this.registrationService.verifyCode(verificationRequest)
       .subscribe({
         next: (response: AuthenticationResponse) => {
-          this.message = 'Account created successfully\nYou will be redirected to the dashboard page in 3 seconds';
+          this.message = 'Account created successfully\nYou will be redirected to the admin homepage in 3 seconds';
           setTimeout(() => {
             // localStorage.setItem('token', response.token as string);
-            this.router.navigate(['dashboard']);
+            this.router.navigate(['homepage-admin']);
           }, 3000)
         },
         error: (error) => {

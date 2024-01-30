@@ -28,7 +28,7 @@ export class LoginComponent {
           if (!this.authenticationResponse.mfaEnabled && this.authenticationResponse.token) {
             this.authService.setJwt(this.authenticationResponse.token);
             this.authService.setIsLoggedIn();
-            this.router.navigate(['dashboard']);
+            this.router.navigate(['homepage-admin']);
           }
         },
         error: (error) => {
@@ -49,7 +49,7 @@ export class LoginComponent {
           if (response.token) {
             this.authService.setJwt(response.token);
             this.authService.setIsLoggedIn();
-            this.router.navigate(['dashboard']);
+            this.router.navigate(['homepage-admin']);
           }
         },
         error: (error) => {
