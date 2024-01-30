@@ -1,97 +1,50 @@
-/* homepage-admin.component.css */
+.sgds-example-card-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
 
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 -15px; /* Adjust the margin to account for padding */
-  }
-  
-  .column {
-    flex: 1;
-    max-width: 33.3333%; /* Flex basis for three columns */
-    padding: 0 15px; /* Padding for gutters */
-  }
-  
-  .card {
-    margin-bottom: 30px; /* Space between cards */
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .card-header {
-    padding: 15px;
-    background-color: #eee;
-    border-bottom: 1px solid #ddd;
-    font-size: 1.5rem;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-  }
-  
-  .card-body {
-    padding: 15px;
-  }
-  
-  /* Responsive design adjustments */
-  @media (max-width: 768px) {
-    .column {
-      max-width: 100%; /* Full width on smaller screens */
-      padding: 0 15px; /* Maintain gutter padding */
-    }
-  }
-  
-  /* Additional styles can be added below as needed */
-  
+.card {
+  position: relative;
+  border-radius: 25px;
+  width: 30vw;
+  height: 75vh;
+  margin: 20px;
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  overflow: hidden;
+}
 
-  .navbar {
-    display: flex;
-    justify-content: flex-end; /* Align items to the end of the container */
-    /* Other styling */
-  }  
-  /* Dropdown Button */
-.dropbtn {
-    margin-left: auto;
-    background-color: #fe9d00;
-    color: white;
-    padding: 40px;
-    font-size: 20px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  /* Dropdown button on hover & focus */
-  .dropbtn:hover, .dropbtn:focus {
-    background-color: #a06303;
-  }
-  
-  /* The container <div> - needed to position the dropdown content */
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  /* Dropdown Content (Hidden by Default) */
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  /* Links inside the dropdown */
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-  
-  /* Change color of dropdown links on hover */
-  .dropdown-content a:hover {background-color: #f1f1f1}
-  
-  /* Show the dropdown menu on hover */
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Adjust the alpha value for the darkness */
+  border-radius: 25px; /* Match the card's border-radius */
+}
+
+.card-body {
+  color: white;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.card-title {
+  font-size: 2em;
+  font-weight: bolder;
+  margin: 0 auto;
+}
+
+.card-summary {
+  margin: 0 auto;
+  font-size: 1em;
+}

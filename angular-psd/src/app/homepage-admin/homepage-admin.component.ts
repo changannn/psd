@@ -9,6 +9,9 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HomepageAdminComponent {
   token: string | null;
+  dashboardImage = './assets/dashboard_photo.jpg';
+  userManagementImage = './assets/usermanagement_photo.jpg';
+  iemSimImage = './assets/IEMSim_photo.png';
 
   constructor(private router: Router, private authService: AuthService) { 
     this.token = this.authService.getJwt();
