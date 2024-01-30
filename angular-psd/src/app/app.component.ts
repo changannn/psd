@@ -18,6 +18,7 @@ export class AppComponent {
     this.isLoggedIn = this.authService.getIsLoggedIn();
   }
 
+  // Maybe need to remove/edit this portion for a proper logout
   logout(){
     if (this.token != null){
       this.router.navigate(['login']);
