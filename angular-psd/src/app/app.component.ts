@@ -25,8 +25,8 @@ export class AppComponent {
     this.isLoggedIn = this.authService.getIsLoggedIn();
 
     // set idle parameters
-    idle.setIdle(3); // how long can they be inactive before considered idle, in seconds
-    idle.setTimeout(3); // how long can they be idle before considered timed out, in seconds
+    idle.setIdle(300); // how long can they be inactive before considered idle, in seconds 5min = 300seconds
+    idle.setTimeout(900); // how long can they be idle before considered timed out, in seconds 15min = 900seconds
     idle.setInterrupts(DEFAULT_INTERRUPTSOURCES); // provide sources that will "interrupt" aka provide events indicating the user is active
 
     // do something when the user becomes idle
@@ -52,7 +52,7 @@ export class AppComponent {
     });
 
     // set keepalive parameters, omit if not using keepalive
-    keepalive.interval(3); // will ping at this interval while not idle, in seconds
+    keepalive.interval(60); // will ping at this interval while not idle, in seconds
     keepalive.onPing.subscribe(() => this.lastPing = new Date()); // do something when it pings
     
   }
