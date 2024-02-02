@@ -24,37 +24,38 @@ export class AppComponent {
     this.token = this.authService.getJwt();
     this.isLoggedIn = this.authService.getIsLoggedIn();
 
-    // set idle parameters
-    idle.setIdle(300); // how long can they be inactive before considered idle, in seconds 5min = 300seconds
-    idle.setTimeout(900); // how long can they be idle before considered timed out, in seconds 15min = 900seconds
-    idle.setInterrupts(DEFAULT_INTERRUPTSOURCES); // provide sources that will "interrupt" aka provide events indicating the user is active
+    if(this.isLoggedIn == "true"){
+      // set idle parameters
+      idle.setIdle(300); // how long can they be inactive before considered idle, in seconds 5min = 300seconds
+      idle.setTimeout(900); // how long can they be idle before considered timed out, in seconds 15min = 900seconds
+      idle.setInterrupts(DEFAULT_INTERRUPTSOURCES); // provide sources that will "interrupt" aka provide events indicating the user is active
 
-    // do something when the user becomes idle
-    idle.onIdleStart.subscribe(() => {
-      this.idleState = "IDLE";
-    });
-    // do something when the user is no longer idle
-    idle.onIdleEnd.subscribe(() => {
-      this.idleState = "NOT_IDLE";
-      console.log(`${this.idleState} ${new Date()}`)
-      this.countdown = null;
-      // cd.detectChanges(); // how do i avoid this kludge?
-    });
-    // do something when the user has timed out
-    idle.onTimeout.subscribe(() => {
-      this.idleState = "TIMED_OUT";
-      this.logout();
+      // do something when the user becomes idle
+      idle.onIdleStart.subscribe(() => {
+        this.idleState = "IDLE";
+      });
+      // do something when the user is no longer idle
+      idle.onIdleEnd.subscribe(() => {
+        this.idleState = "NOT_IDLE";
+        console.log(`${this.idleState} ${new Date()}`)
+        this.countdown = null;
+        // cd.detectChanges(); // how do i avoid this kludge?
+      });
+      // do something when the user has timed out
+      idle.onTimeout.subscribe(() => {
+        this.idleState = "TIMED_OUT";
+        this.logout();
+      }
+      );
+      // do something as the timeout countdown does its thing
+      idle.onTimeoutWarning.subscribe(seconds => {
+        this.countdown = seconds;
+      });
+
+      // set keepalive parameters, omit if not using keepalive
+      keepalive.interval(60); // will ping at this interval while not idle, in seconds
+      keepalive.onPing.subscribe(() => this.lastPing = new Date()); // do something when it pings
     }
-    );
-    // do something as the timeout countdown does its thing
-    idle.onTimeoutWarning.subscribe(seconds => {
-      this.countdown = seconds;
-    });
-
-    // set keepalive parameters, omit if not using keepalive
-    keepalive.interval(60); // will ping at this interval while not idle, in seconds
-    keepalive.onPing.subscribe(() => this.lastPing = new Date()); // do something when it pings
-    
   }
 
   // Maybe need to remove/edit this portion for a proper logout
