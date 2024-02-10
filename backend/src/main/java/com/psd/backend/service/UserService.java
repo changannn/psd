@@ -27,5 +27,7 @@ public interface UserService {
 
     public Boolean verifyToken(String token);
 
+    public String getEmailByToken(String token);
+
     public void saveConfirmation(Confirmation confirmation);
 }

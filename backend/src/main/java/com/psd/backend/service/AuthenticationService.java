@@ -65,6 +65,9 @@ public class AuthenticationService {
         }
 
         // Throw exception if user is not enabled
+        if (!user.isEnabled()) {
+            throw new BadCredentialsException("Account not verified");
+        }
         
         // Will not generate JWT token here, because needs to go through verifyCode to generate the JWT Token
         if (user.isMfaEnabled()) {

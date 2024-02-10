@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RegistrationService } from "../../services/registration.service";
 import { RegisterRequest } from '../../models/register-request';
 import { AuthenticationResponse } from '../../models/authentication-response';
-import { Route, Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { VerificationRequest } from 'src/app/models/verification-request';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormControl, Validators } from '@angular/forms';
@@ -12,14 +12,22 @@ import { FormControl, Validators } from '@angular/forms';
   templateUrl: './general-register.component.html',
   styleUrls: ['./general-register.component.css']
 })
-export class GeneralRegisterComponent {
+export class GeneralRegisterComponent implements OnInit {
   registerRequest: RegisterRequest = {};
   authenticationResponse: AuthenticationResponse = {};
   retypePassword: string = '';
   message: string = '';
   otpCode: string = '';
 
-  constructor(private registrationService: RegistrationService, private router: Router, private authService: AuthService) { }
+  constructor(private registrationService: RegistrationService, private router: Router, private authService: AuthService, private route: ActivatedRoute) { }
+
+  ngOnInit(): void {
+    // Retrieve query parameters from the URL
+    this.route.queryParams.subscribe(params => {
+      this.message = params['successMessage'] || '';
+      this.registerRequest.email = params['email'] || '';
+    });
+  }
 
   signUp() {
     const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;

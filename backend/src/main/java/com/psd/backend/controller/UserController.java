@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.psd.backend.model.User;
 import com.psd.backend.service.UserService;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 public class UserController {
@@ -92,21 +93,6 @@ public class UserController {
             throw new AccountNotPermittedException("Users limit reached");
         }
 
-//        User currentUser = User.builder()
-//                .email(registerRequest.getEmail())
-//                .username(registerRequest.getUsername())
-//                .password(passwordEncoder.encode(registerRequest.getPassword()))
-//                .role(registerRequest.getRole())
-//                .userCreationLimit(0)
-//                .createdBy(owner)
-//                .build();
-//
-//        // Insert user into database
-//        userService.createUser(currentUser);
-//        owner.setUserCreationLimit(owner.getUserCreationLimit() - 1);
-//
-//        return new ResponseEntity<>("User created", HttpStatus.CREATED);
-
         // Create a dummy user with actual email
         User currentUser = User.builder()
                 .email(registerRequest.getEmail())
@@ -141,11 +127,27 @@ public class UserController {
     @PostMapping("/auth/confirm")
     public ResponseEntity<String> confirmUserAccount(@RequestParam("token") String token) {
         Boolean isSuccess = userService.verifyToken(token);
+        String email = userService.getEmailByToken(token);
+
+//        if (isSuccess) {
+//            return ResponseEntity.ok("Account is successfully verified");
+//        } else {
+//            return ResponseEntity.badRequest().body("Invalid Token");
+//        }
 
         if (isSuccess) {
-            return ResponseEntity.ok("Account is successfully verified");
+            // Redirect to Angular registration page with success message and email
+            String registerPageUrl = ServletUriComponentsBuilder.fromCurrentContextPath().path("http://localhost:4200/general-register")
+                    .queryParam("successMessage", "Account verified successfully. You can now proceed with registration.")
+                    .queryParam("email", email)
+                    .toUriString();
+            return ResponseEntity.status(HttpStatus.FOUND).header("Location", registerPageUrl).build();
         } else {
-            return ResponseEntity.badRequest().body("Invalid Token");
+            // Redirect to Angular login page with error message
+            String loginPageUrl = ServletUriComponentsBuilder.fromCurrentContextPath().path("http://localhost:4200/login")
+                    .queryParam("errorMessage", "Verification failed. Please try again or request a new confirmation email.")
+                    .toUriString();
+            return ResponseEntity.status(HttpStatus.FOUND).header("Location", loginPageUrl).build();
         }
     }
 }

@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { AuthenticationRequest } from 'src/app/models/authentication-request';
 import { AuthenticationResponse } from 'src/app/models/authentication-response';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { VerificationRequest } from 'src/app/models/verification-request';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -11,14 +11,21 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   
   authenticationRequest: AuthenticationRequest = {};
   authenticationResponse: AuthenticationResponse = {};
   otpCode: any;
   message: string = '';
 
-  constructor(private loginService: LoginService, private router: Router, private authService: AuthService) { }
+  constructor(private loginService: LoginService, private router: Router, private authService: AuthService, private route: ActivatedRoute) { }
+
+  ngOnInit(): void {
+    // Retrieve query parameters from the URL
+    this.route.queryParams.subscribe(params => {
+      this.message = params['errorMessage'] || '';
+    });
+  }
 
   login() {
     this.loginService.loginUser(this.authenticationRequest)

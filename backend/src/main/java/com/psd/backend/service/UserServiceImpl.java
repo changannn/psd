@@ -87,6 +87,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    public String getEmailByToken(String token) {
+        Confirmation confirmation = confirmationRepository.findByToken(token);
+        return confirmation.getUser().getEmail();
+    }
+
+    @Override
     public void saveConfirmation(Confirmation confirmation) {
         confirmationRepository.save(confirmation);
     }
