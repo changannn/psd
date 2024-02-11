@@ -14,6 +14,7 @@ import { NoiseSelectComponent } from './pages/project-ui/noise-select/noise-sele
 
 import { HomepageAdminComponent } from './homepage-admin/homepage-admin.component';
 import { ErrorComponent } from './pages/error/error.component';
+import {EmailActionComponent} from "./email-action/email-action.component";
 
 
 const routes: Routes = [
@@ -26,8 +27,9 @@ const routes: Routes = [
   { path: 'project', component: ProjectSelectComponent},
   { path: 'solar', component: SolarSelectComponent},
   { path: 'noise', component: NoiseSelectComponent},
-  { path: 'homepage-admin', component: HomepageAdminComponent }, 
-  { path: '**', component: ErrorComponent }, 
+  { path: 'homepage-admin', component: HomepageAdminComponent },
+  { path: 'email-verification', component: EmailActionComponent },
+  { path: '**', component: ErrorComponent }
 ];
 
 @NgModule({

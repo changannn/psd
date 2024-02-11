@@ -110,12 +110,12 @@ public class UserController {
 
         // Send email to user
         this.emailSenderService.sendEmail(currentUser.getEmail(), "Account Verification", "Your administrator has invited you to access the wizvision application. Please click the link below to activate your user account.\n\n" +
-                getVerificationUrl("http://localhost:8080", confirmation.getToken()) + "\n\nWizvision Pte Ltd");
+                getVerificationUrl("http://localhost:4200", confirmation.getToken()) + "\n\nWizvision Pte Ltd");
         return ResponseEntity.ok("An invitation email has been sent to the user");
     }
 
     public String getVerificationUrl(String host, String token) {
-        return host + "/auth/confirm?token=" + token;
+        return host + "/email-verification?token=" + token;
     }
 
     @PostMapping("/auth/sendemail")
@@ -126,9 +126,8 @@ public class UserController {
 
     @PostMapping("/auth/confirm")
     public ResponseEntity<String> confirmUserAccount(@RequestParam("token") String token) {
-        Boolean isSuccess = userService.verifyToken(token);
         String email = userService.getEmailByToken(token);
-
+        Boolean isSuccess = userService.verifyToken(token);
 //        if (isSuccess) {
 //            return ResponseEntity.ok("Account is successfully verified");
 //        } else {
@@ -141,13 +140,15 @@ public class UserController {
                     .queryParam("successMessage", "Account verified successfully. You can now proceed with registration.")
                     .queryParam("email", email)
                     .toUriString();
-            return ResponseEntity.status(HttpStatus.FOUND).header("Location", registerPageUrl).build();
+//            return ResponseEntity.status(HttpStatus.FOUND).header("Location", registerPageUrl).build();
+            return ResponseEntity.ok("Success");
         } else {
             // Redirect to Angular login page with error message
             String loginPageUrl = ServletUriComponentsBuilder.fromCurrentContextPath().path("http://localhost:4200/login")
                     .queryParam("errorMessage", "Verification failed. Please try again or request a new confirmation email.")
                     .toUriString();
-            return ResponseEntity.status(HttpStatus.FOUND).header("Location", loginPageUrl).build();
+//            return ResponseEntity.status(HttpStatus.FOUND).header("Location", loginPageUrl).build();
+            return ResponseEntity.ok("failed");
         }
     }
 }

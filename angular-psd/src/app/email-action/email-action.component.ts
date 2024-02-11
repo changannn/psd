@@ -16,19 +16,25 @@ export class EmailActionComponent {
       const token = params['token']; // Assuming token is the parameter you're interested in
       if (token) {
         // Send POST request to backend service
-        this.http.post<any>('http://localhost:8080/auth/confirm', { token })
-        .subscribe({
-          next: () => {
-            // No response handling needed since we're not expecting a response
-            // You can navigate or perform any other action here if needed
-            this.router.navigate(['/success']);
-          },
-          error: (error) => {
-            // Error handling - redirect or display error message
-            this.router.navigate(['/error']);
-          }
-        });
-    }
-  });
-}
+        this.http.post<any>('http://localhost:8080/auth/confirm?token=' + token, {})
+          .subscribe({
+            next: (response) => {
+              // No response handling needed since not expecting a response
+              if (response === "Success") {
+                // Handle success
+                console.log('Success:', response);
+                // Perform any actions you want to do on success
+              } else {
+                // Handle other responses
+                console.log('Unexpected response:', response);
+              }
+            },
+            error: (error) => {
+              // Error handling - redirect or display error message
+              console.error('Error:', error);
+            }
+          });
+      }
+    });
+  }
 }
