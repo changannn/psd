@@ -21,10 +21,11 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService, private router: Router, private authService: AuthService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    // Retrieve query parameters from the URL
-    this.route.queryParams.subscribe(params => {
-      this.message = params['errorMessage'] || '';
-    });
+    const navigationState = history.state;
+
+    if (navigationState) {
+      this.message = navigationState['errorMessage'] || '';
+    }
   }
 
   login() {

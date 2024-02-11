@@ -22,11 +22,12 @@ export class GeneralRegisterComponent implements OnInit {
   constructor(private registrationService: RegistrationService, private router: Router, private authService: AuthService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    // Retrieve query parameters from the URL
-    this.route.queryParams.subscribe(params => {
-      this.message = params['successMessage'] || '';
-      this.registerRequest.email = params['email'] || '';
-    });
+    const navigationState = history.state;
+
+    if (navigationState) {
+      this.message = navigationState['successMessage'] || '';
+      this.registerRequest.email = navigationState['emailVerificationResponse'] || null;
+    }
   }
 
   signUp() {

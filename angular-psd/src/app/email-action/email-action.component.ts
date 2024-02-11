@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { EmailVerificationResponse } from '../models/email-verification-response';
 
 @Component({
   selector: 'app-email-action',
@@ -18,20 +19,24 @@ export class EmailActionComponent {
         // Send POST request to backend service
         this.http.post<any>('http://localhost:8080/auth/confirm?token=' + token, {})
           .subscribe({
-            next: (response) => {
+            next: (response: EmailVerificationResponse) => {
               // No response handling needed since not expecting a response
-              if (response === "Success") {
-                // Handle success
-                console.log('Success:', response);
-                // Perform any actions you want to do on success
-              } else {
-                // Handle other responses
-                console.log('Unexpected response:', response);
-              }
+              console.log('Success:', response);
+              this.router.navigate(['/general-register'], {
+                state: {
+                  successMessage: 'Account verified successfully. You can now proceed with registration.',
+                  emailVerificationResponse: response.email
+                }
+              });
             },
             error: (error) => {
               // Error handling - redirect or display error message
-              console.error('Error:', error);
+              console.error('Error:', error.error);
+              this.router.navigate(['/login'], {
+                state: {
+                  errorMessage: error.error
+                }
+              });
             }
           });
       }

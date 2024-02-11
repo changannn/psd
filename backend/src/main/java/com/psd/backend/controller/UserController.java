@@ -2,6 +2,7 @@ package com.psd.backend.controller;
 
 import java.util.List;
 
+import com.psd.backend.auth.EmailVerificationResponse;
 import com.psd.backend.auth.RegisterRequest;
 import com.psd.backend.exceptions.AccountNotPermittedException;
 import com.psd.backend.model.Confirmation;
@@ -10,9 +11,11 @@ import com.psd.backend.model.Role;
 import com.psd.backend.service.EmailSenderService;
 import com.psd.backend.service.JwtService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.constraints.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -125,30 +128,18 @@ public class UserController {
     }
 
     @PostMapping("/auth/confirm")
-    public ResponseEntity<String> confirmUserAccount(@RequestParam("token") String token) {
+    public ResponseEntity<EmailVerificationResponse> confirmUserAccount(@RequestParam("token") String token) {
         String email = userService.getEmailByToken(token);
         Boolean isSuccess = userService.verifyToken(token);
-//        if (isSuccess) {
-//            return ResponseEntity.ok("Account is successfully verified");
-//        } else {
-//            return ResponseEntity.badRequest().body("Invalid Token");
-//        }
+        EmailVerificationResponse response;
 
         if (isSuccess) {
-            // Redirect to Angular registration page with success message and email
-            String registerPageUrl = ServletUriComponentsBuilder.fromCurrentContextPath().path("http://localhost:4200/general-register")
-                    .queryParam("successMessage", "Account verified successfully. You can now proceed with registration.")
-                    .queryParam("email", email)
-                    .toUriString();
-//            return ResponseEntity.status(HttpStatus.FOUND).header("Location", registerPageUrl).build();
-            return ResponseEntity.ok("Success");
+            response = EmailVerificationResponse.builder()
+                    .email(email)
+                    .build();
+            return ResponseEntity.ok(response);
         } else {
-            // Redirect to Angular login page with error message
-            String loginPageUrl = ServletUriComponentsBuilder.fromCurrentContextPath().path("http://localhost:4200/login")
-                    .queryParam("errorMessage", "Verification failed. Please try again or request a new confirmation email.")
-                    .toUriString();
-//            return ResponseEntity.status(HttpStatus.FOUND).header("Location", loginPageUrl).build();
-            return ResponseEntity.ok("failed");
+            throw new BadCredentialsException("Verification failed. Please try again or request a new confirmation email.");
         }
     }
 }
