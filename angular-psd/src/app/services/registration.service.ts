@@ -19,6 +19,10 @@ export class RegistrationService {
     return this.http.post<AuthenticationResponse>(`${this.apiUrl}/auth/register`, registerRequest);
   }
 
+  updaterUser(registerRequest: RegisterRequest) {
+    return this.http.post<AuthenticationResponse>(`${this.apiUrl}/auth/update`, registerRequest);
+  }
+
   // To verify MFA code
   verifyCode(verificationRequest: VerificationRequest) {
     return this.http.post<AuthenticationResponse>(`${this.apiUrl}/auth/verify`, verificationRequest);
