@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./project-select.component.css']
 })
 export class ProjectSelectComponent {
-  processors: number[] = [];
+  processors: number[] = Array.from({length:128}, (_, i) => i+1);
   materials: string[] = ['Asphalt_16',
                           'Concrete_2',
                           'Glass_ClearFloat_6',
@@ -33,10 +33,7 @@ export class ProjectSelectComponent {
   ];
 
   constructor() {
-    for (let i = 1; i <= 128; i++) {
-      this.processors.push(i);
     }
-  }
   
   rgbValue: string = 'N/A';
 
