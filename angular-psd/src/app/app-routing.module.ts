@@ -15,6 +15,7 @@ import { NoiseSelectComponent } from './pages/project-ui/noise-select/noise-sele
 import { HomepageAdminComponent } from './homepage-admin/homepage-admin.component';
 import { ErrorComponent } from './pages/error/error.component';
 import {EmailActionComponent} from "./email-action/email-action.component";
+import { TestComponent } from './pages/project-ui/test/test.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent},
   { path: 'user-management', component: UserManagementComponent},
   { path: 'user-create', component: CreateUserComponent},
+  { path: 'test', component: TestComponent},
   { path: 'project', component: ProjectSelectComponent},
   { path: 'solar', component: SolarSelectComponent},
   { path: 'noise', component: NoiseSelectComponent},
