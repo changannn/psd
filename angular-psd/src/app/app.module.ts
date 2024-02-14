@@ -26,6 +26,7 @@ import { ErrorComponent } from './pages/error/error.component';
 import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
 import { TimeoutComponent } from './pages/timeout/timeout.component';
 import { EmailActionComponent } from './email-action/email-action.component';
+import { TestComponent } from './pages/project-ui/test/test.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { EmailActionComponent } from './email-action/email-action.component';
     UserHeaderComponent,
     ErrorComponent,
     TimeoutComponent,
-    EmailActionComponent
+    EmailActionComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
