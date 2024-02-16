@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { FormService } from 'src/app/services/form.service';
 
 @Component({
   selector: 'app-test',
@@ -116,7 +117,7 @@ export class TestComponent {
     heavyVehicle: [this.heavyVehicle],
   });
 
-  constructor(private http: HttpClient, private formbuilder: FormBuilder) {
+  constructor(private formbuilder: FormBuilder, private formService: FormService) {
     }
   
 
@@ -141,8 +142,16 @@ export class TestComponent {
   }
 
   onSubmit(): void {
-    console.log("submitted form", this.formData.value, this.formData.invalid);
-
+    const jsonForm = JSON.stringify(this.formData.value);
+    console.log("submitting form", JSON.stringify(this.formData.value)); // inspect element in browser to check
+    this.formService.sendToBackend(jsonForm).subscribe(
+      response => {
+        console.log('submit success', response);
+      },
+      error => {
+        console.error('error when submitting', error);
+      }
+    );
   }
 
 }
