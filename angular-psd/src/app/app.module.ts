@@ -10,7 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import { NgCircleProgressModule } from "ng-circle-progress";
 import { GeneralRegisterComponent } from './pages/general-register/general-register.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './pages/header/header.component';
 import { UserManagementComponent } from './pages/user-management/user-management.component';
 import { CreateUserComponent } from './pages/create-user/create-user.component';
@@ -70,6 +70,7 @@ import { TestComponent } from './pages/project-ui/test/test.component';
     }),
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     NgIdleKeepaliveModule.forRoot(),
   ],
