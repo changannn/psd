@@ -1,324 +1,322 @@
 <app-user-header></app-user-header>
-<div class="background-div">
-    <div class="container-div">
-        <!-- Add variant="tabs-basic-toggle" -->
-        <ul class="sgds nav nav-tabs" id="myTab" role="tablist" variant="tabs-basic-toggle">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home1" type="button" role="tab"
-                    aria-controls="home" aria-selected="true">Project</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile1" type="button" role="tab"
-                    aria-controls="profile" aria-selected="false">
-                    Solar
-                    <!-- <span class="sgds badge bg-light text-dark right">99</span> -->
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact1" type="button" role="tab"
-                    aria-controls="contact" aria-selected="false">Noise</button>
-            </li>
-        </ul>
-        <div class="sgds tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="home1" role="tabpanel" aria-labelledby="home-tab">
-                <div class="container-div">
-                    <div class="container-div-row">
-                        <label for="inputDirectory">Project Directory:</label>
-                        <input type="file" id="inputDirectory" name="inputDirectory" webkitdirectory = "true" directory>
-                        <label for="userMode">User Mode :</label>
-                        <select name="userMode" id="userMode">
-                            <option value="basic">Basic</option>
-                            <option value="advanced">Advanced</option>
-                        </select>
-                        <label for="processorNumber">Processors :</label>
-                        <select name="processorNumber" id="processorNumber">
-                            <option *ngFor="let processor of processors" [value]="processor">{{ processor }}</option>            
-                        </select>
-                    </div>
-                    <div class="container-div-2">
+<form [formGroup]="formData" id="inputForm" (ngSubmit)="onSubmit()" (change)="onFormChange()">
+    <div class="background-div">
+        <div class="container-div">
+            <!-- Add variant="tabs-basic-toggle" -->
+            <ul class="sgds nav nav-tabs" id="myTab" role="tablist" variant="tabs-basic-toggle">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="project-tab" data-bs-toggle="tab" data-bs-target="#project" type="button" role="tab"
+                        aria-controls="project" aria-selected="true">Project</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="solar-tab" data-bs-toggle="tab" data-bs-target="#solar" type="button" role="tab"
+                        aria-controls="solar" aria-selected="false">
+                        Solar
+                        <!-- <span class="sgds badge bg-light text-dark right">99</span> -->
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="noise-tab" data-bs-toggle="tab" data-bs-target="#noise" type="button" role="tab"
+                        aria-controls="noise" aria-selected="false">Noise</button>
+                </li>
+            </ul>
+            <div class="sgds tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="project" role="tabpanel" aria-labelledby="project-tab">
+                    <div class="container-div">
                         <div class="container-div-row">
-                            <label for="projectType">Project Type :</label>
-                            <select name="projectType" id="projectType">
-                                <option value="solar">Solar</option>
-                                <option value="wind">Wind</option>
-                                <option value="noise">Noise</option>
-                                <option value="windSolar">Wind & Solar</option>
-                                <option value="windNoise">Wind & Noise</option>
+                            <label for="inputDirectory">Project Directory:</label>
+                            <input type="file" id="inputDirectory" name="inputDirectory" webkitdirectory = "true" directory>
+                            <label for="userMode">User Mode :</label>
+                            <select name="userMode" id="userMode" formControlName="userMode">
+                                <option *ngFor="let user of userMode" [value]="user">{{ user }}</option>
+                            </select>
+                            <label for="processorNumber">Processors :</label>
+                            <select name="processorNumber" id="processorNumber" formControlName="processor">
+                                <option *ngFor="let processor of processors" [value]="processor">{{ processor }}</option>            
                             </select>
                         </div>
-                    </div>
-                    <div class="container-div-2">
-                        <div class="container-div-row">
-                            <label for="stlFile">Import STL File:</label>
-                            <input type="file" id="stlFile" name="stlFile">
-                        </div>
-                    </div>
-                    <div class="container-div-2">
-                        <div class="container-div-row">
-                            <label for="processorNumber">Material/Refinement:</label>
-                                <select name="processorNumber" id="processorNumber">
-                                    <option *ngFor="let material of materials" [value]="material">{{ material }}</option>            
+                        <div class="container-div-2">
+                            <div class="container-div-row">
+                                <label for="projectType">Project Type :</label>
+                                <select name="projectType" id="projectType" formControlName="projectType">
+                                    <option *ngFor="let type of projectType" [value]="type">{{ type }}</option>
                                 </select>
-                                <label for="colourPicker">Background Colour :</label>
-                                <input type="color" id="colourPicker" name="colourPicker" (input)="onColorChange($event)"/>
-                                RGB Value: <span id="rgbValue">{{ rgbValue }}</span>
+                            </div>
+                        </div>
+                        <div class="container-div-2">
+                            <div class="container-div-row">
+                                <label for="stlFile">Import STL File:</label>
+                                <input type="file" id="stlFile" name="stlFile">
+                            </div>
+                        </div>
+                        <div class="container-div-2">
+                            <div class="container-div-row">
+                                <label for="material">Material/Refinement:</label>
+                                    <select name="material" id="material" formControlName="material">
+                                        <option *ngFor="let material of materials" [value]="material">{{ material }}</option>            
+                                    </select>
+                                    <label for="colourPicker">Background Colour :</label>
+                                    <input type="color" id="colourPicker" name="colourPicker" (input)="onColorChange($event)" formControlName="colourPicker"/>
+                                    RGB Value: <span id="rgbValue">{{ rgbValue }}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- SOLAR -->
-            <div class="tab-pane fade" id="profile1" role="tabpanel" aria-labelledby="profile-tab">
-                <div class="container-div">
-                    <div class="container-div-row">
-                        <label for="cityLocation">City Location :</label>
-                        <select name="cityLocation" id="cityLocation">
-                            <option value="singapore">Singapore</option>
-                        </select>
-                    </div>
-                    <div class="container-div-2">
+                <!-- SOLAR -->
+                <div class="tab-pane fade" id="solar" role="tabpanel" aria-labelledby="solar-tab">
+                    <div class="container-div">
                         <div class="container-div-row">
-                            <label for="meshResolutionSolar">Mesh Resolution :</label>
-                            <input type="text" class="form-control" id="meshResolutionSolar" name="meshResolutionSolar">
-                            <label for="meshResolutionSolar">(m)</label>
-                        </div>
-                    </div>
-                    <div class="container-div-2">
-                        <div class="container-div-row">
-                            <label for="meshOffset">Mesh Offset :</label>
-                            <input type="text" class="form-control" id="meshOffset" name="meshOffset">
-                            <label for="meshOffsetUnit">(m)</label>
-                        </div>
-                    </div> 
-                    <div class="container-div-2">
-                        <div class="container-div-row">
-                            <label for="simulationType">Simulation Type :</label>
-                            <select class="simulationType-select" name="simulationType" id="simulationType" [(ngModel)]="selectedSimulationType">
-                                <option *ngFor="let simulationtype of simulationTypes" [value]="simulationtype">{{ simulationtype }}</option>
+                            <label for="cityLocation">City Location :</label>
+                            <select name="cityLocation" id="cityLocation">
+                                <option *ngFor="let city of cityLocation" [value]="city">{{ city }}</option>
                             </select>
                         </div>
-                        <div class="container-div-row form-check" *ngIf="selectedSimulationType === 'Cumulative Sky'">
-                            <ul class="cumulative-sky-list">
-                                <li>
-                                    <input type="checkbox" class="form-check-input" name="solarIrradiationCheckbox" id="solarIrradiationCheckbox" checked>
-                                <label for="solarIrradiationCheckbox" class="form-check-label-1">Solar Irradiation</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" class="form-check-input" name="absorbedSolarEnergyCheckbox" id="absorbedSolarEnergyCheckbox" checked>
-                                <label for="absorbedSolarEnergyCheckbox" class="form-check-label-1">Absorbed Solar Energy</label>
-                                </li>
-                            </ul>   
+                        <div class="container-div-2">
+                            <div class="container-div-row">
+                                <label for="meshResolutionSolar">Mesh Resolution :</label>
+                                <input type="text" class="form-control" id="meshResolutionSolar" name="meshResolutionSolar" formControlName="meshResolutionSolar">
+                                <label for="meshResolutionSolar">(m)</label>
+                            </div>
                         </div>
-                        <div class="container-div-row form-check" *ngIf="selectedSimulationType === 'point-in-time'">
-                            <ul class="point-in-time-list">
-                                <li>
-                                    <input type="checkbox" class="form-check-input" name="solarShadingCheckbox" id="solarShadingCheckbox" checked>
-                                    <label for="solarShadingCheckbox" class="form-check-label-1">Solar Shading</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" class="form-check-input" name="daylightIlluminanceCheckbox" id="daylightIlluminanceCheckbox" checked>
-                                    <label for="daylightIlluminanceCheckbox" class="form-check-label-1">Daylight Illuminance</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" class="form-check-input" name="solarIrradiationCheckbox" id="solarIrradiationCheckbox" checked>
+                        <div class="container-div-2">
+                            <div class="container-div-row">
+                                <label for="meshOffset">Mesh Offset :</label>
+                                <input type="text" class="form-control" id="meshOffset" name="meshOffset" formControlName="meshOffset">
+                                <label for="meshOffsetUnit">(m)</label>
+                            </div>
+                        </div> 
+                        <div class="container-div-2">
+                            <div class="container-div-row">
+                                <label for="simulationType">Simulation Type :</label>
+                                <select class="simulationType-select" name="simulationType" id="simulationType" [(ngModel)]="selectedSimulationType" formControlName="simulationType">
+                                    <option *ngFor="let simulationtype of simulationTypes" [value]="simulationtype">{{ simulationtype }}</option>
+                                </select>
+                            </div>
+                            <div class="container-div-row form-check" *ngIf="selectedSimulationType === 'Cumulative Sky'">
+                                <ul class="cumulative-sky-list">
+                                    <li>
+                                        <input type="checkbox" class="form-check-input" name="solarIrradiationCheckbox" id="solarIrradiationCheckbox" checked formControlName="solarIrradiationCheckbox">
                                     <label for="solarIrradiationCheckbox" class="form-check-label-1">Solar Irradiation</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" class="form-check-input" name="absorbedHeatFluxCheckbox" id="absorbedHeatFluxCheckbox" checked>
-                                    <label for="absorbedHeatFluxCheckbox" class="form-check-label-1">Absorbed Heat Flux</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" class="form-check-input" name="skyViewFactorCheckbox" id="skyViewFactorCheckbox" checked>
-                                    <label for="skyViewFactorCheckbox" class="form-check-label-1">Sky View Factor</label>
-                                </li>
-                            </ul>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" class="form-check-input" name="absorbedSolarEnergyCheckbox" id="absorbedSolarEnergyCheckbox" checked formControlName="absorbedSolarEnergyCheckbox">
+                                    <label for="absorbedSolarEnergyCheckbox" class="form-check-label-1">Absorbed Solar Energy</label>
+                                    </li>
+                                </ul>   
+                            </div>
+                            <div class="container-div-row form-check" *ngIf="selectedSimulationType === 'point-in-time'">
+                                <ul class="point-in-time-list">
+                                    <li>
+                                        <input type="checkbox" class="form-check-input" name="solarShadingCheckbox" id="solarShadingCheckbox" checked>
+                                        <label for="solarShadingCheckbox" class="form-check-label-1">Solar Shading</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" class="form-check-input" name="daylightIlluminanceCheckbox" id="daylightIlluminanceCheckbox" checked>
+                                        <label for="daylightIlluminanceCheckbox" class="form-check-label-1">Daylight Illuminance</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" class="form-check-input" name="solarIrradiationCheckbox" id="solarIrradiationCheckbox" checked>
+                                        <label for="solarIrradiationCheckbox" class="form-check-label-1">Solar Irradiation</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" class="form-check-input" name="absorbedHeatFluxCheckbox" id="absorbedHeatFluxCheckbox" checked>
+                                        <label for="absorbedHeatFluxCheckbox" class="form-check-label-1">Absorbed Heat Flux</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" class="form-check-input" name="skyViewFactorCheckbox" id="skyViewFactorCheckbox" checked>
+                                        <label for="skyViewFactorCheckbox" class="form-check-label-1">Sky View Factor</label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div> 
+                        <div class="container-div-2">
+                            <div class="container-div-row">
+                                <label for="startDate">Start Date :</label>
+                                <input type="datetime-local" name="startDate" id="startDate" formControlName="startDate">
+                            </div>
+                            <div class="container-div-row">
+                                <label for="endDate">End Date :</label>
+                                <input type="datetime-local" name="endDate" id="endDate" formControlName="endDate">
+                            </div>
+                        </div> 
+                        <div class="container-div-2">
+                            <div class="container-div-row">
+                                <label for="numOfReflections">Num of Reflections:</label>
+                                <select name="numOfReflections" id="numOfReflections" formControlName="numOfReflections">
+                                    <option *ngFor="let numOfReflection of numOfReflections" [value]="numOfReflection">{{ numOfReflection }}</option>
+                                </select>
+                            </div>
                         </div>
-                    </div> 
-                    <div class="container-div-2">
-                        <div class="container-div-row">
-                            <label for="startDate">Start Date :</label>
-                            <input type="datetime-local" name="startDate" id="startDate">
+                        <div class="container-div-2">
+                            <div class="container-div-row">
+                                <label for="numOfSamplingRays">Num of Sampling Rays:</label>
+                                <select name="numOfSamplingRays" id="numOfSamplingRays" formControlName="numOfSamplingRays">
+                                    <option *ngFor="let numOfSamplingRay of numOfSamplingRays" [value]="numOfSamplingRay">{{ numOfSamplingRay }}</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="container-div-row">
-                            <label for="endDate">End Date :</label>
-                            <input type="datetime-local" name="endDate" id="endDate">
+                        <div class="container-div-2">
+                            <div class="container-div-row">
+                                <label for="sunInclusion">Sun Inclusion:</label>
+                                <select name="sunInclusion" id="sunInclusion" formControlName="sunInclusion">
+                                    <option *ngFor="let sunInclusion of sunInclusion" [value]="sunInclusion">{{ sunInclusion }}</option>
+                                </select>
+                            </div>
                         </div>
-                    </div> 
-                    <div class="container-div-2">
-                        <div class="container-div-row">
-                            <label for="numOfReflections">Num of Reflections:</label>
-                            <select name="numOfReflections" id="numOfReflections">
-                                <option *ngFor="let numOfReflection of numOfReflections" [value]="numOfReflection">{{ numOfReflection }}</option>
-                            </select>
+                        <div class="container-div-2">
+                            <div class="container-div-row">
+                                <label for="multiband" >Multiband:</label>
+                                <select name="multiband" id="multiband" formControlName="multiband">
+                                    <option *ngFor="let multiband of multiband" [value]="multiband">{{ multiband }}</option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="container-div-2">
+                            <div class="container-div-row">
+                                <label for="createMeshPoints">Create Mesh Points :</label>
+                                <button type="button" class="btn btn-primary btn-sm sgds" name="createMeshPoints">Create</button>
+                            </div>
+                        </div>
+                        <div class="container-div-2">
+                            <div class="container-div-row">
+                                <label for="solarSolver">Solar Solver :</label>
+                                <button type="button" class="btn btn-primary btn-sm sgds" name="solarSolver">Run</button>
+                            </div>
+                        </div>
+                        <div class="container-div-2">
+                            <div class="container-div-row">
+                                <label for="outputFile">Output File :</label>
+                                <input type="file" id="outputFile" name="outputFile">
+                            </div>
                         </div>
                     </div>
-                    <div class="container-div-2">
+                </div>
+                <div class="tab-pane fade" id="noise" role="tabpanel" aria-labelledby="noise-tab">
+                    <div class="container-div">
                         <div class="container-div-row">
-                            <label for="numOfSamplingRays">Num of Sampling Rays:</label>
-                            <select name="numOfSamplingRays" id="numOfSamplingRays">
-                                <option *ngFor="let numOfSamplingRay of numOfSamplingRays" [value]="numOfSamplingRay">{{ numOfSamplingRay }}</option>
-                            </select>
+                            <label for="receiverPointSTL">Receiver Points STL File :</label>
+                            <input type="file" id="receiverPointSTL" name="receiverPointSTL" webkitdirectory = "true" accept=".stl">
                         </div>
-                    </div>
-                    <div class="container-div-2">
-                        <div class="container-div-row">
-                            <label for="sunInclusion">Sun Inclusion:</label>
-                            <input type="radio" class="form-check-input" name="sunInclusionRadio" id="sunInclusionRadio" value="yes" checked>
-                            <label for="sunInclusionRadioYes" class="form-check-label">Yes</label>
-                            <input type="radio" class="form-check-input" name="sunInclusionRadio" id="sunInclusionRadio" value="no">
-                            <label for="sunInclusionRadioNo">No</label>
+                        <div class="container-div-2">
+                            <div class="container-div-row">
+                                <label for="receiverGrid">Receiver Grid :</label>
+                                <select name="receiverGrid" id="receiverGrid">
+                                    <option *ngFor="let receiverGrid of receiverGrid" [value]="receiverGrid">{{ receiverGrid }}</option>
+                                </select>
+                                <label for="receiverOffset">Offset value :</label>
+                                <input type="text" class="form-control" formControlName="receiverOffset">
+                                <label for="receiverOffset">(m)</label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="container-div-2">
-                        <div class="container-div-row">
-                            <label for="multiband" >Multiband:</label>
-                            <input type="radio" class="form-check-input" name="multibandRadio" id="multibandRadio" value="total" checked>
-                            <label for="multibandRadioTotal" class="form-check-label">Total</label>
-                            <input type="radio" class="form-check-input" name="multibandRadio" id="multibandRadio" value="totalmultiband">
-                            <label for="multibandRadioTotalMultiband" class="form-check-label">Total & Multiband</label>
+                        <div class="container-div-2">
+                            <div class="container-div-row">
+                                <label for="meshResolutionNoise">Mesh Resolution :</label>
+                                <input type="text" class="form-control" id="meshResolutionNoise" name="meshResolutionNoise" formControlName="meshResolutionNoise">
+                                <label for="meshResolutionNoise">(m)</label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="container-div-2">
-                        <div class="container-div-row">
-                            <label for="createMeshPoints">Create Mesh Points :</label>
-                            <button type="button" class="btn btn-primary btn-sm sgds" name="createMeshPoints">Create</button>
+                        <div class="container-div-2">
+                            <div class="container-div-row">
+                                <label for="receiverPoints">Receiver Points :</label>
+                                <input type="text" class="form-control" name="receiverPoints" id="receiverPoints" disabled>
+                                <button type="button" class="btn btn-primary btn-sm sgds" name="receiverPoints">Create</button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="container-div-2">
-                        <div class="container-div-row">
-                            <label for="solarSolver">Solar Solver :</label>
-                            <button type="button" class="btn btn-primary btn-sm sgds" name="solarSolver">Run</button>
+                        <div class="container-div-2">
+                            <div class="container-div-row">
+                                <label for="roadsOBJSHP">Roads OBJ/SHP File :</label>
+                                <input type="file" id="roadsOBJSHP" name="roadsOBJSHP" webkitdirectory = "true" accept=".obj,.shp">
+                            </div>
                         </div>
-                    </div>
-                    <div class="container-div-2">
-                        <div class="container-div-row">
-                            <label for="outputFile">Output File :</label>
-                            <input type="file" id="outputFile" name="outputFile">
+                        <div class="container-div-2">
+                            <div class="container-div-row">
+                                <label for="roadGeometry">Road Geometry :</label>
+                                <input type="text" class="form-control" name="roadGeometry" id="roadGeometry" disabled>
+                                <button type="button" class="btn btn-primary btn-sm sgds" name="roadGeometry">Create</button>
+                            </div>
+                        </div>
+                        <div class="container-div-2">
+                            <div class="container-div-row">
+                                <label for="roadCategory">Road Category :</label>
+                                <select name="roadCategory" id="roadCategory">
+                                    <option *ngFor="let roadCategory of roadCategory" [value]="roadCategory">{{ roadCategory }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="container-div-2">
+                            <div class="container-div-row">
+                                <label for="inputType">Input Type :</label>
+                                <select name="inputType" id="inputType" [(ngModel)]="selectedInputType" formControlName="inputType">
+                                    <option *ngFor="let inputType of inputTypes" [value]="inputType">{{ inputType }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="container-div-2">
+                            <div class="container-div-row">
+                                <label for="inputValue">Input Value :</label>
+                                <input type="text" class="form-control" id="inputValue" name="inputValue" formControlName="inputValue">
+                                <label for="inputValue">(dB)</label>
+                            </div>
+                        </div>
+                        <div class="container-div-2" *ngIf="selectedInputType === 'default' || selectedInputType === 'traffic'">
+                            <div class="container-div-row">
+                                <label for="materialAbsorption">Material Absorption :</label>
+                                <select name="materialAbsorption" id="materialAbsorption">
+                                    <option *ngFor="let materialAbsorption of materialAbsorption" [value]="materialAbsorption">{{ materialAbsorption }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="container-div-2" *ngIf="selectedInputType === 'traffic'">
+                            <div class="container-div-row traffic-div">
+                                <ul class="traffic-list">
+                                    <li class="traffic-list-item">
+                                        <label for="numOfVehicle">Number of Vehicle:</label>
+                                        <input type="text" class="form-control" id="numOfVehicle" name="numOfVehicle" formControlName="numOfVehicle">
+                                    </li>
+                                    <li class="traffic-list-item">
+                                        <label for="vehicleSpeed">Vehicle Speed:</label>
+                                        <input type="text" class="form-control" id="vehicleSpeed" name="vehicleSpeed" formControlName="vehicleSpeed">
+                                        <label for="vehicleSpeed">km/h</label>
+                                    </li>
+                                    <li class="traffic-list-item">
+                                        <label for="heavyVehicle">Heavy Vehicle:</label>
+                                        <input type="text" class="form-control" id="heavyVehicle" name="heavyVehicle" formControlName="heavyVehicle">
+                                        <label for="vehicleSpeed">%</label>
+                                    </li>
+                                    <button type="button" class="btn btn-primary btn-sm sgds" name="computeTrafficNoise">Compute</button>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="container-div-2">
+                            <div class="container-div-row">
+                                <label for="blockingSTL">Blocking STL File :</label>
+                                <input type="file" id="blockingSTL" name="blockingSTL" webkitdirectory = "true" accept=".stl" multiple>
+                            </div>
+                        </div>
+                        <div class="container-div-2">
+                            <div class="container-div-row">
+                                <label for="noiseSolver">Noise Solver :</label>
+                                <button type="button" class="btn btn-primary btn-sm sgds" name="noiseSolver">Run</button>
+                            </div>
+                        </div>
+                        <div class="container-div-2">
+                            <div class="container-div-row">
+                                <label for="visualiseOutputFile">Visualise Output File :</label>
+                                <button type="button" class="btn btn-primary btn-sm sgds" name="visualiseOutputFile">Select</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="contact1" role="tabpanel" aria-labelledby="contact-tab">
-                <div class="container-div">
-                    <div class="container-div-row">
-                        <label for="receiverPointSTL">Receiver Points STL File :</label>
-                        <input type="file" id="receiverPointSTL" name="receiverPointSTL" webkitdirectory = "true" accept=".stl">
-                    </div>
-                    <div class="container-div-2">
-                        <div class="container-div-row">
-                            <label for="receiverGrid">Receiver Grid :</label>
-                            <select name="receiverGrid" id="receiverGrid">
-                                <option value="cutplane">cut-plane</option>
-                                <option value="facade">facade</option>
-                            </select>
-                            <label for="receiverOffset">Offset value :</label>
-                            <input type="text" class="form-control">
-                            <label for="receiverOffset">(m)</label>
-                        </div>
-                    </div>
-                    <div class="container-div-2">
-                        <div class="container-div-row">
-                            <label for="meshResolutionNoise">Mesh Resolution :</label>
-                            <input type="text" class="form-control" id="meshResolutionNoise" name="meshResolutionNoise">
-                            <label for="meshResolutionNoise">(m)</label>
-                        </div>
-                    </div>
-                    <div class="container-div-2">
-                        <div class="container-div-row">
-                            <label for="receiverPoints">Receiver Points :</label>
-                            <input type="text" class="form-control" name="receiverPoints" id="receiverPoints" disabled>
-                            <button type="button" class="btn btn-primary btn-sm sgds" name="receiverPoints">Create</button>
-                        </div>
-                    </div>
-                    <div class="container-div-2">
-                        <div class="container-div-row">
-                            <label for="roadsOBJSHP">Roads OBJ/SHP File :</label>
-                            <input type="file" id="roadsOBJSHP" name="roadsOBJSHP" webkitdirectory = "true" accept=".obj,.shp">
-                        </div>
-                    </div>
-                    <div class="container-div-2">
-                        <div class="container-div-row">
-                            <label for="roadGeometry">Road Geometry :</label>
-                            <input type="text" class="form-control" name="roadGeometry" id="roadGeometry" disabled>
-                            <button type="button" class="btn btn-primary btn-sm sgds" name="roadGeometry">Create</button>
-                        </div>
-                    </div>
-                    <div class="container-div-2">
-                        <div class="container-div-row">
-                            <label for="roadCategory">Road Category :</label>
-                            <select name="roadCategory" id="roadCategory">
-                                <option value="category1">category 1</option>
-                                <option value="category2">category 2</option>
-                                <option value="category3">category 3</option>
-                                <option value="category4">category 4</option>
-                                <option value="category5">category 5</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="container-div-2">
-                        <div class="container-div-row">
-                            <label for="inputType">Input Type :</label>
-                            <select name="inputType" id="inputType" [(ngModel)]="selectedInputType">
-                                <option *ngFor="let inputType of inputTypes" [value]="inputType">{{ inputType }}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="container-div-2">
-                        <div class="container-div-row">
-                            <label for="inputValue">Input Value :</label>
-                            <input type="text" class="form-control" id="inputValue" name="inputValue">
-                            <label for="inputValue">(dB)</label>
-                        </div>
-                    </div>
-                    <div class="container-div-2" *ngIf="selectedInputType === 'default' || selectedInputType === 'traffic'">
-                        <div class="container-div-row">
-                            <label for="materialAbsorption">Material Absorption :</label>
-                            <select name="materialAbsorption" id="materialAbsorption">
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="container-div-2" *ngIf="selectedInputType === 'traffic'">
-                        <div class="container-div-row traffic-div">
-                            <ul class="traffic-list">
-                                <li class="traffic-list-item">
-                                    <label for="numOfVehicle">Number of Vehicle:</label>
-                                    <input type="text" class="form-control" id="numOfVehicle" name="numOfVehicle">
-                                </li>
-                                <li class="traffic-list-item">
-                                    <label for="vehicleSpeed">Vehicle Speed:</label>
-                                    <input type="text" class="form-control" id="vehicleSpeed" name="vehicleSpeed">
-                                    <label for="vehicleSpeed">km/h</label>
-                                </li>
-                                <li class="traffic-list-item">
-                                    <label for="heavyVehicle">Heavy Vehicle:</label>
-                                    <input type="text" class="form-control" id="heavyVehicle" name="heavyVehicle">
-                                    <label for="vehicleSpeed">%</label>
-                                </li>
-                                <button type="button" class="btn btn-primary btn-sm sgds" name="computeTrafficNoise">Compute</button>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="container-div-2">
-                        <div class="container-div-row">
-                            <label for="blockingSTL">Blocking STL File :</label>
-                            <input type="file" id="blockingSTL" name="blockingSTL" webkitdirectory = "true" accept=".stl" multiple>
-                        </div>
-                    </div>
-                    <div class="container-div-2">
-                        <div class="container-div-row">
-                            <label for="noiseSolver">Noise Solver :</label>
-                            <button type="button" class="btn btn-primary btn-sm sgds" name="noiseSolver">Run</button>
-                        </div>
-                    </div>
-                    <div class="container-div-2">
-                        <div class="container-div-row">
-                            <label for="visualiseOutputFile">Visualise Output File :</label>
-                            <button type="button" class="btn btn-primary btn-sm sgds" name="visualiseOutputFile">Select</button>
-                        </div>
-                    </div>
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-primary btn-sm sgds w-100" id="saveAsDraftButton">Save as Draft</button>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-primary btn-sm sgds w-100" id="submitButton">Submit</button>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</form>
