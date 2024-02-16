@@ -1,5 +1,5 @@
 <app-user-header></app-user-header>
-<form [formGroup]="formData" id="inputForm" (ngSubmit)="onSubmit()" (change)="onFormChange()">
+<form [formGroup]="formData" id="inputForm" (ngSubmit)="onSubmit()">
     <div class="background-div">
         <div class="container-div">
             <!-- Add variant="tabs-basic-toggle" -->
@@ -67,7 +67,7 @@
                     <div class="container-div">
                         <div class="container-div-row">
                             <label for="cityLocation">City Location :</label>
-                            <select name="cityLocation" id="cityLocation">
+                            <select name="cityLocation" id="cityLocation" formControlName="cityLocation">
                                 <option *ngFor="let city of cityLocation" [value]="city">{{ city }}</option>
                             </select>
                         </div>
@@ -88,7 +88,7 @@
                         <div class="container-div-2">
                             <div class="container-div-row">
                                 <label for="simulationType">Simulation Type :</label>
-                                <select class="simulationType-select" name="simulationType" id="simulationType" [(ngModel)]="selectedSimulationType" formControlName="simulationType">
+                                <select class="simulationType-select" name="simulationType" id="simulationType" formControlName="simulationType">
                                     <option *ngFor="let simulationtype of simulationTypes" [value]="simulationtype">{{ simulationtype }}</option>
                                 </select>
                             </div>
@@ -107,23 +107,23 @@
                             <div class="container-div-row form-check" *ngIf="selectedSimulationType === 'point-in-time'">
                                 <ul class="point-in-time-list">
                                     <li>
-                                        <input type="checkbox" class="form-check-input" name="solarShadingCheckbox" id="solarShadingCheckbox" checked>
+                                        <input type="checkbox" class="form-check-input" name="solarShadingCheckbox" id="solarShadingCheckbox" checked formControlName="solarShadingCheckbox">
                                         <label for="solarShadingCheckbox" class="form-check-label-1">Solar Shading</label>
                                     </li>
                                     <li>
-                                        <input type="checkbox" class="form-check-input" name="daylightIlluminanceCheckbox" id="daylightIlluminanceCheckbox" checked>
+                                        <input type="checkbox" class="form-check-input" name="daylightIlluminanceCheckbox" id="daylightIlluminanceCheckbox" checked formControlName="daylightIlluminanceCheckbox">
                                         <label for="daylightIlluminanceCheckbox" class="form-check-label-1">Daylight Illuminance</label>
                                     </li>
                                     <li>
-                                        <input type="checkbox" class="form-check-input" name="solarIrradiationCheckbox" id="solarIrradiationCheckbox" checked>
+                                        <input type="checkbox" class="form-check-input" name="solarIrradiationCheckbox" id="solarIrradiationCheckbox" checked formControlName="solarIrradiationCheckbox">
                                         <label for="solarIrradiationCheckbox" class="form-check-label-1">Solar Irradiation</label>
                                     </li>
                                     <li>
-                                        <input type="checkbox" class="form-check-input" name="absorbedHeatFluxCheckbox" id="absorbedHeatFluxCheckbox" checked>
+                                        <input type="checkbox" class="form-check-input" name="absorbedHeatFluxCheckbox" id="absorbedHeatFluxCheckbox" checked formControlName="absorbedHeatFluxCheckbox">
                                         <label for="absorbedHeatFluxCheckbox" class="form-check-label-1">Absorbed Heat Flux</label>
                                     </li>
                                     <li>
-                                        <input type="checkbox" class="form-check-input" name="skyViewFactorCheckbox" id="skyViewFactorCheckbox" checked>
+                                        <input type="checkbox" class="form-check-input" name="skyViewFactorCheckbox" id="skyViewFactorCheckbox" checked formControlName="skyViewFactorCheckbox">
                                         <label for="skyViewFactorCheckbox" class="form-check-label-1">Sky View Factor</label>
                                     </li>
                                 </ul>
@@ -247,7 +247,7 @@
                         <div class="container-div-2">
                             <div class="container-div-row">
                                 <label for="inputType">Input Type :</label>
-                                <select name="inputType" id="inputType" [(ngModel)]="selectedInputType" formControlName="inputType">
+                                <select name="inputType" id="inputType" formControlName="inputType">
                                     <option *ngFor="let inputType of inputTypes" [value]="inputType">{{ inputType }}</option>
                                 </select>
                             </div>
@@ -314,7 +314,7 @@
                     <button type="button" class="btn btn-primary btn-sm sgds w-100" id="saveAsDraftButton">Save as Draft</button>
                 </div>
                 <div class="col">
-                    <button type="button" class="btn btn-primary btn-sm sgds w-100" id="submitButton">Submit</button>
+                    <button type="button" class="btn btn-primary btn-sm sgds w-100" id="submitButton" (click)="onSubmit()">Submit</button>
                 </div>
             </div>
         </div>

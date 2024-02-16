@@ -59,8 +59,6 @@ export class TestComponent {
   numOfSamplingRays: number[] = [64, 128, 256, 512, 1024, 2048];
   sunInclusion: string[] = ['yes', 'no'];
   multiband: string[] = ['total', 'totalmultiband'];
-
-  
   
   // noise
   receiverGrid: string[] = ['cut-plane', 'facade'];
@@ -80,45 +78,42 @@ export class TestComponent {
   vehicleSpeed: string = "";
   heavyVehicle: string = "";
 
-  formData = new FormGroup({
+  formData = this.formbuilder.group({
 
-    // project
-    userMode: new FormControl(this.userMode[0]),
-    processor: new FormControl(this.processors[0]),
-    projectType: new FormControl(this.projectType[0]),
-    material: new FormControl(this.materials[0]),
-    colourPicker: new FormControl(this.rgbValue),
-
-    // solar
-    cityLocation: new FormControl(this.cityLocation[0]),
-    meshResolutionSolar: new FormControl(this.meshResolutionSolar),
-    meshOffset: new FormControl(this.meshOffset),
-    simulationType: new FormControl(this.selectedSimulationType),
-    solarIrradiationCheckbox: new FormControl(this.solarIrradiationCheckbox),
-    absorbedSolarEnergyCheckbox: new FormControl(this.absorbedSolarEnergyCheckbox),
-    solarShadingCheckbox: new FormControl(this.solarShadingCheckbox),
-    daylightIlluminanceCheckbox: new FormControl(this.daylightIlluminanceCheckbox),
-    absorbedHeatFluxCheckbox: new FormControl(this.absorbedHeatFluxCheckbox),
-    skyViewFactorCheckbox: new FormControl(this.skyViewFactorCheckbox),
-    startDate: new FormControl(''),
-    endDate: new FormControl(''),
-    numOfReflections: new FormControl(this.numOfReflections[0]),
-    numOfSamplingRays: new FormControl(this.numOfSamplingRays[0]),
-    sunInclusion: new FormControl(this.sunInclusion[0]),
-    multiband: new FormControl(this.multiband[0]),
-
-    // noise
-    receiverGrid: new FormControl(this.receiverGrid[0]),
-    receiverOffset: new FormControl(this.receiverOffset),
-    meshResolutionNoise: new FormControl(this.meshResolutionNoise),
-    roadCategory: new FormControl(this.roadCategory[0]),
-    inputType: new FormControl(this.selectedInputType),
-    inputValue: new FormControl(this.heavyVehicle),
-    materialAbsorption: new FormControl(this.materialAbsorption[0]),
-    numOfVehicle: new FormControl(this.numOfVehicle),
-    vehicleSpeed: new FormControl(this.vehicleSpeed),
-    heavyVehicle: new FormControl(this.heavyVehicle),
-
+    // project - 5
+    userMode: [this.userMode[0]],
+    processor: [this.processors[0]],
+    projectType: [this.projectType[0]],
+    material: [this.materials[0]],
+    colourPicker: [this.rgbValue],
+    // solar - 16
+    cityLocation: [this.cityLocation[0]],
+    meshResolutionSolar: [this.meshResolutionSolar],
+    meshOffset: [this.meshOffset],
+    simulationType: [this.selectedSimulationType],
+    solarIrradiationCheckbox: [this.solarIrradiationCheckbox],
+    absorbedSolarEnergyCheckbox: [this.absorbedSolarEnergyCheckbox],
+    solarShadingCheckbox: [this.solarShadingCheckbox],
+    daylightIlluminanceCheckbox: [this.daylightIlluminanceCheckbox],
+    absorbedHeatFluxCheckbox: [this.absorbedHeatFluxCheckbox],
+    skyViewFactorCheckbox: [this.skyViewFactorCheckbox],
+    startDate: [''],
+    endDate: [''],
+    numOfReflections: [this.numOfReflections[0]],
+    numOfSamplingRays: [this.numOfSamplingRays[0]],
+    sunInclusion: [this.sunInclusion[0]],
+    multiband: [this.multiband[0]],
+    // noise - 10
+    receiverGrid: [this.receiverGrid[0]],
+    receiverOffset: [this.receiverOffset],
+    meshResolutionNoise: [this.meshResolutionNoise],
+    roadCategory: [this.roadCategory[0]],
+    inputType: [this.selectedInputType],
+    inputValue: [this.heavyVehicle],
+    materialAbsorption: [this.materialAbsorption[0]],
+    numOfVehicle: [this.numOfVehicle],
+    vehicleSpeed: [this.vehicleSpeed],
+    heavyVehicle: [this.heavyVehicle],
   });
 
   constructor(private http: HttpClient, private formbuilder: FormBuilder) {
@@ -145,33 +140,9 @@ export class TestComponent {
     return `(${r}, ${g}, ${b})`;
   }
 
-  onSubmit() {
-    const serializedData = JSON.stringify(this.formData);
-    this.http.post<FormData>('http://localhost:8080/test', this.formData).subscribe(
-      response => {
-        console.log('Data submitted successfully:', response);
-      },
-      error => {
-        console.error('Error submitting data:', error);
-      }
-    );
-    localStorage.removeItem('formDraft')
-  }
+  onSubmit(): void {
+    console.log("submitted form", this.formData.value, this.formData.invalid);
 
-  saveDraft() {
-    localStorage.setItem('formDraft', JSON.stringify(this.formData));
-  }
-
-  onFormChange(): void {
-    this.saveDraft();
-  }
-
-  ngOnInit() {
-
-    const draft = localStorage.getItem('formData');
-    if(draft) {
-      this.formData = JSON.parse(draft);
-    }
   }
 
 }
