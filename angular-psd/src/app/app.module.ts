@@ -24,6 +24,8 @@ import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
 import { TimeoutComponent } from './pages/timeout/timeout.component';
 import { EmailActionComponent } from './email-action/email-action.component';
 import { IemsimComponent } from './pages/iemsim/iemsim.component';
+import { HomepageUserComponent } from './homepage-user/homepage-user.component';
+import { AdminHeaderComponent } from './admin-header/admin-header.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { IemsimComponent } from './pages/iemsim/iemsim.component';
     ErrorComponent,
     TimeoutComponent,
     EmailActionComponent,
-    IemsimComponent
+    IemsimComponent,
+    HomepageUserComponent,
+    AdminHeaderComponent
   ],
   imports: [
     BrowserModule,

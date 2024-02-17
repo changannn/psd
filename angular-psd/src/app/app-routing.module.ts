@@ -13,6 +13,7 @@ import { IemsimComponent } from './pages/iemsim/iemsim.component';
 import { HomepageAdminComponent } from './homepage-admin/homepage-admin.component';
 import { ErrorComponent } from './pages/error/error.component';
 import {EmailActionComponent} from "./email-action/email-action.component";
+import { HomepageUserComponent } from './homepage-user/homepage-user.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'user-create', component: CreateUserComponent},
   { path: 'iemsim', component: IemsimComponent},
   { path: 'homepage-admin', component: HomepageAdminComponent },
+  { path: 'homepage-user', component: HomepageUserComponent },
   { path: 'email-verification', component: EmailActionComponent },
   { path: '**', component: ErrorComponent }
 ];
