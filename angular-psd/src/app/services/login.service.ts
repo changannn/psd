@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { AuthenticationRequest } from '../models/authentication-request';
 import { AuthenticationResponse } from '../models/authentication-response';
 import { VerificationRequest } from '../models/verification-request';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  private apiUrl = 'http://localhost:8080'; // Replace with the URL of your Spring back end
+  private apiUrl = environment.apiURL; // Replace with the URL of spring in environment folder
 
   constructor(private http: HttpClient) { }
 
