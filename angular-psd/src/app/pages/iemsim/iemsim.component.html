@@ -88,7 +88,7 @@
                         <div class="container-div-2">
                             <div class="container-div-row">
                                 <label for="simulationType">Simulation Type :</label>
-                                <select class="simulationType-select" name="simulationType" id="simulationType" formControlName="simulationType">
+                                <select class="simulationType-select" name="simulationType" id="simulationType" [(ngModel)]="selectedSimulationType" formControlName="simulationType">
                                     <option *ngFor="let simulationtype of simulationTypes" [value]="simulationtype">{{ simulationtype }}</option>
                                 </select>
                             </div>
@@ -247,7 +247,7 @@
                         <div class="container-div-2">
                             <div class="container-div-row">
                                 <label for="inputType">Input Type :</label>
-                                <select name="inputType" id="inputType" formControlName="inputType">
+                                <select name="inputType" id="inputType" [(ngModel)]="selectedInputType" formControlName="inputType">
                                     <option *ngFor="let inputType of inputTypes" [value]="inputType">{{ inputType }}</option>
                                 </select>
                             </div>

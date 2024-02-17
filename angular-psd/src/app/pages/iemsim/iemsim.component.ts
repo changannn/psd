@@ -4,11 +4,11 @@ import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { FormService } from 'src/app/services/form.service';
 
 @Component({
-  selector: 'app-test',
-  templateUrl: './test.component.html',
-  styleUrls: ['./test.component.css']
+  selector: 'app-iemsim',
+  templateUrl: './iemsim.component.html',
+  styleUrls: ['./iemsim.component.css']
 })
-export class TestComponent {
+export class IemsimComponent {
 
   // project
   //projectDir
@@ -153,5 +153,4 @@ export class TestComponent {
       }
     );
   }
-
 }

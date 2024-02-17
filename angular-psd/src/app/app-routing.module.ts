@@ -8,14 +8,11 @@ import { UserManagementComponent } from './pages/user-management/user-management
 import { CreateUserComponent } from './pages/create-user/create-user.component';
 import { authGuard } from './services/auth/auth.guard';
 
-import { ProjectSelectComponent } from './pages/project-ui/project-select/project-select.component';
-import { SolarSelectComponent } from './pages/project-ui/solar-select/solar-select.component';
-import { NoiseSelectComponent } from './pages/project-ui/noise-select/noise-select.component';
+import { IemsimComponent } from './pages/iemsim/iemsim.component';
 
 import { HomepageAdminComponent } from './homepage-admin/homepage-admin.component';
 import { ErrorComponent } from './pages/error/error.component';
 import {EmailActionComponent} from "./email-action/email-action.component";
-import { TestComponent } from './pages/project-ui/test/test.component';
 
 
 const routes: Routes = [
@@ -25,10 +22,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent},
   { path: 'user-management', component: UserManagementComponent},
   { path: 'user-create', component: CreateUserComponent},
-  { path: 'test', component: TestComponent},
-  { path: 'project', component: ProjectSelectComponent},
-  { path: 'solar', component: SolarSelectComponent},
-  { path: 'noise', component: NoiseSelectComponent},
+  { path: 'iemsim', component: IemsimComponent},
   { path: 'homepage-admin', component: HomepageAdminComponent },
   { path: 'email-verification', component: EmailActionComponent },
   { path: '**', component: ErrorComponent }

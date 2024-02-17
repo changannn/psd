@@ -14,9 +14,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './pages/header/header.component';
 import { UserManagementComponent } from './pages/user-management/user-management.component';
 import { CreateUserComponent } from './pages/create-user/create-user.component';
-import { ProjectSelectComponent } from './pages/project-ui/project-select/project-select.component';
-import { SolarSelectComponent } from './pages/project-ui/solar-select/solar-select.component';
-import { NoiseSelectComponent } from './pages/project-ui/noise-select/noise-select.component';
 
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,7 +23,7 @@ import { ErrorComponent } from './pages/error/error.component';
 import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
 import { TimeoutComponent } from './pages/timeout/timeout.component';
 import { EmailActionComponent } from './email-action/email-action.component';
-import { TestComponent } from './pages/project-ui/test/test.component';
+import { IemsimComponent } from './pages/iemsim/iemsim.component';
 
 @NgModule({
   declarations: [
@@ -38,15 +35,12 @@ import { TestComponent } from './pages/project-ui/test/test.component';
     HeaderComponent,
     UserManagementComponent,
     CreateUserComponent,
-    ProjectSelectComponent,
-    SolarSelectComponent,
-    NoiseSelectComponent,
     HomepageAdminComponent,
     UserHeaderComponent,
     ErrorComponent,
     TimeoutComponent,
     EmailActionComponent,
-    TestComponent
+    IemsimComponent
   ],
   imports: [
     BrowserModule,
