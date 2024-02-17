@@ -12,7 +12,15 @@ export class FormService {
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
-  sendToBackend(formData: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/test`, formData);
+  sendToBackend(formData: string): Observable<string> {
+    const token = this.authService.getJwt();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      })
+    };
+    return this.http.post<string>(`${this.apiUrl}/auth/test`, formData, httpOptions);
   }
+  
 }
