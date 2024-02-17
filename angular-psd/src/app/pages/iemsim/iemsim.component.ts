@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 import { FormService } from 'src/app/services/form.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class IemsimComponent {
   showSubmitSuccessToast = false;
   showSubmitErrorToast = false;
   formResponseData: any;
+  role: any;
 
   // project
   //projectDir
@@ -121,9 +123,10 @@ export class IemsimComponent {
     heavyVehicle: [this.heavyVehicle],
   });
 
-  constructor(private formbuilder: FormBuilder, private formService: FormService) {
-    }
-  
+  constructor(private formbuilder: FormBuilder, private formService: FormService, private authService: AuthService) { 
+    console.log(this.authService.getRole())
+    this.role = this.authService.getRole();
+  }
 
   onColorChange(event: any) {
     const selectedColor = event.target.value;

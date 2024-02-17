@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   private JWT: string = "";
   private isLoggedIn: string = "false";
+  private role: string = "";
 
   constructor() { }
 
@@ -31,5 +32,13 @@ export class AuthService {
 
   removeJwt(): void {
     localStorage.removeItem(this.JWT);
+  }
+
+  setRole(role: string): void {
+    this.role = role;
+  }
+
+  getRole(): string | null {
+    return this.role;
   }
 }
