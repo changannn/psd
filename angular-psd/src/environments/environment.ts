@@ -1,5 +1,5 @@
 export const environment = {
     production: false,
     title: 'angular-psd',
-    apiURL: 'http://localhost:8000'
+    apiURL: 'http://localhost:8080'
   };
