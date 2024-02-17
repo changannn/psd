@@ -10,6 +10,10 @@ import { FormService } from 'src/app/services/form.service';
 })
 export class IemsimComponent {
 
+  showSubmitSuccessToast = false;
+  showSubmitErrorToast = false;
+  formResponseData: any;
+
   // project
   //projectDir
   //stlFile
@@ -143,13 +147,19 @@ export class IemsimComponent {
 
   onSubmit(): void {
     const jsonForm = JSON.stringify(this.formData.value);
-    console.log("submitting form", JSON.stringify(this.formData.value)); // inspect element in browser to check
+    // console.log("submitting form", JSON.stringify(this.formData.value)); // inspect element in browser to check
     this.formService.sendToBackend(jsonForm).subscribe(
       response => {
         console.log('submit success', response);
+        this.showSubmitSuccessToast = true;
+        setTimeout(()=>{this.showSubmitSuccessToast=false;}, 2000);
+        this.showSubmitErrorToast = false;
       },
       error => {
         console.error('error when submitting', error);
+        this.showSubmitErrorToast = true;
+        setTimeout(()=>{this.showSubmitErrorToast=false;}, 2000);
+        this.showSubmitSuccessToast = false;
       }
     );
   }
