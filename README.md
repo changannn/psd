@@ -46,7 +46,7 @@ docker build -t management-ecr .
 ```
 ## tag file
 ```bash
-docker tag management-ecr:latest your-id-number.dkr.ecr.ap-southeast-1.amazonaws.com/management-ecr:latest
+docker tag management-ecr:latest 134321203882.dkr.ecr.ap-southeast-1.amazonaws.com/management-ecr:latest
 ```
 ## push file
 ```bash
