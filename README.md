@@ -36,6 +36,8 @@ ng build --output-path=dist/angular-test
 ## setting up aws cli
 ```bash
 aws configure sso
+```
+```bash
 aws ecr get-login-password --region ap-southeast-1 --profile colin | docker login --username AWS --password-stdin 134321203882.dkr.ecr.ap-southeast-1.amazonaws.com
 ```
 ## building image
