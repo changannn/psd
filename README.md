@@ -5,24 +5,33 @@ need to setup postgresql db to be able to run the code
 
 db config files is in main/resources/application.properties
 
-### for mac
-```bash
-brew install maven
-```
+### Ensure you have Java, Maven, Docker, NodeJs
+
+## to compile java backend
 navigate to backend folder
 ```bash
 mvn clean install -DskipTests
 ```
+
+## to run server on localhost
+```bash
+java -jar target/backend-0.1.jar
+```
+## build docker image
 ```bash
 docker build -t spring .
 ```
 
-# run/build commands
+## run/build commands
 to run for localhost
-* ng serve
+```bash
+ng serve
+```
 
-to build to upload
-* ng build
+## to build to upload
+```bash
+ng build --output-path=dist/angular-test
+```
 
 # setting up aws cli
 * aws configure sso
