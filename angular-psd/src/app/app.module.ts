@@ -10,13 +10,10 @@ import { MatCardModule } from '@angular/material/card';
 import { NgCircleProgressModule } from "ng-circle-progress";
 import { GeneralRegisterComponent } from './pages/general-register/general-register.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './pages/header/header.component';
 import { UserManagementComponent } from './pages/user-management/user-management.component';
 import { CreateUserComponent } from './pages/create-user/create-user.component';
-import { ProjectSelectComponent } from './pages/project-ui/project-select/project-select.component';
-import { SolarSelectComponent } from './pages/project-ui/solar-select/solar-select.component';
-import { NoiseSelectComponent } from './pages/project-ui/noise-select/noise-select.component';
 
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,6 +23,9 @@ import { ErrorComponent } from './pages/error/error.component';
 import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
 import { TimeoutComponent } from './pages/timeout/timeout.component';
 import { EmailActionComponent } from './email-action/email-action.component';
+import { IemsimComponent } from './pages/iemsim/iemsim.component';
+import { HomepageUserComponent } from './homepage-user/homepage-user.component';
+import { AdminHeaderComponent } from './admin-header/admin-header.component';
 
 @NgModule({
   declarations: [
@@ -37,14 +37,14 @@ import { EmailActionComponent } from './email-action/email-action.component';
     HeaderComponent,
     UserManagementComponent,
     CreateUserComponent,
-    ProjectSelectComponent,
-    SolarSelectComponent,
-    NoiseSelectComponent,
     HomepageAdminComponent,
     UserHeaderComponent,
     ErrorComponent,
     TimeoutComponent,
-    EmailActionComponent
+    EmailActionComponent,
+    IemsimComponent,
+    HomepageUserComponent,
+    AdminHeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +68,7 @@ import { EmailActionComponent } from './email-action/email-action.component';
     }),
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     NgIdleKeepaliveModule.forRoot(),
   ],
