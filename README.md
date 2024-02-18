@@ -5,7 +5,7 @@ need to setup postgresql db to be able to run the code
 
 db config files is in main/resources/application.properties
 
-### Ensure you have Java, Maven, Docker, NodeJs
+# Ensure you have Java, Maven, Docker, NodeJs
 
 ## to compile java backend
 navigate to backend folder
