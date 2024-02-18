@@ -16,7 +16,7 @@ public class CorsConfiguration {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")                         // Enable CORS for the whole application
-                        .allowedOrigins("https://u-saas.wizvision.com/")    // Only takes request from angular
+                        .allowedOrigins("*")    // Only takes request from angular
                         .allowedMethods(HttpMethod.GET.name(),
                                         HttpMethod.POST.name(),
                                         HttpMethod.PUT.name(),           
