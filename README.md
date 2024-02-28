@@ -52,3 +52,11 @@ docker tag management-ecr:latest 134321203882.dkr.ecr.ap-southeast-1.amazonaws.c
 ```bash
 docker push 134321203882.dkr.ecr.ap-southeast-1.amazonaws.com/management-ecr:latest
 ```
+## run the docker image in ec2
+```bash
+docker run 134321203882.dkr.ecr.ap-southeast-1.amazonaws.com/management-ecr:latest
+```
+## run the docker image in ec2
+```bash
+docker run -d --restart always 134321203882.dkr.ecr.ap-southeast-1.amazonaws.com/management-ecr:latest
+```
