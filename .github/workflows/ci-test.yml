@@ -47,6 +47,6 @@ jobs:
     - name: Run backend tests
       run: |
         cd backend
-        ./mvnw test
+        ./mvnw test -X
 
 # Add more steps as needed for additional checks, tests, or tasks
