@@ -12,7 +12,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       
     - name: Setup Node.js for Angular frontend analysis
       uses: actions/setup-node@v3
@@ -39,7 +39,7 @@ jobs:
       run: |
         cd angular-psd
         sonar-scanner \
-          -Dsonar.projectKey=changannn_psd_frontend \ # You might need a separate project key for the frontend
+          -Dsonar.projectKey=changannn_psd
           -Dsonar.organization=your_organization \
           -Dsonar.sources=./src \
           -Dsonar.host.url=https://sonarcloud.io \
@@ -67,9 +67,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # Necessary for SonarCloud to analyze git history
+          fetch-depth: 0 
       
-      - name: Set up JDK 17 # Required for Maven/Spring Boot backend analysis
+      - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
           java-version: 17
