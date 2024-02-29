@@ -70,18 +70,15 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install Angular CLI
-        run: npm install -g @angular/cli
-
       - name: Install npm dependencies for frontend
         run: |
           cd angular-psd
           npm install
 
-      - name: Build frontend for production
+      - name: Build frontend
         run: |
           cd angular-psd
-          ng build --prod
+          ng run build
 
       - name: Analyze frontend with SonarCloud
         env:
