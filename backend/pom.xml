@@ -14,7 +14,7 @@
 	<name>backend</name>
 	<description>java backend</description>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>17</java.version>
 		<sonar.organization>changannn</sonar.organization>
   		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
