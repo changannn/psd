@@ -13,37 +13,29 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
-      
-    - name: Setup Node.js for Angular frontend analysis
+      with:
+        fetch-depth: 0  # Necessary for SonarCloud to analyze git history
+
+    - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '20'
+        node-version: '20' # Specify the Node.js version required by your project
 
-    - name: Install Angular CLI
-      run: npm install -g @angular/cli
-
-    - name: Install npm dependencies for frontend
+    - name: Install dependencies
       run: |
         cd angular-psd
         npm install
 
-    - name: Build frontend
+    - name: Build and generate coverage (optional)
       run: |
         cd angular-psd
         npm run build
 
-    - name: Analyze frontend with SonarCloud
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarcloud-github-action@master
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      run: |
-        cd angular-psd
-        sonar-scanner \
-          -Dsonar.projectKey=changannn_psd
-          -Dsonar.organization=your_organization \
-          -Dsonar.sources=./src \
-          -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.login=$SONAR_TOKEN
             
   backend:
     runs-on: ubuntu-latest
