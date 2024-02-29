@@ -63,3 +63,35 @@ jobs:
         run: |
           cd backend
           mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=changannn_psd
+
+      # Frontend analysis steps start here
+      - name: Setup Node.js for Angular frontend analysis
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16' # Specify your Node.js version
+
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli
+
+      - name: Install npm dependencies for frontend
+        run: |
+          cd angular-psd
+          npm install
+
+      - name: Build frontend for production
+        run: |
+          cd angular-psd
+          ng build --prod
+
+      - name: Analyze frontend with SonarCloud
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          cd angular-psd
+          sonar-scanner \
+            -Dsonar.projectKey=changannn_psd_frontend \ # You might need a separate project key for the frontend
+            -Dsonar.organization=your_organization \
+            -Dsonar.sources=./src \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.login=$SONAR_TOKEN
