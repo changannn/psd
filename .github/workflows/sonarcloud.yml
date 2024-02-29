@@ -10,12 +10,27 @@ jobs:
   build:
     name: Build and analyze
     runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: root
+          POSTGRES_DB: psd
+        ports:
+          - 5432:5432
+        # Setup health check (GitHub will wait until the container is ready before continuing)
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0  # Necessary for SonarCloud to analyze git history
-      
-      # Frontend steps (if needed, you can add steps to build/test your Angular app here)
       
       - name: Set up JDK 17 # Required for Maven/Spring Boot backend analysis
         uses: actions/setup-java@v3
@@ -41,6 +56,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # For PR analysis
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # SonarCloud authentication
+          # Define environment variables for the database connection
+          SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/psd
+          SPRING_DATASOURCE_USERNAME: postgres
+          SPRING_DATASOURCE_PASSWORD: root
         run: |
           cd backend
           mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=your_project_key
