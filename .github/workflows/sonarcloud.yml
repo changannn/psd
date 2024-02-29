@@ -62,4 +62,4 @@ jobs:
           SPRING_DATASOURCE_PASSWORD: root
         run: |
           cd backend
-          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=your_project_key
+          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=changannn_psd
