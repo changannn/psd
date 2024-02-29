@@ -42,5 +42,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # For PR analysis
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # SonarCloud authentication
         run: |
-          cd backend/src
+          cd backend
           mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=your_project_key
