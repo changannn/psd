@@ -81,7 +81,7 @@ jobs:
       - name: Build frontend
         run: |
           cd angular-psd
-          ng run build
+          ng build
 
       - name: Analyze frontend with SonarCloud
         env:
