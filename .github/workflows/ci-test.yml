@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14
+
+    - name: Install dependencies
+      run: |
+        cd frontend  # Replace 'frontend' with your Angular project directory
+        npm install
+
+    - name: Build frontend
+      run: |
+        cd frontend
+        npm run build
+
+  backend:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup Java
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt'
+        java-version: '11'
+
+    - name: Build backend
+      run: |
+        cd backend  # Replace 'backend' with your Spring Boot project directory
+        ./mvnw clean install
+
+    - name: Run backend tests
+      run: |
+        cd backend
+        ./mvnw test
+
+# Add more steps as needed for additional checks, tests, or tasks
