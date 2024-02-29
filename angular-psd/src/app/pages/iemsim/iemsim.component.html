@@ -1,12 +1,10 @@
 <div *ngIf="role === 'ROOT'; else userContent">
     <!-- Content for admin -->
     <app-admin-header></app-admin-header>
-    <h1>{{ role }}</h1>
 </div>
 <ng-template #userContent>
     <!-- Content for other roles -->
     <app-user-header></app-user-header>
-    <h1>{{ role }}</h1>
 </ng-template>
 
 <form [formGroup]="formData" id="inputForm" (ngSubmit)="onSubmit()">

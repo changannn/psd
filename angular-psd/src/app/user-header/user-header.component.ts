@@ -21,6 +21,7 @@ export class UserHeaderComponent {
     if (this.token != null){
       this.router.navigate(['login']);
       this.authService.removeJwt();
+      this.authService.removeRole();
       this.authService.setIsLoggedOut();
     }
   }
