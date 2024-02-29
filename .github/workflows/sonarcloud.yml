@@ -7,39 +7,9 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  frontend:
+  analyze:
     runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 0  # Necessary for SonarCloud to analyze git history
-
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '20' # Specify the Node.js version required by your project
-
-    - name: Install dependencies
-      run: |
-        cd angular-psd
-        npm install
-
-    - name: Build and generate coverage (optional)
-      run: |
-        cd angular-psd
-        npm run build
-
-    - name: SonarCloud Scan
-      uses: SonarSource/sonarcloud-github-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-            
-  backend:
-    runs-on: ubuntu-latest
-    
     services:
       postgres:
         image: postgres:latest
@@ -49,7 +19,6 @@ jobs:
           POSTGRES_DB: psd
         ports:
           - 5432:5432
-        # Setup health check (GitHub will wait until the container is ready before continuing)
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -57,16 +26,18 @@ jobs:
           --health-retries 5
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
         with:
-          fetch-depth: 0 
+          fetch-depth: 0  # Necessary for SonarCloud to analyze git history
       
-      - name: Set up JDK 17
+      - name: Set up JDK 17 for backend analysis
+        if: github.ref == 'refs/heads/main'
         uses: actions/setup-java@v3
         with:
           java-version: 17
           distribution: 'zulu'
-          
+      
       - name: Cache SonarCloud packages
         uses: actions/cache@v3
         with:
@@ -75,20 +46,40 @@ jobs:
           restore-keys: ${{ runner.os }}-sonar
           
       - name: Cache Maven packages
+        if: github.ref == 'refs/heads/main'
         uses: actions/cache@v3
         with:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
-          
-      - name: Build and analyze backend
+      
+      - name: Build and analyze backend with Maven
+        if: github.ref == 'refs/heads/main'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # For PR analysis
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # SonarCloud authentication
-          # Define environment variables for the database connection
           SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/psd
           SPRING_DATASOURCE_USERNAME: postgres
           SPRING_DATASOURCE_PASSWORD: root
         run: |
           cd backend
-          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=changannn_psd
+          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+
+      - name: Setup Node.js for frontend analysis
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20' # Specify the Node.js version required by your project
+
+      - name: Install dependencies and build frontend
+        run: |
+          cd angular-psd
+          npm install
+          npm run build
+
+      - name: SonarCloud Scan for frontend
+        uses: SonarSource/sonarcloud-github-action@master
+        with:
+          projectBaseDir: angular-psd
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
