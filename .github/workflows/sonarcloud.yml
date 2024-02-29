@@ -68,7 +68,7 @@ jobs:
       - name: Setup Node.js for Angular frontend analysis
         uses: actions/setup-node@v3
         with:
-          node-version: '16' # Specify your Node.js version
+          node-version: '20'
 
       - name: Install Angular CLI
         run: npm install -g @angular/cli
