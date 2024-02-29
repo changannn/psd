@@ -52,7 +52,7 @@ jobs:
     - name: Setup Java
       uses: actions/setup-java@v2 # Updated to v2
       with:
-        java-version: '17' # Updated for compatibility, adjust if necessary
+        java-version: '21' # Updated for compatibility, adjust if necessary
         distribution: 'temurin'
 
     - name: Build backend
