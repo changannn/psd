@@ -4,7 +4,7 @@ import { inject } from '@angular/core';
 
 export const adminGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
   const router = inject(Router);
-  if (!localStorage.getItem('token') && localStorage.getItem('role') != 'ADMIN'){
+  if (!localStorage.getItem('token') || localStorage.getItem('role') != 'ADMIN'){
     router.navigate(['error']);
     return false;
   }

@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } fr
 
 export const userGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
   const router = inject(Router);
-  if (!localStorage.getItem('token') && (localStorage.getItem('role') != 'USER')){
+  if (!localStorage.getItem('token') || localStorage.getItem('role') != 'USER'){
     router.navigate(['error']);
     return false;
   }

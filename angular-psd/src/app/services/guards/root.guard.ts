@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } fr
 
 export const rootGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
   const router = inject(Router);
-  if (!localStorage.getItem('token') && (localStorage.getItem('role') != 'ROOT')){
+  if (!localStorage.getItem('token') || localStorage.getItem('role') != 'ROOT'){
     router.navigate(['error']);
     return false;
   }
