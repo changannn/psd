@@ -56,12 +56,5 @@ public class FormServiceImpl implements FormService {
         .build();
         return formRepository.save(newform);
     }
-
-    @Override
-    public Form getForm() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-        return formRepository.findByUsername(username);
-    }
     
 }
