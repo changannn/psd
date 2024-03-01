@@ -1,6 +1,8 @@
 package com.psd.backend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.psd.backend.model.Form;
@@ -14,7 +16,10 @@ public class FormServiceImpl implements FormService {
 
     @Override
     public Form saveForm(Form form) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
         Form newform = Form.builder()
+        .username(username)
         .userMode(form.getUserMode())
         .projectType(form.getProjectType())
         .processors(form.getProcessors())
@@ -50,6 +55,13 @@ public class FormServiceImpl implements FormService {
         .heavyVehicle(form.getHeavyVehicle())
         .build();
         return formRepository.save(newform);
+    }
+
+    @Override
+    public Form getForm() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        return formRepository.findByUsername(username);
     }
     
 }
