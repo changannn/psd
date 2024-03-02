@@ -60,3 +60,10 @@ docker run 134321203882.dkr.ecr.ap-southeast-1.amazonaws.com/management-ecr:late
 ```bash
 docker run -d --restart always 134321203882.dkr.ecr.ap-southeast-1.amazonaws.com/management-ecr:latest
 ```
+
+## run the stats service in ec2
+```bash
+python3 /usr/local/S3/statistics/app.py
+```
+
+for ec2 services, connect to it via session manager to run the commands
