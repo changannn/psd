@@ -58,7 +58,7 @@ docker run 134321203882.dkr.ecr.ap-southeast-1.amazonaws.com/management-ecr:late
 ```
 ## run the docker image in ec2
 ```bash
-docker run -d --restart always 134321203882.dkr.ecr.ap-southeast-1.amazonaws.com/management-ecr:latest
+docker run -d --restart always -p 8080:8080 134321203882.dkr.ecr.ap-southeast-1.amazonaws.com/management-ecr:latest
 ```
 
 ## run the stats service in ec2
