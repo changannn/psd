@@ -4,8 +4,8 @@
     padding-bottom: 50px;
     flex-direction: column;
     align-items: center;
-}
-.project-nav {
+  }
+  .project-nav {
     background-color: var(--wizvision-yellow, #f9991d);
     align-self: stretch;
     display: flex;
@@ -13,40 +13,39 @@
     padding-left: 80px;
     justify-content: space-between;
     gap: 20px;
-}
-.nav-header {
+  }
+  .nav-header {
     display: flex;
     gap: 7px;
-}
-
-.container-div {
+  }
+  .container-div {
     display: flex;
-    width: 938px;
+    width: 70%;
     max-width: 100%;
     flex-direction: column;
     margin: 16px 0 304px;
-}
-.container-div-row {
+  }
+  .container-div-row {
     align-self: stretch;
     display: flex;
     width: 100%;
     justify-content: flex;
     gap: 15px;
-}
-@media (max-width: 991px) {
+  }
+  @media (max-width: 991px) {
     .container-div-row {
       max-width: 100%;
       flex-wrap: wrap;
     }
-}
-.container-div-row-2 {
+  }
+  .container-div-row-2 {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 15px;
     padding: 0 20px;
-}
-.container-div-2 {
+  }
+  .container-div-2 {
     align-self: stretch;
     display: flex;
     margin-top: 15px;
@@ -54,33 +53,36 @@
     justify-content: space-between;
     gap: 20px;
     padding: 0 1px;
-}
-.form-control {
-    height: 40px;
-    width: 200px;
-}
-.traffic-div {
-    border: 2px solid #000000;
-    border-radius: 5px;
-    padding: 15px;
-}
-.traffic-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-.traffic-list-item {
-    margin-bottom: 15px;
-}
-@media (max-width: 991px) {
+  }
+  @media (max-width: 991px) {
     .container-div-2 {
       max-width: 100%;
       flex-wrap: wrap;
     }
-}
-#transparent-button {
+  }
+  
+  .form-control {
+      height: 40px;
+      width: 200px;
+  }
+  .form-check-label-1 {
+      width: 200px;
+  }
+  .cumulative-sky-list{
+      list-style-type: none;
+  }
+  .point-in-time-list{
+      list-style-type: none;
+  }
+  .simulationType-select{
+      max-height: 40px;
+      width: 150px;
+  }
+    
+  #transparent-button {
     background-color: rgba(0, 0, 0, 0); /* Use rgba to specify the color with alpha (transparency) */
     border: none;
     color: #ffffff; /* Text color */
     cursor: pointer;
-}
+  }
+    

@@ -74,6 +74,7 @@ public class AuthenticationService {
             return AuthenticationResponse.builder()
                 .token("")
                 .mfaEnabled(true)
+                .role(user.getRole())
                 .build();
         }
 
@@ -101,6 +102,7 @@ public class AuthenticationService {
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .mfaEnabled(user.isMfaEnabled())
+                .role(user.getRole())
                 .build();
     }
 

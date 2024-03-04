@@ -57,7 +57,13 @@ export class LoginComponent implements OnInit {
           if (response.token) {
             this.authService.setJwt(response.token);
             this.authService.setIsLoggedIn();
-            this.router.navigate(['homepage-admin']);
+            this.authService.setRole(response.role as string);
+            if (response.role == 'ROOT') {
+              this.router.navigate(['homepage-admin']);
+            }
+            else {
+              this.router.navigate(['homepage-user']);
+            }
           }
         },
         error: (error) => {

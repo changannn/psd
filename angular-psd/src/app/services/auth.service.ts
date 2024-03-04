@@ -4,32 +4,45 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-  private JWT: string = "";
-  private isLoggedIn: string = "false";
+  private JWT: string = '';
+  private isLoggedIn: string = 'false';
+  private role: string = '';
 
   constructor() { }
 
   setIsLoggedIn(): void {
-    localStorage.setItem(this.isLoggedIn, "true");
+    localStorage.setItem('isLoggedIn', 'true');
   }
   
   setIsLoggedOut(): void {
-    localStorage.setItem(this.isLoggedIn, "false");
+    localStorage.setItem('isLoggedIn', 'false');
   }
 
   getIsLoggedIn(): string | null {
-    return localStorage.getItem(this.isLoggedIn);
+    return localStorage.getItem('isLoggedIn');
   }
 
   setJwt(token: string): void {
-    localStorage.setItem(this.JWT, token);
+    localStorage.setItem('token', token);
   }
 
   getJwt(): string | null {
-    return localStorage.getItem(this.JWT);
+    return localStorage.getItem('token');
   }
 
   removeJwt(): void {
-    localStorage.removeItem(this.JWT);
+    localStorage.removeItem('token');
+  }
+
+  setRole(role: string): void {
+    localStorage.setItem('role', role);
+  }
+
+  getRole(): string | null {
+    return localStorage.getItem('role');
+  }
+
+  removeRole(): void {
+    localStorage.removeItem('role')
   }
 }

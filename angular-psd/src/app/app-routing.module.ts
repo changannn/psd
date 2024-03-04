@@ -6,30 +6,32 @@ import { GeneralRegisterComponent } from './pages/general-register/general-regis
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { UserManagementComponent } from './pages/user-management/user-management.component';
 import { CreateUserComponent } from './pages/create-user/create-user.component';
-import { authGuard } from './services/auth/auth.guard';
 
-import { ProjectSelectComponent } from './pages/project-ui/project-select/project-select.component';
-import { SolarSelectComponent } from './pages/project-ui/solar-select/solar-select.component';
-import { NoiseSelectComponent } from './pages/project-ui/noise-select/noise-select.component';
+import { IemsimComponent } from './pages/iemsim/iemsim.component';
 
 import { HomepageAdminComponent } from './homepage-admin/homepage-admin.component';
 import { ErrorComponent } from './pages/error/error.component';
 import {EmailActionComponent} from "./email-action/email-action.component";
+import { HomepageUserComponent } from './homepage-user/homepage-user.component';
+import { rootGuard } from './services/guards/root.guard';
+import { userGuard } from './services/guards/user.guard'
+import { loggedinGuard } from './services/guards/loggedin.guard';
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'login', component: LoginComponent},
-  { path: 'general-register', component: GeneralRegisterComponent},
-  { path: 'dashboard', component: DashboardComponent},
-  { path: 'user-management', component: UserManagementComponent},
-  { path: 'user-create', component: CreateUserComponent},
-  { path: 'project', component: ProjectSelectComponent},
-  { path: 'solar', component: SolarSelectComponent},
-  { path: 'noise', component: NoiseSelectComponent},
-  { path: 'homepage-admin', component: HomepageAdminComponent },
+  { path: 'login', component: LoginComponent, canActivate: [loggedinGuard] },
+  { path: 'general-register', component: GeneralRegisterComponent, canActivate: [loggedinGuard] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [rootGuard] },
+  { path: 'user-management', component: UserManagementComponent, canActivate: [rootGuard] },
+  { path: 'user-create', component: CreateUserComponent, canActivate: [rootGuard] },
+  { path: 'iemsim-admin', component: IemsimComponent, canActivate: [rootGuard] },
+  { path: 'iemsim-user', component: IemsimComponent, canActivate: [userGuard] },
+  { path: 'homepage-admin', component: HomepageAdminComponent, canActivate: [rootGuard] },
+  { path: 'homepage-user', component: HomepageUserComponent, canActivate: [userGuard] },
   { path: 'email-verification', component: EmailActionComponent },
-  { path: '**', component: ErrorComponent }
+  { path: '**', component: ErrorComponent },
+  { path: 'error', component: ErrorComponent }
 ];
 
 @NgModule({

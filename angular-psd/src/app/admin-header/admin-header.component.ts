@@ -3,12 +3,11 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Component({
-  selector: 'app-user-header',
-  templateUrl: './user-header.component.html',
-  styleUrls: ['./user-header.component.css']
+  selector: 'app-admin-header',
+  templateUrl: './admin-header.component.html',
+  styleUrls: ['./admin-header.component.css']
 })
-export class UserHeaderComponent {
-
+export class AdminHeaderComponent {
   token: string | null;
   isLoggedIn: string | null = "false";
 
