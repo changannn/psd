@@ -41,4 +41,13 @@ public class AuthenticationController {
     public ResponseEntity<?> verifyCode(@RequestBody VerificationRequest verificationRequest) {
         return ResponseEntity.ok(authenticationService.verifyCode(verificationRequest));
     }
+
+    @PostMapping("/update")
+    public ResponseEntity<?> update(@Valid @RequestBody RegisterRequest request) {
+        var response = authenticationService.update(request);
+        if (request.isMfaEnabled()) {
+            return ResponseEntity.ok(response);
+        }
+        return ResponseEntity.accepted().build();
+    }
 }
