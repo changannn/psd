@@ -5,9 +5,7 @@ import java.util.List;
 import com.psd.backend.auth.EmailVerificationResponse;
 import com.psd.backend.auth.RegisterRequest;
 import com.psd.backend.exceptions.AccountNotPermittedException;
-import com.psd.backend.model.Confirmation;
-import com.psd.backend.model.EmailMessage;
-import com.psd.backend.model.Role;
+import com.psd.backend.model.*;
 import com.psd.backend.service.EmailSenderService;
 import com.psd.backend.service.JwtService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,7 +17,6 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import com.psd.backend.model.User;
 import com.psd.backend.service.UserService;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -39,25 +36,81 @@ public class UserController {
         this.emailSenderService = emailSenderService;
     }
 
-    @GetMapping("/users")
-    public List<User> getUsers(){
-        return userService.getUsers();
+//    @GetMapping("/users")
+//    public List<User> getUsers(){
+//        return userService.getUsers();
+//    }
+
+    // Endpoint for root account to update account user
+    @PutMapping("/users/{id}")
+    public ResponseEntity<String> updateUserById(@RequestBody UpdateRequest updateRequest, @PathVariable("id") int id, HttpServletRequest request){
+        final String authHeader = request.getHeader("Authorization");
+        final String jwt;
+        final String username;
+
+        // Extract jwt and extract username from the jwt
+        jwt = authHeader.substring(7);
+        username = jwtService.extractUsername(jwt);
+
+        // Check if user belongs to root account
+        User root = userService.findByUsername(username);
+        List<User> accountUsers = userService.getAccountUsers(root);
+        User user = userService.getUserById(id);
+
+        if (accountUsers.contains(user)) {
+            userService.updateUser(updateRequest, id);
+            return ResponseEntity.ok("User updated successfully");
+        } else {
+            throw new AccountNotPermittedException("Account unauthorised to edit user");
+        }
     }
 
-    @PutMapping("/update/{id}")
-    public User updateUserById(@RequestBody User user, @PathVariable("id") int id){
-        return userService.updateUser(user, id);
+    // Endpoint for root account to delete account user
+    @DeleteMapping("/users/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable("id") int id, HttpServletRequest request){
+        final String authHeader = request.getHeader("Authorization");
+        final String jwt;
+        final String username;
+
+        // Extract jwt and extract username from the jwt
+        jwt = authHeader.substring(7);
+        username = jwtService.extractUsername(jwt);
+
+        // Check if user belongs to root account
+        User root = userService.findByUsername(username);
+        List<User> accountUsers = userService.getAccountUsers(root);
+        User user = userService.getUserById(id);
+
+        if (accountUsers.contains(user)) {
+            userService.deleteUser(id);
+            return ResponseEntity.ok("User deleted successfully");
+        } else {
+            throw new AccountNotPermittedException("Account unauthorised to view user");
+        }
     }
 
-    @DeleteMapping("/delete/{id}")
-    public String deleteUser(@PathVariable("id") int id){
-        userService.deleteUser(id);
-        return "User deleted successfully...";
-    }
+    // Endpoint to get root account user details
+    @GetMapping("/users/{id}")
+    public User getUserById(@PathVariable("id") int id, HttpServletRequest request){
+        final String authHeader = request.getHeader("Authorization");
+        final String jwt;
+        final String username;
 
-    @GetMapping("/user/{id}")
-    public User getUserById(@PathVariable("id") int id){
-        return userService.getUserById(id);
+        // Extract jwt and extract username from the jwt
+        jwt = authHeader.substring(7);
+        username = jwtService.extractUsername(jwt);
+
+        // Check if user belongs to root account
+        User root = userService.findByUsername(username);
+        List<User> accountUsers = userService.getAccountUsers(root);
+        User user = userService.getUserById(id);
+
+        if (accountUsers.contains(user)) {
+            return user;
+        } else {
+            throw new AccountNotPermittedException("Account unauthorised to view user");
+        }
+
     }
 
     // Endpoint for root account to get account users
@@ -95,6 +148,8 @@ public class UserController {
         } else if (owner.getUserCreationLimit() == 0) {
             throw new AccountNotPermittedException("Users limit reached");
         }
+        // reduce user limit?
+        // If role is admin, add creation limit
 
         // Create a dummy user with actual email
         User currentUser = User.builder()

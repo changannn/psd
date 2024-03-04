@@ -17,9 +17,10 @@
         <th scope="row">{{ i + 1 }}</th>
         <td>{{ user.email }}</td>
         <td>{{ user.username }}</td>
+        <td>{{ user.role }}</td>
         <td>
-            <button type="button" class="btn btn-outline-primary sgds">Edit</button>
-            <button type="button" class="btn btn-outline-danger sgds">Delete</button>
+            <button type="button" class="btn btn-outline-primary sgds" (click)="editUser(user.id)">Edit</button>
+            <button type="button" class="btn btn-outline-danger sgds" (click)="deleteUser(user)">Delete</button>
         </td>
       </tr>
     </tbody>

@@ -16,6 +16,7 @@ import { HomepageUserComponent } from './homepage-user/homepage-user.component';
 import { rootGuard } from './services/guards/root.guard';
 import { userGuard } from './services/guards/user.guard'
 import { loggedinGuard } from './services/guards/loggedin.guard';
+import { EditUserComponent } from './pages/edit-user/edit-user.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [rootGuard] },
   { path: 'user-management', component: UserManagementComponent, canActivate: [rootGuard] },
   { path: 'user-create', component: CreateUserComponent, canActivate: [rootGuard] },
+  { path: 'user-edit/:id', component: EditUserComponent, canActivate: [rootGuard] },
   { path: 'iemsim-admin', component: IemsimComponent, canActivate: [rootGuard] },
   { path: 'iemsim-user', component: IemsimComponent, canActivate: [userGuard] },
   { path: 'homepage-admin', component: HomepageAdminComponent, canActivate: [rootGuard] },

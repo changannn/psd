@@ -31,10 +31,29 @@ export class UserManagementComponent implements OnInit {
         this.users = data;
       },
       error: (error) => {
-        console.error('Error fetching users:', error);
+        console.error('Error fetching users: ', error);
         this.errorMessage = error.message;
       }
     });
+  }
+
+  editUser(userId: number) {
+    this.router.navigate(['/user-edit', userId]);
+  }
+
+  deleteUser(user: User) {
+    if (confirm(`Are you sure you want to delete ${user.username}?`)) {
+      this.apiService.deleteAccountUser(user.id).subscribe({
+        next: (response: string) => {
+          this.message = response
+          this.fetchUsers();
+        },
+        error: (error) => {
+          console.log('Error deleting user: ', error)
+          this.errorMessage = error.message;
+        }
+      });
+    }
   }
 
   redirectToCreateUser() {

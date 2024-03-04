@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -47,5 +48,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(AccountNotPermittedException.class)
     public ResponseEntity<String> handleAccountNotPermittedExceptions(AccountNotPermittedException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
+    }
+
+    // When repository unable to find user by ID
+    @ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity<String> handleNoSuchElementExceptions(NoSuchElementException ex) {
+        return new ResponseEntity<>("No such user exists", HttpStatus.NOT_FOUND);
     }
 }
