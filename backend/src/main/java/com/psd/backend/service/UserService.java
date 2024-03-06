@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.psd.backend.model.Confirmation;
 import com.psd.backend.model.UpdateRequest;
-import org.springframework.stereotype.Service;
 
 import com.psd.backend.model.User;
 
