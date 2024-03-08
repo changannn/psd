@@ -1,7 +1,7 @@
 package com.psd.backend.controller;
 
-import java.sql.Date;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,15 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.psd.backend.model.Form;
 import com.psd.backend.service.FormService;
-import org.springframework.web.bind.annotation.GetMapping;
 
 
 @RestController
 @RequestMapping("/auth")
+@AllArgsConstructor
 public class FormController {
 
-    @Autowired
-    FormService formService;
+    private final FormService formService;
 
     @PostMapping("/iemsim")
     public ResponseEntity<Form> saveForm(@RequestBody Form form){

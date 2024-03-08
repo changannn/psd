@@ -3,6 +3,7 @@ package com.psd.backend.service;
 import java.util.List;
 
 import com.psd.backend.model.Confirmation;
+import com.psd.backend.model.UpdateRequest;
 import com.psd.backend.respository.ConfirmationRepository;
 import com.psd.backend.respository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,14 +44,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public List<User> getUsers() {
-        return (List<User>) userRepository.findAll();
+        return userRepository.findAll();
     }
 
     @Override
-    public User updateUser(User user, int id) {
+    public User updateUser(UpdateRequest request, int id) {
         User currentUser = userRepository.findById(id).get();
-        currentUser.setEmail(user.getEmail());
-        currentUser.setPassword(user.getPassword());
+        currentUser.setRole(request.getRole());
         return userRepository.save(currentUser);
     }
 

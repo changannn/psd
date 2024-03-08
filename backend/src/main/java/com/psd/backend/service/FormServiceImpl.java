@@ -1,5 +1,6 @@
 package com.psd.backend.service;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -9,10 +10,10 @@ import com.psd.backend.model.Form;
 import com.psd.backend.respository.FormRepository;
 
 @Service
+@AllArgsConstructor
 public class FormServiceImpl implements FormService {
 
-    @Autowired
-    FormRepository formRepository;
+    private final FormRepository formRepository;
 
     @Override
     public Form saveForm(Form form) {

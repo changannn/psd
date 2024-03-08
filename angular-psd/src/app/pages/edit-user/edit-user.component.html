@@ -1,0 +1,34 @@
+<app-admin-header></app-admin-header>
+<div class="alert alert-danger" role="alert" *ngIf="message !== ''">
+  {{ message }}
+</div>
+<div class="container">
+    <form>
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="email" [(ngModel)]="user.email" disabled="">
+                </div>
+            </div>
+        </div>
+
+        <div class="row ">
+            <div class="col">
+                <div class="mb-3">
+                <label class="form-label" for="role">Role</label
+                ><select class="form-select" id="role" name="role" [(ngModel)]="user.role">
+                    <option>ADMIN</option>
+                    <option>USER</option>
+                </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <button type="submit" class="btn btn-secondary sgds" (click)="editUser(user)">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

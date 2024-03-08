@@ -3,7 +3,7 @@ package com.psd.backend.service;
 import java.util.List;
 
 import com.psd.backend.model.Confirmation;
-import org.springframework.stereotype.Service;
+import com.psd.backend.model.UpdateRequest;
 
 import com.psd.backend.model.User;
 
@@ -17,7 +17,7 @@ public interface UserService {
 
     public void deleteUser(int id);
 
-    public User updateUser(User user, int id);
+    public User updateUser(UpdateRequest request, int id);
 
     public User findByUsername(String username);
 
