@@ -1,6 +1,9 @@
 package com.psd.backend.service;
 
 import lombok.AllArgsConstructor;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,7 +33,6 @@ public class FormServiceImpl implements FormService {
         .meshResolutionSolar(form.getMeshResolutionSolar())
         .meshOffset(form.getMeshOffset())
         .simulationTypes(form.getSimulationTypes())
-        .selectedSimulationType(form.getSelectedSimulationType())
         .solarIrradiationCheckbox(form.getSolarIrradiationCheckbox())
         .absorbedSolarEnergyCheckbox(form.getAbsorbedSolarEnergyCheckbox())
         .solarShadingCheckbox(form.getSolarShadingCheckbox())
@@ -48,7 +50,6 @@ public class FormServiceImpl implements FormService {
         .meshResolutionNoise(form.getMeshResolutionNoise())
         .roadCategory(form.getRoadCategory())
         .inputTypes(form.getInputTypes())
-        .selectedInputType(form.getSelectedInputType())
         .inputValue(form.getInputValue())
         .materialAbsorption(form.getMaterialAbsorption())
         .numOfVehicle(form.getNumOfVehicle())
@@ -56,6 +57,12 @@ public class FormServiceImpl implements FormService {
         .heavyVehicle(form.getHeavyVehicle())
         .build();
         return formRepository.save(newform);
+    }
+
+    @Override
+    public List<Form> getForm(String username) {
+        return formRepository.getFormByUsername(username);
+        
     }
     
 }
