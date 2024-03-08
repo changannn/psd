@@ -1,8 +1,8 @@
-<app-admin-header></app-admin-header>
+<app-root-header></app-root-header>
 <nav class="navbar">
 <div class="sgds-example-card-grid">
 
-  <a href="/dashboard-admin">
+  <a href="/dashboard-root">
     <div tabindex="0" class="card sgds" [style.backgroundImage]="'url(' + dashboardImage + ')'">
       <div class="overlay">
           <div class="card-body">
@@ -15,7 +15,7 @@
     </div>
   </a>
 
-  <a href="/iemsim-admin">
+  <a href="/iemsim-root">
     <div tabindex="0" class="card sgds" [style.backgroundImage]="'url(' + iemSimImage + ')'">
       <div class="overlay">
         <div class="card-body">
@@ -27,5 +27,17 @@
       </div>
     </div>
   </a>
+
+  <a href="/user-management">
+    <div tabindex="0" class="card sgds" [style.backgroundImage]="'url(' + userManagementImage + ')'">
+      <div class="overlay">
+        <div class="card-body">
+          <div class="header">
+            <label class="card-title">User Management</label>
+            <p class="card-summary">Enables efficient creation, modification, and deletion of user profiles, along with capabilities such as assigning roles, permissions, and access levels.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
 </div>  
-  

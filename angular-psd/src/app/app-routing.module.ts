@@ -17,19 +17,24 @@ import { rootGuard } from './services/guards/root.guard';
 import { userGuard } from './services/guards/user.guard'
 import { loggedinGuard } from './services/guards/loggedin.guard';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
+import { HomepageRootComponent } from './homepage-root/homepage-root.component';
+import { adminGuard } from './services/guards/admin.guard';
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent, canActivate: [loggedinGuard] },
   { path: 'general-register', component: GeneralRegisterComponent, canActivate: [loggedinGuard] },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [rootGuard] },
+  { path: 'dashboard-root', component: DashboardComponent, canActivate: [rootGuard] },
+  { path: 'dashboard-admin', component: DashboardComponent, canActivate: [adminGuard] },
   { path: 'user-management', component: UserManagementComponent, canActivate: [rootGuard] },
   { path: 'user-create', component: CreateUserComponent, canActivate: [rootGuard] },
   { path: 'user-edit/:id', component: EditUserComponent, canActivate: [rootGuard] },
-  { path: 'iemsim-admin', component: IemsimComponent, canActivate: [rootGuard] },
+  { path: 'iemsim-admin', component: IemsimComponent, canActivate: [adminGuard] },
+  { path: 'iemsim-root', component: IemsimComponent, canActivate: [rootGuard] },
   { path: 'iemsim-user', component: IemsimComponent, canActivate: [userGuard] },
-  { path: 'homepage-admin', component: HomepageAdminComponent, canActivate: [rootGuard] },
+  { path: 'homepage-admin', component: HomepageAdminComponent, canActivate: [adminGuard]},
+  { path: 'homepage-root', component: HomepageRootComponent, canActivate: [rootGuard]},
   { path: 'homepage-user', component: HomepageUserComponent, canActivate: [userGuard] },
   { path: 'email-verification', component: EmailActionComponent },
   { path: '**', component: ErrorComponent },

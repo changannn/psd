@@ -27,6 +27,8 @@ import { IemsimComponent } from './pages/iemsim/iemsim.component';
 import { HomepageUserComponent } from './homepage-user/homepage-user.component';
 import { AdminHeaderComponent } from './admin-header/admin-header.component';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
+import { HomepageRootComponent } from './homepage-root/homepage-root.component';
+import { RootHeaderComponent } from './root-header/root-header.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { EditUserComponent } from './pages/edit-user/edit-user.component';
     IemsimComponent,
     HomepageUserComponent,
     AdminHeaderComponent,
-    EditUserComponent
+    EditUserComponent,
+    HomepageRootComponent,
+    RootHeaderComponent
   ],
   imports: [
     BrowserModule,

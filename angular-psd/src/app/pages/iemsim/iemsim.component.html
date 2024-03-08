@@ -1,11 +1,15 @@
-<div *ngIf="role === 'ROOT'; else userContent">
+<div *ngIf="role === 'ROOT';">
+    <!-- Content for admin -->
+    <app-root-header></app-root-header>
+</div>
+<div *ngIf="role === 'ADMIN';">
     <!-- Content for admin -->
     <app-admin-header></app-admin-header>
 </div>
-<ng-template #userContent>
-    <!-- Content for other roles -->
+<div *ngIf="role === 'USER';">
+    <!-- Content for admin -->
     <app-user-header></app-user-header>
-</ng-template>
+</div>
 
 <form [formGroup]="formData" id="inputForm" (ngSubmit)="onSubmit()">
     <div class="background-div">
