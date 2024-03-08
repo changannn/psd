@@ -11,12 +11,18 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "form_table")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @Builder
@@ -56,8 +62,8 @@ public class Form {
     @Column(name = "simulation_types")
     private String simulationTypes;
    
-    @Column(name = "selected_simulation_type")
-    private String selectedSimulationType;
+    // @Column(name = "selected_simulation_type")
+    // private String selectedSimulationType;
     
     @Column(name = "solar_irradiation_checkbox")
     private Boolean solarIrradiationCheckbox;
@@ -110,8 +116,8 @@ public class Form {
     @Column(name = "input_types")
     private String inputTypes;
     
-    @Column(name = "selected_input_type")
-    private String selectedInputType;
+    // @Column(name = "selected_input_type")
+    // private String selectedInputType;
     
     @Column(name = "input_value")
     private String inputValue;
