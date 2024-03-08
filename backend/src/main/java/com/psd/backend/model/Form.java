@@ -61,9 +61,6 @@ public class Form {
     
     @Column(name = "simulation_types")
     private String simulationTypes;
-   
-    // @Column(name = "selected_simulation_type")
-    // private String selectedSimulationType;
     
     @Column(name = "solar_irradiation_checkbox")
     private Boolean solarIrradiationCheckbox;
@@ -115,9 +112,6 @@ public class Form {
 
     @Column(name = "input_types")
     private String inputTypes;
-    
-    // @Column(name = "selected_input_type")
-    // private String selectedInputType;
     
     @Column(name = "input_value")
     private String inputValue;

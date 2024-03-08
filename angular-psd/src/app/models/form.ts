@@ -10,7 +10,6 @@ export interface Form {
     meshResolutionSolar: string;
     meshOffset: string;
     simulationTypes: string;
-    selectedSimulationType: string;
     solarIrradiationCheckbox: boolean;
     absorbedSolarEnergyCheckbox: boolean;
     solarShadingCheckbox: boolean;
@@ -28,7 +27,6 @@ export interface Form {
     meshResolutionNoise: string;
     roadCategory: string;
     inputTypes: string;
-    selectedInputType: string;
     inputValue: string;
     materialAbsorption: string;
     numOfVehicle: string;
