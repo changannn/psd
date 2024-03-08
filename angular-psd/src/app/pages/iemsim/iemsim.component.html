@@ -67,8 +67,8 @@
                                     <select name="material" id="material" formControlName="material">
                                         <option *ngFor="let material of materials" [value]="material">{{ material }}</option>            
                                     </select>
-                                    <label for="colourPicker">Background Colour :</label>
-                                    <input type="color" id="colourPicker" name="colourPicker" (input)="onColorChange($event)" formControlName="colourPicker"/>
+                                    <label for="rgbValue">Background Colour :</label>
+                                    <input type="color" id="rgbValue" name="rgbValue" (input)="onColorChange($event)" formControlName="rgbValue"/>
                                     RGB Value: <span id="rgbValue">{{ rgbValue }}</span>
                             </div>
                         </div>
