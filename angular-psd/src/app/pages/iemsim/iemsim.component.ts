@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { Form } from 'src/app/models/form';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormService } from 'src/app/services/form.service';
 
@@ -10,6 +11,8 @@ import { FormService } from 'src/app/services/form.service';
   styleUrls: ['./iemsim.component.css']
 })
 export class IemsimComponent {
+
+  forms: Form[] = [];
 
   showSubmitSuccessToast = false;
   showSubmitErrorToast = false;
@@ -89,15 +92,15 @@ export class IemsimComponent {
 
     // project - 5
     userMode: [this.userMode[0]],
-    processor: [this.processors[0]],
+    processors: [this.processors[0]],
     projectType: [this.projectType[0]],
-    material: [this.materials[0]],
-    colourPicker: [this.rgbValue],
+    materials: [this.materials[0]],
+    rgbValue: [this.rgbValue],
     // solar - 16
     cityLocation: [this.cityLocation[0]],
     meshResolutionSolar: [this.meshResolutionSolar],
     meshOffset: [this.meshOffset],
-    simulationType: [this.selectedSimulationType],
+    simulationTypes: [this.simulationTypes[0]],
     solarIrradiationCheckbox: [this.solarIrradiationCheckbox],
     absorbedSolarEnergyCheckbox: [this.absorbedSolarEnergyCheckbox],
     solarShadingCheckbox: [this.solarShadingCheckbox],
@@ -115,7 +118,7 @@ export class IemsimComponent {
     receiverOffset: [this.receiverOffset],
     meshResolutionNoise: [this.meshResolutionNoise],
     roadCategory: [this.roadCategory[0]],
-    inputType: [this.selectedInputType],
+    inputTypes: [this.inputTypes[0]],
     inputValue: [this.heavyVehicle],
     materialAbsorption: [this.materialAbsorption[0]],
     numOfVehicle: [this.numOfVehicle],
@@ -148,6 +151,10 @@ export class IemsimComponent {
     return `(${r}, ${g}, ${b})`;
   }
 
+  ngOnInit() {
+    this.loadForm();
+  }
+
   onSubmit(): void {
     const jsonForm = JSON.stringify(this.formData.value);
     // console.log("submitting form", JSON.stringify(this.formData.value)); // inspect element in browser to check
@@ -165,5 +172,16 @@ export class IemsimComponent {
         this.showSubmitSuccessToast = false;
       }
     );
+  }
+  loadForm() {
+    this.formService.fromBackend().subscribe(
+      data => {
+        console.log('get form success');
+        this.forms = data;
+      },
+      error => {
+        console.log('error getting form');
+      }
+    )
   }
 }
