@@ -1,0 +1,12 @@
+version: "3"
+services:
+  backend:
+    image: local-psd # docker image to use
+    ports:
+      - "8080:8080" # map backend port
+      - "5432:5432" # map database port 
+    # environment:
+    #     - SPRING_DATASOURCE_URL=jdbc:postgresql://host.docker.internal:5432/psd
+    #     - SPRING_DATASOURCE_USERNAME=postgres
+    #     - SPRING_DATASOURCE_PASSWORD=root
+
