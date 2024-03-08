@@ -152,7 +152,7 @@ export class IemsimComponent {
   }
 
   ngOnInit() {
-    this.loadForm();
+    this.getFormsHistory();
   }
 
   onSubmit(): void {
@@ -164,6 +164,7 @@ export class IemsimComponent {
         this.showSubmitSuccessToast = true;
         setTimeout(()=>{this.showSubmitSuccessToast=false;}, 2000);
         this.showSubmitErrorToast = false;
+        this.getFormsHistory();
       },
       error => {
         console.error('error when submitting', error);
@@ -173,7 +174,7 @@ export class IemsimComponent {
       }
     );
   }
-  loadForm() {
+  getFormsHistory() {
     this.formService.fromBackend().subscribe(
       data => {
         console.log('get form success');

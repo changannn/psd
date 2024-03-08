@@ -323,8 +323,11 @@
             </div>
             <div class="row">
                 <div class="col">
+                    <button type="button" class="btn btn-primary btn-sm sgds w-100" id="loadButton" (click)="getFormsHistory()">History</button>
+                </div>
+                <div class="col">
                     <button type="button" class="btn btn-primary btn-sm sgds w-100" id="submitButton" (click)="onSubmit()">Submit</button>
-                    <button type="button" class="btn btn-primary btn-sm sgds w-100" id="submitloadButton" (click)="loadForm()">Load</button>
+                    
                     <div class="sgds toast show is-success mb-2 w-100" *ngIf="showSubmitSuccessToast" role="alert" aria-live="assertive" aria-atomic="true">
                         <div class="toast-header">
                           <i class="bi bi-check-circle me-2"></i>
