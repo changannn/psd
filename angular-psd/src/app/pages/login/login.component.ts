@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
             if (response.role == 'ROOT') {
               this.router.navigate(['homepage-root']);
             }
-            else if (response.role == "ADMIN") {
+            else if (response.role == 'ADMIN') {
               this.router.navigate(['homepage-admin']);
             }
             else {

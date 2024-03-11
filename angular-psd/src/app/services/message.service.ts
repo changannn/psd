@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class MessageService {
-  private message: string = "";
+  private message: string = '';
 
   getMessage() {
     return this.message;

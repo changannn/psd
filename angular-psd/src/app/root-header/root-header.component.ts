@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class RootHeaderComponent {
   token: string | null;
-  isLoggedIn: string | null = "false";
+  isLoggedIn: string | null = 'false';
 
   constructor(private router: Router, private authService: AuthService) { 
     this.token = this.authService.getJwt();

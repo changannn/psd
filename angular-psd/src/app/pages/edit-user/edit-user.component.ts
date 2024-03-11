@@ -34,8 +34,8 @@ export class EditUserComponent implements OnInit {
           this.userId = +idParam;
           this.fetchUserDetails(this.userId);
         } else {
-          console.error("No user ID provided");
-          this.message = "Unable to fetch user details: No ID provided"
+          console.error('No user ID provided');
+          this.message = 'Unable to fetch user details: No ID provided'
         }
       })
   }
@@ -46,7 +46,7 @@ export class EditUserComponent implements OnInit {
         this.user = data;
       },
       error: (error) => {
-        console.error("Unable to fetch user details: ", error);
+        console.error('Unable to fetch user details: ', error);
         this.message = error.error
       }
     });
@@ -59,7 +59,7 @@ export class EditUserComponent implements OnInit {
         this.router.navigate(['/user-management']);
       },
       error: (error) => {
-        console.error("Unable to update user: ", error);
+        console.error('Unable to update user: ', error);
         this.message = error.error;
       }
     });

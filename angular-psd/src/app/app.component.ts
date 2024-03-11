@@ -18,13 +18,13 @@ export class AppComponent {
 
 
   token: string | null;
-  isLoggedIn: string | null = "";
+  isLoggedIn: string | null = '';
 
   constructor(private router: Router, private authService: AuthService, private idle: Idle, private keepalive: Keepalive) { 
     this.token = this.authService.getJwt();
     this.isLoggedIn = this.authService.getIsLoggedIn();
 
-    if(this.isLoggedIn == "true"){
+    if(this.isLoggedIn == 'true'){
       // set idle parameters
       idle.setIdle(300); // how long can they be inactive before considered idle, in seconds 5min = 300seconds
       idle.setTimeout(900); // how long can they be idle before considered timed out, in seconds 15min = 900seconds
@@ -32,18 +32,18 @@ export class AppComponent {
 
       // do something when the user becomes idle
       idle.onIdleStart.subscribe(() => {
-        this.idleState = "IDLE";
+        this.idleState = 'IDLE';
       });
       // do something when the user is no longer idle
       idle.onIdleEnd.subscribe(() => {
-        this.idleState = "NOT_IDLE";
+        this.idleState = 'NOT_IDLE';
         console.log(`${this.idleState} ${new Date()}`)
         this.countdown = null;
         // cd.detectChanges(); // how do i avoid this kludge?
       });
       // do something when the user has timed out
       idle.onTimeout.subscribe(() => {
-        this.idleState = "TIMED_OUT";
+        this.idleState = 'TIMED_OUT';
         this.logout();
       }
       );
@@ -72,7 +72,7 @@ export class AppComponent {
     // we'll call this method when we want to start/reset the idle process
     // reset any component state and be sure to call idle.watch()
     this.idle.watch();
-    this.idleState = "NOT_IDLE";
+    this.idleState = 'NOT_IDLE';
     this.countdown = null;
     this.lastPing = null;
   }

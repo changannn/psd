@@ -21,7 +21,7 @@ export class UserManagementComponent implements OnInit {
       // Trigger data refresh when route parameters change
       this.fetchUsers();
       this.message = this.messageService.getMessage();
-      this.messageService.setMessage("");
+      this.messageService.setMessage('');
     });
   }
 

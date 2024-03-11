@@ -53,8 +53,8 @@ export class IemsimComponent {
 
   // solar
   cityLocation: string[] = ['Singapore'];
-  meshResolutionSolar: string = "";
-  meshOffset: string = "";
+  meshResolutionSolar: string = '';
+  meshOffset: string = '';
   simulationTypes: string[] = ['Cumulative Sky', 'point-in-time'];
   selectedSimulationType: string = 'Cumulative Sky';
   solarIrradiationCheckbox: boolean = true;
@@ -72,8 +72,8 @@ export class IemsimComponent {
   
   // noise
   receiverGrid: string[] = ['cut-plane', 'facade'];
-  receiverOffset: string = "";
-  meshResolutionNoise: string = "";
+  receiverOffset: string = '';
+  meshResolutionNoise: string = '';
   roadCategory: string[] = [
     'category 1', 
     'category 2', 
@@ -81,12 +81,12 @@ export class IemsimComponent {
     'category 4', 
     'category 5'];
   inputTypes: string[] = ['default', 'user-defined', 'traffic']
-  selectedInputType: string = "default";
-  inputValue: string = "";
+  selectedInputType: string = 'default';
+  inputValue: string = '';
   materialAbsorption: string[] = ['0', '1'];
-  numOfVehicle: string = "";
-  vehicleSpeed: string = "";
-  heavyVehicle: string = "";
+  numOfVehicle: string = '';
+  vehicleSpeed: string = '';
+  heavyVehicle: string = '';
 
   formData = this.formbuilder.group({
 
