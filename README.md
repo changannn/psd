@@ -155,13 +155,12 @@ Welcome to **Integrated Environment Modelling Simulator (IEMSim)**, an innovativ
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+
 <!-- USAGE EXAMPLES -->
 ## Usage
 
 * (to be updated)
-* Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+* Explore practical examples demonstrating how to effectively use the features of the Integrated Environment Modelling Simulator (IEMSim). This space is dedicated to showcasing screenshots, code snippets, and interactive demos to provide users with a clear understanding of the project's functionalities. Additional resources and guides can also be linked here to help users make the most out of IEMSim.
 
 
 <!-- LICENSE -->
@@ -171,14 +170,13 @@ Distributed under the MIT License. See `LICENSE` for more information
 
 <!-- CONTACT -->
 ## Contact
+
 * (to be updated)
-* include contact details for the project maintainer or team. Provide
-links to relevant communication channels (e.g., email, issue tracker)
+* For inquiries, feedback, or collaboration opportunities, please feel free to reach out to the project maintainer or team. You can contact us through the following channels:
+  - Email: [example@email.com](mailto:example@email.com)
+  - Issue Tracker: [Link to Issues](https://github.com/changannn/psd/issues)
 
 Project Link: [https://github.com/changannn/psd](https://github.com/changannn/psd)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- ACKNOWLEDGMENTS -->
@@ -191,13 +189,11 @@ Project Link: [https://github.com/changannn/psd](https://github.com/changannn/ps
 * [Docker](https://www.docker.com/)
 * [SGDS](https://www.designsystem.tech.gov.sg/)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- TROUBLESHOOTING -->
 ## Troubleshooting
 * (to be updated)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- VERSION HISTORY -->
 ## Version History
@@ -205,7 +201,6 @@ Project Link: [https://github.com/changannn/psd](https://github.com/changannn/ps
 * Document changes in each version, including new features, bug fixes,
 and improvements
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ROADMAP -->
 ## Roadmap
@@ -223,7 +218,6 @@ and improvements
 python3 /usr/local/S3/statistics/app.py
 ```
 for ec2 services, connect to it via session manager to run the commands
-
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
