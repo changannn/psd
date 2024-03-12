@@ -52,20 +52,21 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-* (to be updated)
+
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Description
-Welcome to Integrated Environment Modelling Simulator (IEMSim), a cutting-edge project focused on middle-tier SaaS development. This innovative simulator is built using Angular, Java Spring, AWS, and Docker, bringing together a powerful combination of technologies for a seamless and efficient user experience.
+Welcome to **Integrated Environment Modelling Simulator (IEMSim)**, an innovative project at the forefront of middle-tier Software as a Service (SaaS) development. This dynamic simulator is meticulously crafted using Angular, Java Spring, AWS, and Docker, creating a powerful synergy for an unparalleled user experience.
 
-## Key Features:
+### Key Features:
 
-* Angular | Java Spring | AWS | Docker: IEMSim leverages a robust technology stack to deliver a dynamic and responsive user interface, supported by scalable backend architecture and cloud deployment.
-* SaaS Development: Designed as a middle-tier Software as a Service (SaaS) solution, IEMSim offers a minimalistic yet powerful approach to environmental modeling. The project is driven by a commitment to quality and adaptability, as demonstrated in the ongoing sprints and roadmap.
-* Roadshow Preparation: As we gear up for the roadshow, our team is diligently addressing outstanding deliverables, refining features, and ensuring a smooth integration on the cloud. Despite the project's minimalistic nature, the focus remains on delivering a polished and impactful application.
+- **Cutting-Edge Technology Stack:** IEMSim harnesses the strength of Angular, Java Spring, AWS, and Docker to deliver a responsive user interface complemented by a scalable backend architecture. This ensures a seamless and efficient user experience.
 
+- **SaaS Excellence:** Positioned as a middle-tier SaaS solution, IEMSim embodies a minimalistic yet potent approach to environmental modeling. The project's commitment to quality and adaptability is evident in the ongoing sprints and a carefully outlined roadmap.
+
+- **Roadshow Preparation:** As we anticipate the roadshow, our dedicated team is actively addressing outstanding deliverables, refining features, and seamlessly integrating the application into the cloud. Despite the project's minimalistic design, our focus is unwavering towards delivering a polished and impactful application.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 
 
