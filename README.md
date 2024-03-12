@@ -51,8 +51,8 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project (to be updated)
-
+## About The Project
+* (to be updated)
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 Description
