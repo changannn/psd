@@ -166,10 +166,7 @@ Welcome to **Integrated Environment Modelling Simulator (IEMSim)**, an innovativ
 
 <!-- LICENSE -->
 ## License
-* (to be updated)
-* Specify the project's license to communicate how others can use, modify, and
-distribute the code
-
+Distributed under the MIT License. See `LICENSE` for more information
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTACT -->
@@ -186,6 +183,7 @@ Project Link: [https://github.com/changannn/psd](https://github.com/changannn/ps
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
+* [License](https://choosealicense.com/)
 * [Image Shields](https://shields.io)
 * [Angular](https://angular.io/)
 * [Java SpringBoot](https://spring.io/)
