@@ -56,10 +56,14 @@
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 Description
-blabla
-* blabla
-* blabla
-* blabla
+Welcome to Integrated Environment Modelling Simulator (IEMSim), a cutting-edge project focused on middle-tier SaaS development. This innovative simulator is built using Angular, Java Spring, AWS, and Docker, bringing together a powerful combination of technologies for a seamless and efficient user experience.
+
+## Key Features:
+
+Angular | Java Spring | AWS | Docker: IEMSim leverages a robust technology stack to deliver a dynamic and responsive user interface, supported by scalable backend architecture and cloud deployment.
+SaaS Development: Designed as a middle-tier Software as a Service (SaaS) solution, IEMSim offers a minimalistic yet powerful approach to environmental modeling. The project is driven by a commitment to quality and adaptability, as demonstrated in the ongoing sprints and roadmap.
+Roadshow Preparation: As we gear up for the roadshow, our team is diligently addressing outstanding deliverables, refining features, and ensuring a smooth integration on the cloud. Despite the project's minimalistic nature, the focus remains on delivering a polished and impactful application.
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
