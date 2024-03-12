@@ -35,9 +35,12 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#license">License</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#troubleshooting">Troubleshooting</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#version-history">Version History</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
   </ol>
 </details>
 
@@ -73,6 +76,23 @@ blabla
 
 <!-- GETTING STARTED -->
 ## Getting Started
+
+### Prerequisites
+* Angular
+* Java
+* Maven
+* Docker
+
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/changannn/psd.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
 
 * to compile java backend navigate to backend folder
 ```bash
@@ -131,58 +151,47 @@ docker run -d --restart always -p 8080:8080 134321203882.dkr.ecr.ap-southeast-1.
 docker run -p 5432:5432 -p 8080:8080 134321203882.dkr.ecr.ap-southeast-1.amazonaws.com/management-ecr:latest
 ```
 
-## run the stats service in ec2
+### run the stats service in ec2
 ```bash
 python3 /usr/local/S3/statistics/app.py
 ```
 
 for ec2 services, connect to it via session manager to run the commands
 
-### Prerequisites
-* Angular
-* Java
-* Maven
-* Docker
-
-### Installation
-
-1. Clone the repo
-   ```sh
-   git clone https://github.com/changannn/psd.git
-   ```
-2. Install NPM packages
-   ```sh
-   npm install
-   ```
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- USAGE EXAMPLES -->
-## Usage (to be updated)
+## Usage
 
+* (to be updated)
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- ROADMAP -->
-## Roadmap (to be updated)
-
+## Roadmap
+* (to be updated)
 - [ ] AWS
 - [ ] Add Additional Templates w/ Examples
 - [ ] Add "components" document to easily copy & paste sections of the readme
 - [ ] Multi-language Support
     - [ ] Chinese
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- LICENSE -->
+## License
+* (to be updated)
+* Specify the project's license to communicate how others can use, modify, and
+distribute the code
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTACT -->
 ## Contact
+* (to be updated)
+* include contact details for the project maintainer or team. Provide
+links to relevant communication channels (e.g., email, issue tracker)
 
 Project Link: [https://github.com/changannn/psd](https://github.com/changannn/psd)
 
@@ -191,8 +200,9 @@ Project Link: [https://github.com/changannn/psd](https://github.com/changannn/ps
 
 
 <!-- ACKNOWLEDGMENTS -->
-## Acknowledgments (to be updated)
+## Acknowledgments
 
+* (to be updated)
 Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
 
 * [Img Shields](https://shields.io)
@@ -204,7 +214,19 @@ Use this space to list resources you find helpful and would like to give credit 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- TROUBLESHOOTING -->
+## Troubleshooting
+* (to be updated)
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- VERSION HISTORY -->
+## Version History
+* (to be updated)
+* Document changes in each version, including new features, bug fixes,
+and improvements
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
