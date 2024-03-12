@@ -8,8 +8,6 @@
   <h3 align="center">Integrated Environment Modelling Simulator (IEMSim) - middle-tier SaaS development</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
-    <br />
     <a><strong>Angular | Java Spring | AWS | Docker </strong></a>
 
   </p>
