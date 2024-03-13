@@ -46,7 +46,6 @@
     <li><a href="#acknowledgments">Acknowledgments</a></li>
     <li><a href="#troubleshooting">Troubleshooting</a></li>
     <li><a href="#version-history">Version History</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
   </ol>
 </details>
 
@@ -160,23 +159,19 @@ Welcome to **Integrated Environment Modelling Simulator (IEMSim)**, an innovativ
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-
-* (to be updated)
 * Explore practical examples demonstrating how to effectively use the features of the Integrated Environment Modelling Simulator (IEMSim). This space is dedicated to showcasing screenshots, code snippets, and interactive demos to provide users with a clear understanding of the project's functionalities. Additional resources and guides can also be linked here to help users make the most out of IEMSim.
 
 
 <!-- LICENSE -->
 ## License
 Distributed under the MIT License. See `LICENSE` for more information
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <!-- CONTACT -->
 ## Contact
-
-* (to be updated)
 * For inquiries, feedback, or collaboration opportunities, please feel free to reach out to the project maintainer or team. You can contact us through the following channels:
-  - Email: [example@email.com](mailto:example@email.com)
-  - Issue Tracker: [Link to Issues](https://github.com/changannn/psd/issues)
+  - Email: [team16@gmail.com](mailto:example@email.com)
+  - Issue Tracker: [Issues](https://github.com/changannn/psd/issues)
 
 Project Link: [https://github.com/changannn/psd](https://github.com/changannn/psd)
 
@@ -194,24 +189,24 @@ Project Link: [https://github.com/changannn/psd](https://github.com/changannn/ps
 
 <!-- TROUBLESHOOTING -->
 ## Troubleshooting
-* (to be updated)
+* Push docker image to AWS ECR
+  * Requires to do this step on local computer
+    * <a href="#aws">AWS</a>
+* Pull docker image from AWS ECR
+  * Requires to do this step on EC2
+    * <a href="#aws">AWS</a>
 
 
 <!-- VERSION HISTORY -->
 ## Version History
-* (to be updated)
-* Document changes in each version, including new features, bug fixes,
-and improvements
-
-
-<!-- ROADMAP -->
-## Roadmap
-* (to be updated, suggest to add future works)
-- [ ] AWS
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
+- [x] Register, Login
+- [x] Multi-Factor Authentication
+- [x] User Creation
+- [x] Session Timeout
+- [x] IEMSim CRD Operation
+- [ ] Run on AWS Cloud
+- [ ] Dashboard
+- [ ] Restriction
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
