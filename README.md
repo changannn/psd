@@ -54,7 +54,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![IEMSim Homepage][product-screenshot]](https://u-saas.wizvision.com/)
 
 Welcome to **Integrated Environment Modelling Simulator (IEMSim)**, an innovative project at the forefront of middle-tier Software as a Service (SaaS) development. This dynamic simulator is meticulously crafted using Angular, Java Spring, AWS, and Docker, creating a powerful synergy for an unparalleled user experience.
 
