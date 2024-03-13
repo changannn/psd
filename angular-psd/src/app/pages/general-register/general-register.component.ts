@@ -45,15 +45,7 @@ export class GeneralRegisterComponent implements OnInit {
       this.registrationService.registerUser(this.registerRequest)
         .subscribe({
           next: (response: AuthenticationResponse) => {
-            if (response) {
-              this.authenticationResponse = response;
-            }
-            else {
-              this.message = 'Account created successfully\nYou will be redirected to the login page in 3 seconds';
-              setTimeout(() => {
-                this.router.navigate(['login']);
-              }, 3000)
-            }
+            this.authenticationResponse = response;
           },
           error: (error) => {
             console.error('Error during sign up', error);

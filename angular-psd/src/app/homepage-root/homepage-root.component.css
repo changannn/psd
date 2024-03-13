@@ -1,0 +1,50 @@
+.sgds-example-card-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.card {
+  position: relative;
+  border-radius: 25px;
+  width: 30vw;
+  height: 75vh;
+  margin: 20px;
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Adjust the alpha value for the darkness */
+  border-radius: 25px; /* Match the card's border-radius */
+}
+
+.card-body {
+  color: white;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.card-title {
+  font-size: 2em;
+  font-weight: bolder;
+  margin: 0 auto;
+}
+
+.card-summary {
+  margin: 0 auto;
+  font-size: 1em;
+}

@@ -10,7 +10,7 @@ import { AuthService } from '../services/auth.service';
 export class UserHeaderComponent {
 
   token: string | null;
-  isLoggedIn: string | null = "false";
+  isLoggedIn: string | null = 'false';
 
   constructor(private router: Router, private authService: AuthService) { 
     this.token = this.authService.getJwt();
@@ -21,6 +21,7 @@ export class UserHeaderComponent {
     if (this.token != null){
       this.router.navigate(['login']);
       this.authService.removeJwt();
+      this.authService.removeRole();
       this.authService.setIsLoggedOut();
     }
   }

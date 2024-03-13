@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IEM Simulator</title>
-</head>
-<app-admin-header></app-admin-header>
+<div *ngIf="role === 'ROOT';">
+    <!-- Content for admin -->
+    <app-root-header></app-root-header>
+</div>
+<div *ngIf="role === 'ADMIN';">
+    <!-- Content for admin -->
+    <app-admin-header></app-admin-header>
+</div>
 <body>
     <main>
         <h1 class="dash-label">
@@ -82,4 +82,3 @@
         </div>
     </main>
 </body>
-</html>

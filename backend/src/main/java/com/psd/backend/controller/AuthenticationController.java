@@ -22,12 +22,9 @@ public class AuthenticationController {
 
     // To register
     @PostMapping("/register")
-    public ResponseEntity<?> register(@Valid @RequestBody RegisterRequest request) {
+    public ResponseEntity<AuthenticationResponse> register(@Valid @RequestBody RegisterRequest request) {
         var response = authenticationService.register(request);
-        if (request.isMfaEnabled()) {
-            return ResponseEntity.ok(response);
-        }
-        return ResponseEntity.accepted().build();
+        return ResponseEntity.ok(response);
     }
 
     // To login
@@ -38,7 +35,13 @@ public class AuthenticationController {
 
     // To verify MFA
     @PostMapping("/verify")
-    public ResponseEntity<?> verifyCode(@RequestBody VerificationRequest verificationRequest) {
+    public ResponseEntity<AuthenticationResponse> verifyCode(@RequestBody VerificationRequest verificationRequest) {
         return ResponseEntity.ok(authenticationService.verifyCode(verificationRequest));
+    }
+
+    @PostMapping("/update")
+    public ResponseEntity<AuthenticationResponse> update(@Valid @RequestBody RegisterRequest request) {
+        var response = authenticationService.update(request);
+        return ResponseEntity.ok(response);
     }
 }

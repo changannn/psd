@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { User } from '../models/user.interface';
 import { environment } from '../../environments/environment';
 
@@ -26,5 +26,47 @@ export class ApiService {
     }
 
     return new Observable<User[]>();
+  }
+
+  editAccountUser(userId: number, user: User): Observable<string> {
+    const jwt = this.authService.getJwt();
+
+    // if (!jwt) {
+    //   return throwError(() => new Error("User unauthorised"));
+    // }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${jwt}`
+    });
+
+    return this.http.put(`${this.apiUrl}/users/${userId}`, user, { headers, responseType: 'text' });
+  }
+
+  deleteAccountUser(userId: number): Observable<string> {
+    const jwt = this.authService.getJwt();
+
+    // if (!jwt) {
+    //   return throwError(() => new Error("User unauthorised"));
+    // }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${jwt}`
+    });
+
+    return this.http.delete(`${this.apiUrl}/users/${userId}`, { headers, responseType: 'text' });
+  } 
+
+  getUserById(userId: number): Observable<User> {
+    const jwt = this.authService.getJwt();
+
+    // if (!jwt) {
+    //   return throwError(() => new Error("User unauthorised"));
+    // }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${jwt}`
+    });
+
+    return this.http.get<User>(`${this.apiUrl}/users/${userId}`, { headers });
   }
 }

@@ -1,20 +1,28 @@
 package com.psd.backend.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+
+import java.util.List;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.psd.backend.model.Form;
 import com.psd.backend.respository.FormRepository;
 
 @Service
+@AllArgsConstructor
 public class FormServiceImpl implements FormService {
 
-    @Autowired
-    FormRepository formRepository;
+    private final FormRepository formRepository;
 
     @Override
     public Form saveForm(Form form) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
         Form newform = Form.builder()
+        .username(username)
         .userMode(form.getUserMode())
         .projectType(form.getProjectType())
         .processors(form.getProcessors())
@@ -24,7 +32,6 @@ public class FormServiceImpl implements FormService {
         .meshResolutionSolar(form.getMeshResolutionSolar())
         .meshOffset(form.getMeshOffset())
         .simulationTypes(form.getSimulationTypes())
-        .selectedSimulationType(form.getSelectedSimulationType())
         .solarIrradiationCheckbox(form.getSolarIrradiationCheckbox())
         .absorbedSolarEnergyCheckbox(form.getAbsorbedSolarEnergyCheckbox())
         .solarShadingCheckbox(form.getSolarShadingCheckbox())
@@ -42,7 +49,6 @@ public class FormServiceImpl implements FormService {
         .meshResolutionNoise(form.getMeshResolutionNoise())
         .roadCategory(form.getRoadCategory())
         .inputTypes(form.getInputTypes())
-        .selectedInputType(form.getSelectedInputType())
         .inputValue(form.getInputValue())
         .materialAbsorption(form.getMaterialAbsorption())
         .numOfVehicle(form.getNumOfVehicle())
@@ -50,6 +56,12 @@ public class FormServiceImpl implements FormService {
         .heavyVehicle(form.getHeavyVehicle())
         .build();
         return formRepository.save(newform);
+    }
+
+    @Override
+    public List<Form> getForm(String username) {
+        return formRepository.getFormByUsername(username);
+        
     }
     
 }

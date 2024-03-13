@@ -1,13 +1,15 @@
-<div *ngIf="role === 'ROOT'; else userContent">
+<div *ngIf="role === 'ROOT';">
+    <!-- Content for admin -->
+    <app-root-header></app-root-header>
+</div>
+<div *ngIf="role === 'ADMIN';">
     <!-- Content for admin -->
     <app-admin-header></app-admin-header>
-    <h1>{{ role }}</h1>
 </div>
-<ng-template #userContent>
-    <!-- Content for other roles -->
+<div *ngIf="role === 'USER';">
+    <!-- Content for admin -->
     <app-user-header></app-user-header>
-    <h1>{{ role }}</h1>
-</ng-template>
+</div>
 
 <form [formGroup]="formData" id="inputForm" (ngSubmit)="onSubmit()">
     <div class="background-div">
@@ -40,9 +42,9 @@
                             <select name="userMode" id="userMode" formControlName="userMode">
                                 <option *ngFor="let user of userMode" [value]="user">{{ user }}</option>
                             </select>
-                            <label for="processorNumber">Processors :</label>
-                            <select name="processorNumber" id="processorNumber" formControlName="processor">
-                                <option *ngFor="let processor of processors" [value]="processor">{{ processor }}</option>            
+                            <label for="processors">Processors :</label>
+                            <select name="processors" id="processors" formControlName="processors">
+                                <option *ngFor="let processor of processors" [value]="processor">{{ processor }}</option>    
                             </select>
                         </div>
                         <div class="container-div-2">
@@ -65,8 +67,8 @@
                                     <select name="material" id="material" formControlName="material">
                                         <option *ngFor="let material of materials" [value]="material">{{ material }}</option>            
                                     </select>
-                                    <label for="colourPicker">Background Colour :</label>
-                                    <input type="color" id="colourPicker" name="colourPicker" (input)="onColorChange($event)" formControlName="colourPicker"/>
+                                    <label for="rgbValue">Background Colour :</label>
+                                    <input type="color" id="rgbValue" name="rgbValue" (input)="onColorChange($event)" formControlName="rgbValue"/>
                                     RGB Value: <span id="rgbValue">{{ rgbValue }}</span>
                             </div>
                         </div>
@@ -97,9 +99,9 @@
                         </div> 
                         <div class="container-div-2">
                             <div class="container-div-row">
-                                <label for="simulationType">Simulation Type :</label>
-                                <select class="simulationType-select" name="simulationType" id="simulationType" [(ngModel)]="selectedSimulationType" formControlName="simulationType">
-                                    <option *ngFor="let simulationtype of simulationTypes" [value]="simulationtype">{{ simulationtype }}</option>
+                                <label for="simulationTypes">Simulation Type :</label>
+                                <select class="simulationTypes" name="simulationTypes" id="simulationTypes" [(ngModel)]="selectedSimulationType" formControlName="simulationTypes">
+                                    <option *ngFor="let simulationType of simulationTypes" [value]="simulationType">{{ simulationType }}</option>
                                 </select>
                             </div>
                             <div class="container-div-row form-check" *ngIf="selectedSimulationType === 'Cumulative Sky'">
@@ -256,8 +258,8 @@
                         </div>
                         <div class="container-div-2">
                             <div class="container-div-row">
-                                <label for="inputType">Input Type :</label>
-                                <select name="inputType" id="inputType" [(ngModel)]="selectedInputType" formControlName="inputType">
+                                <label for="inputTypes">Input Type :</label>
+                                <select name="inputTypes" id="inputTypes" [(ngModel)]="selectedInputType" formControlName="inputTypes">
                                     <option *ngFor="let inputType of inputTypes" [value]="inputType">{{ inputType }}</option>
                                 </select>
                             </div>
@@ -321,7 +323,11 @@
             </div>
             <div class="row">
                 <div class="col">
+                    <button type="button" class="btn btn-primary btn-sm sgds w-100" id="loadButton" (click)="getFormsHistory()">History</button>
+                </div>
+                <div class="col">
                     <button type="button" class="btn btn-primary btn-sm sgds w-100" id="submitButton" (click)="onSubmit()">Submit</button>
+                    
                     <div class="sgds toast show is-success mb-2 w-100" *ngIf="showSubmitSuccessToast" role="alert" aria-live="assertive" aria-atomic="true">
                         <div class="toast-header">
                           <i class="bi bi-check-circle me-2"></i>
@@ -344,6 +350,26 @@
                     </div>
                 </div>
             </div>
+            <div class="table-responsive-lg">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Username</th>
+                      <th scope="col">Processors</th>
+                      <th scope="col">Date Time</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let form of forms; let i = index">
+                      <th scope="row">{{ i + 1 }}</th>
+                      <td>{{ form.username }}</td>
+                      <td>{{ form.processors }}</td>
+                      <td>{{ form.createdAt }}</td>
+                    </tr>
+                  </tbody>
+               </table>
+              </div>
         </div>
     </div>
 </form>

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { Form } from 'src/app/models/form';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormService } from 'src/app/services/form.service';
 
@@ -10,6 +11,8 @@ import { FormService } from 'src/app/services/form.service';
   styleUrls: ['./iemsim.component.css']
 })
 export class IemsimComponent {
+
+  forms: Form[] = [];
 
   showSubmitSuccessToast = false;
   showSubmitErrorToast = false;
@@ -50,8 +53,8 @@ export class IemsimComponent {
 
   // solar
   cityLocation: string[] = ['Singapore'];
-  meshResolutionSolar: string = "";
-  meshOffset: string = "";
+  meshResolutionSolar: string = '';
+  meshOffset: string = '';
   simulationTypes: string[] = ['Cumulative Sky', 'point-in-time'];
   selectedSimulationType: string = 'Cumulative Sky';
   solarIrradiationCheckbox: boolean = true;
@@ -69,8 +72,8 @@ export class IemsimComponent {
   
   // noise
   receiverGrid: string[] = ['cut-plane', 'facade'];
-  receiverOffset: string = "";
-  meshResolutionNoise: string = "";
+  receiverOffset: string = '';
+  meshResolutionNoise: string = '';
   roadCategory: string[] = [
     'category 1', 
     'category 2', 
@@ -78,26 +81,26 @@ export class IemsimComponent {
     'category 4', 
     'category 5'];
   inputTypes: string[] = ['default', 'user-defined', 'traffic']
-  selectedInputType: string = "default";
-  inputValue: string = "";
+  selectedInputType: string = 'default';
+  inputValue: string = '';
   materialAbsorption: string[] = ['0', '1'];
-  numOfVehicle: string = "";
-  vehicleSpeed: string = "";
-  heavyVehicle: string = "";
+  numOfVehicle: string = '';
+  vehicleSpeed: string = '';
+  heavyVehicle: string = '';
 
   formData = this.formbuilder.group({
 
     // project - 5
     userMode: [this.userMode[0]],
-    processor: [this.processors[0]],
+    processors: [this.processors[0]],
     projectType: [this.projectType[0]],
-    material: [this.materials[0]],
-    colourPicker: [this.rgbValue],
+    materials: [this.materials[0]],
+    rgbValue: [this.rgbValue],
     // solar - 16
     cityLocation: [this.cityLocation[0]],
     meshResolutionSolar: [this.meshResolutionSolar],
     meshOffset: [this.meshOffset],
-    simulationType: [this.selectedSimulationType],
+    simulationTypes: [this.simulationTypes[0]],
     solarIrradiationCheckbox: [this.solarIrradiationCheckbox],
     absorbedSolarEnergyCheckbox: [this.absorbedSolarEnergyCheckbox],
     solarShadingCheckbox: [this.solarShadingCheckbox],
@@ -115,7 +118,7 @@ export class IemsimComponent {
     receiverOffset: [this.receiverOffset],
     meshResolutionNoise: [this.meshResolutionNoise],
     roadCategory: [this.roadCategory[0]],
-    inputType: [this.selectedInputType],
+    inputTypes: [this.inputTypes[0]],
     inputValue: [this.heavyVehicle],
     materialAbsorption: [this.materialAbsorption[0]],
     numOfVehicle: [this.numOfVehicle],
@@ -148,6 +151,10 @@ export class IemsimComponent {
     return `(${r}, ${g}, ${b})`;
   }
 
+  ngOnInit() {
+    this.getFormsHistory();
+  }
+
   onSubmit(): void {
     const jsonForm = JSON.stringify(this.formData.value);
     // console.log("submitting form", JSON.stringify(this.formData.value)); // inspect element in browser to check
@@ -157,6 +164,7 @@ export class IemsimComponent {
         this.showSubmitSuccessToast = true;
         setTimeout(()=>{this.showSubmitSuccessToast=false;}, 2000);
         this.showSubmitErrorToast = false;
+        this.getFormsHistory();
       },
       error => {
         console.error('error when submitting', error);
@@ -165,5 +173,16 @@ export class IemsimComponent {
         this.showSubmitSuccessToast = false;
       }
     );
+  }
+  getFormsHistory() {
+    this.formService.fromBackend().subscribe(
+      data => {
+        console.log('get form success');
+        this.forms = data;
+      },
+      error => {
+        console.log('error getting form');
+      }
+    )
   }
 }

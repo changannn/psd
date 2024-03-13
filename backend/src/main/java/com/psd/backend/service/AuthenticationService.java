@@ -105,4 +105,28 @@ public class AuthenticationService {
                 .role(user.getRole())
                 .build();
     }
+
+    public AuthenticationResponse update(RegisterRequest request) {
+        // Create user with encrypted password and save to database
+        User user = userRepository.findByEmailIgnoreCase(request.getEmail());
+        user.setUsername(request.getUsername());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setMfaEnabled(request.isMfaEnabled());
+
+        // If MFA enabled, generate secret for MFA
+        if (request.isMfaEnabled()){
+            user.setSecret(mfaService.generateNewSecret());
+        }
+
+        // Update user in database
+        userRepository.save(user);
+
+        // Generate a token to return to the user
+        String jwtToken = jwtService.generateToken(user);
+        return AuthenticationResponse.builder()
+                .secretImageUri(mfaService.generateQrCodeImageUri(user.getSecret()))
+                .token(jwtToken)
+                .mfaEnabled(user.isMfaEnabled())
+                .build();
+    }
 }
