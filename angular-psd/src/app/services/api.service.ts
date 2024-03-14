@@ -11,6 +11,7 @@ import { environment } from '../../environments/environment';
 })
 export class ApiService {
   private apiUrl = environment.apiURL; 
+  private apiKey = environment.apiKey;
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
@@ -19,7 +20,8 @@ export class ApiService {
 
     if (jwt) {
       const headers = new HttpHeaders({
-        'Authorization': `Bearer ${jwt}`
+        'Authorization': `Bearer ${jwt}`,
+        'x-api-key': this.apiKey
       });
 
       return this.http.get<User[]>(`${this.apiUrl}/profile`, { headers });
@@ -36,7 +38,8 @@ export class ApiService {
     // }
 
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${jwt}`
+      'Authorization': `Bearer ${jwt}`,
+      'x-api-key': this.apiKey
     });
 
     return this.http.put(`${this.apiUrl}/users/${userId}`, user, { headers, responseType: 'text' });
@@ -50,7 +53,8 @@ export class ApiService {
     // }
 
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${jwt}`
+      'Authorization': `Bearer ${jwt}`,
+      'x-api-key': this.apiKey
     });
 
     return this.http.delete(`${this.apiUrl}/users/${userId}`, { headers, responseType: 'text' });
@@ -64,7 +68,8 @@ export class ApiService {
     // }
 
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${jwt}`
+      'Authorization': `Bearer ${jwt}`,
+      'x-api-key': this.apiKey
     });
 
     return this.http.get<User>(`${this.apiUrl}/users/${userId}`, { headers });
