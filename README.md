@@ -124,25 +124,25 @@ Welcome to **Integrated Environment Modelling Simulator (IEMSim)**, an innovativ
   java -jar target/backend-0.1.jar
   ```
 
-### AWS
-#### Terraform
-7.setup the vpc endpoints (for EC2 Session manager access)
+### Terraform
+7. setup the vpc endpoints (for EC2 Session manager access)
+  
   Use terraform files to handle setup of the vpc endpoints
   1. Navigate to directory (One time setup)
   ```bash
   terraform init
   ```
   2. Edit config files to include correct aws credentials under provider.tf 
-  2. Run the terraform files
+  3. Run the terraform files
   ```bash
   terraform apply -auto-approve
   ```
-  3. Delete resources when done with the application usage 
+  4. Delete resources when done with the application usage 
   ```bash
   terraform destroy -auto-approve
   ```
 
-  1. Alternative method: setting up the vpc endpoints manually as required
+  1. Alternative method: setting up the vpc endpoints manually on AWS
   ```
   ec2
   ec2messages
@@ -150,35 +150,36 @@ Welcome to **Integrated Environment Modelling Simulator (IEMSim)**, an innovativ
   ```
 
 
+### AWS
+- These configurations are done on the EC2
 
-#### EC2
-7. Configuration to connect to AWS service 
+8. Configuration to connect to AWS service 
   ```bash
   aws configure sso
   ```
-8.  Connect to AWS ECR
+9.  Connect to AWS ECR
   ```bash
   aws ecr get-login-password --region ap-southeast-1 --profile colin | docker login --username AWS --password-stdin 134321203882.dkr.ecr.ap-southeast-1.amazonaws.com
   ```
 
 ### Docker
-9. Build docker image in backend PATH
+10. Build docker image in backend PATH
   ```bash
   docker build -t management-ecr .
   ```
-10. Tag image
+11. Tag image
   ```bash
   docker tag management-ecr:latest 134321203882.dkr.ecr.ap-southeast-1.amazonaws.com/management-ecr:latest
   ```
-11. Push image to AWS ECR
+12. Push image to AWS ECR
   ```bash
   docker push 134321203882.dkr.ecr.ap-southeast-1.amazonaws.com/management-ecr:latest
   ```
-12. Run docker image **IN EC2** (development)
+13. Run docker image **IN EC2** (development)
   ```bash
   docker run -p 5432:5432 -p 8080:8080 134321203882.dkr.ecr.ap-southeast-1.amazonaws.com/management-ecr:latest
   ```
-13. Run the docker image **IN EC2** (production)
+14. Run the docker image **IN EC2** (production)
   ```bash
   docker run -d --restart always -p 5432:5432 -p 8080:8080 134321203882.dkr.ecr.ap-southeast-1.amazonaws.com/management-ecr:latest
   ```
