@@ -80,6 +80,7 @@ Welcome to **Integrated Environment Modelling Simulator (IEMSim)**, an innovativ
 * [![Docker][docker.io]][docker-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 * [![JQuery][JQuery.com]][JQuery-url]
+* [![Terraform][Terraform.io]][Terraform-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -262,3 +263,6 @@ for ec2 services, connect to it via session manager to run the commands
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [JQuery-url]: https://jquery.com 
+[Terraform.io]: https://img.shields.io/badge/terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white
+[Terraform-url]: https://www.terraform.io/
+
