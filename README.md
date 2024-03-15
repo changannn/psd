@@ -35,6 +35,7 @@
         <ul>
           <li><a href="#angular">Angular</a></li>
           <li><a href="#maven">Maven</a></li>
+          <li><a href="#terraform">Terraform</a></li>
           <li><a href="#aws">AWS</a></li>
           <li><a href="#docker">Docker</a></li>
         </ul>
@@ -123,6 +124,33 @@ Welcome to **Integrated Environment Modelling Simulator (IEMSim)**, an innovativ
   ```
 
 ### AWS
+#### Terraform
+7.setup the vpc endpoints (for EC2 Session manager access)
+  Use terraform files to handle setup of the vpc endpoints
+  1. Navigate to directory (One time setup)
+  ```bash
+  terraform init
+  ```
+  2. Edit config files to include correct aws credentials under provider.tf 
+  2. Run the terraform files
+  ```bash
+  terraform apply -auto-approve
+  ```
+  3. Delete resources when done with the application usage 
+  ```bash
+  terraform destroy -auto-approve
+  ```
+
+  1. Alternative method: setting up the vpc endpoints manually as required
+  ```
+  ec2
+  ec2messages
+  ssmmessages
+  ```
+
+
+
+#### EC2
 7. Configuration to connect to AWS service 
   ```bash
   aws configure sso
