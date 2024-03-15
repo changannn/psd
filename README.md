@@ -127,7 +127,7 @@ Welcome to **Integrated Environment Modelling Simulator (IEMSim)**, an innovativ
 ### Terraform
 7. setup the vpc endpoints (for EC2 Session manager access)
   
-* Use terraform files to handle setup of the vpc endpoints
+<p>* Use terraform files to handle setup of the vpc endpoints</p>
     a. Navigate to directory (One time setup)
   ```bash
   terraform init
@@ -151,8 +151,7 @@ Welcome to **Integrated Environment Modelling Simulator (IEMSim)**, an innovativ
 
 
 ### AWS
-* These configurations are done on the EC2
-
+<p>* These configurations are done on the EC2</p>
 8. Configuration to connect to AWS service 
   ```bash
   aws configure sso
