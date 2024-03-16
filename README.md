@@ -128,25 +128,25 @@ Welcome to **Integrated Environment Modelling Simulator (IEMSim)**, an innovativ
 * Use terraform files to handle setup of the vpc endpoints
 7. setup the vpc endpoints (for EC2 Session manager access)
     a. Navigate to directory (One time setup)
-  ```bash
-  terraform init
-  ```
+      ```bash
+      terraform init
+      ```
     b. Edit config files to include correct aws credentials under provider.tf 
     c. Run the terraform files
-  ```bash
-  terraform apply -auto-approve
-  ```
+      ```bash
+      terraform apply -auto-approve
+      ```
     d. Delete resources when done with the application usage 
-  ```bash
-  terraform destroy -auto-approve
-  ```
+      ```bash
+      terraform destroy -auto-approve
+      ```
 
     a. Alternative method: setting up the vpc endpoints manually on AWS
-  ```
-  ec2
-  ec2messages
-  ssmmessages
-  ```
+      ```
+      ec2
+      ec2messages
+      ssmmessages
+      ```
 
 
 ### AWS
