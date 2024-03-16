@@ -30,13 +30,13 @@
             <label class="form-label">Password</label>
             <label class="hint">At least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character (&#64;$!%*?&)</label>
             <span class="span-input">
-                <input type="password" class=" form-control" id="password" aria-describedby="password" placeholder="Type your password" [(ngModel)]="registerRequest.password">
+                <input type="password" class=" form-control" id="password" aria-describedby="password" placeholder="Type your password" [(ngModel)]="registerRequest.password" autocomplete="on">
             </span>
         </div>
         <div class="row">
             <label class="form-label">Repeat Password</label>
             <span class="span-input">
-                <input type="password" class=" form-control" id="repeatPassword" aria-describedby="repeatPassword" placeholder="Re-type your password" [(ngModel)]="retypePassword">
+                <input type="password" class=" form-control" id="repeatPassword" aria-describedby="repeatPassword" placeholder="Re-type your password" [(ngModel)]="retypePassword" autocomplete="on">
             </span>
         </div>
         <div class="row">
@@ -46,7 +46,7 @@
             <label>Already have an account? <a href="/login">Sign in here!</a></label>
         </div>
     </div>
-
+    
     <div class="form container" *ngIf="authenticationResponse.mfaEnabled">
         <div class="row">
             <h2>Set Up MFA</h2>
