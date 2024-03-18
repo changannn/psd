@@ -21,6 +21,9 @@ jobs:
       run: |
         cd angular-psd
         npm install
+        npm install three
+        npm install @types/three --save-dev
+
 
     - name: Build frontend
       run: |
