@@ -55,12 +55,16 @@
                                 </select>
                             </div>
                         </div>
+                      
                         <div class="container-div-2">
                             <div class="container-div-row">
                                 <label for="stlFile">Import STL File:</label>
-                                <input type="file" id="stlFile" name="stlFile">
+                                <input type="file" id="stlFile" name="stlFile" (change)="handleFileInput($event)">
                             </div>
                         </div>
+                        <!-- Place this div where you want the STL to be rendered -->
+                        <div id="stlViewer" style="width: 800px; height: 600px;"></div>
+                      
                         <div class="container-div-2">
                             <div class="container-div-row">
                                 <label for="material">Material/Refinement:</label>
