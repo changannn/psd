@@ -5,6 +5,10 @@ import { Form } from 'src/app/models/form';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormService } from 'src/app/services/form.service';
 
+import * as THREE from 'three';
+import { STLLoader } from 'three/examples/jsm/loaders/STLLoader';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+
 @Component({
   selector: 'app-iemsim',
   templateUrl: './iemsim.component.html',
@@ -185,4 +189,84 @@ export class IemsimComponent {
       }
     )
   }
+
+  handleFileInput(event: Event) {
+    const input = event.target as HTMLInputElement; // Safely cast the event target to HTMLInputElement
+    if (input && input.files && input.files.length > 0) {
+        const file = input.files.item(0); // Assuming single file selection
+
+        if (file && file.name.endsWith('.stl')) {
+            const reader = new FileReader();
+            reader.readAsArrayBuffer(file);
+            reader.onload = () => {
+                const loader = new STLLoader();
+                const geometry = loader.parse(reader.result as ArrayBuffer);
+                this.renderSTL(geometry);
+            };
+        }
+    }
+}
+
+
+renderSTL(geometry: THREE.BufferGeometry) {
+  // Set up the scene, camera, and renderer
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, 800 / 600, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(800, 600);
+  renderer.setClearColor(0xf0f0f0); // Set background color
+
+  // Get the STL viewer element and clear it before appending renderer DOM
+  const stlViewerElement = document.getElementById('stlViewer');
+  if (stlViewerElement) {
+      stlViewerElement.innerHTML = '';
+      stlViewerElement.appendChild(renderer.domElement);
+  }
+
+  // Add ambient light
+  const ambientLight = new THREE.AmbientLight(0x404040);
+  scene.add(ambientLight);
+
+  // Add directional light
+  const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+  directionalLight.position.set(1, 1, 1);
+  scene.add(directionalLight);
+
+  // Create the mesh from geometry and material
+  const material = new THREE.MeshStandardMaterial({ color: 0x00ff00, flatShading: true });
+  const mesh = new THREE.Mesh(geometry, material);
+  scene.add(mesh);
+
+  // Compute the bounding box and get the center
+  const boundingBox = new THREE.Box3().setFromObject(mesh);
+  const center = boundingBox.getCenter(new THREE.Vector3());
+
+  // Adjust the mesh position to align its center with the scene's origin
+  mesh.geometry.translate(-center.x, -center.y, -center.z);
+
+  // Update the camera to look at the mesh's center
+  const size = boundingBox.getSize(new THREE.Vector3());
+  const maxDim = Math.max(size.x, size.y, size.z);
+  const fov = camera.fov * (Math.PI / 180);
+  const cameraZ = maxDim / 2 / Math.tan(fov / 2) * 1.5;
+  camera.position.z = cameraZ;
+  camera.lookAt(center);
+
+  camera.near = cameraZ / 100;
+  camera.far = cameraZ * 100;
+  camera.updateProjectionMatrix();
+
+  // Set up the orbit controls
+  const controls = new OrbitControls(camera, renderer.domElement);
+  controls.target.set(0, 0, 0); // The target is now the center of the rotated object
+
+  // Animation loop
+  const animate = () => {
+    requestAnimationFrame(animate);
+    controls.update();
+    renderer.render(scene, camera);
+  };
+
+  animate();
+}
 }
