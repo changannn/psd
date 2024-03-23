@@ -28,7 +28,12 @@ public class SecurityConfiguration {
                 // Disable CSRF as it is not needed
                 .csrf(csrf -> csrf.disable())
                 .cors(Customizer.withDefaults())
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/auth/**")
+                .authorizeHttpRequests(auth -> auth.requestMatchers(
+                    "/auth/**",
+                    "/v3/api-docs/**",
+                    "/swagger-ui/**",
+                    "/swagger-ui.html"
+                    )
                         .permitAll()
                         .anyRequest()
                         .authenticated())
